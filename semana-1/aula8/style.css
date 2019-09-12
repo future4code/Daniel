@@ -1,0 +1,152 @@
+body {
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #cec6c2;
+    color: rgb(114, 114, 114);
+    font-family: "Roboto", sans-serif;
+}
+main {
+    margin: 0 auto;
+    max-width: 90%;
+    min-height: 100%;
+    box-shadow: 0px 0px 5px 0px rgba(153, 153, 153, 0.212);
+    background-color: #f2e9e4;
+}
+
+main > * {
+    padding: 1rem;
+    text-align: center;
+}
+nav {
+    padding-top: 0;
+    padding-bottom: 0;
+    background-color: #f2e9e4;
+    position: sticky;
+    top: 0px;
+}
+nav a,
+nav a:visited {
+    color: rgb(114, 114, 114);
+}
+
+nav ul,
+footer ul {
+    list-style-type: none;
+    overflow: hidden;
+    padding-left: 0;
+    margin: 0;
+}
+
+nav ul li,
+footer ul li {
+    margin-left: 1rem;
+    float: right;
+    padding-top: 0.5rem;
+}
+nav ul li:first-child{
+    float: left;
+}
+nav ul li a,
+footer ul li a {
+    display: block;
+    padding-top:0;
+}
+header {
+    max-width: 100%;
+    background: #686462;
+    color: white;
+}
+
+.conteudo {
+    max-width: 100%;
+    background-color: #f2e9e4;
+}
+.conteudo ul{
+    text-align: center;
+}
+
+footer {
+    max-width: 100%;
+    background-color: #f2e9e4;
+}
+footer h4 {
+    display: inline;
+}
+footer ul {
+    display: block;
+}
+footer ul li{
+    float: left;
+}
+
+#logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+a {
+    color: rgba(11, 8, 179, 0.911);
+    font-weight: bold;
+    text-decoration: none;
+}
+a:visited {
+    color: #211b36;
+}
+a:hover {
+    text-decoration: underline;
+}
+
+img {
+    max-width: 300px;
+    max-height: 300px;
+    width: auto;
+    height: auto;
+}
+table {
+    margin: 0 auto;
+    border-collapse: collapse;
+    box-shadow: 0px 0px 5px 0px rgba(153, 153, 153, 0.212);
+}
+table th {
+    background-color: #686462;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    color: rgb(241, 241, 241);
+}
+table tr {
+    text-align: center;
+    background-color: white;
+    border-bottom: 2px solid #6864624b;
+}
+
+form {
+    margin: 0 auto;
+}
+
+form > *:not(button) {
+    margin-bottom: 0.2rem;
+}
+form button {
+    background-color: #01a337;
+    color: white;
+    border-radius: 2px;
+    border: none;
+    height: 2rem;
+}
+form button:hover {
+    background-color: #02be41;
+}
+form button:active {
+    background-color: #026423;
+    margin: 0.3rem;
+}
+.table-funcionarios img {
+    max-width: 100px;
+    max-height: 100px;
+}
+.div-centralizada {
+    margin: auto;
+    max-width: 28%;
+}
