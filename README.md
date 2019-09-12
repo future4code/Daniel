@@ -1,9 +1,14 @@
-# semana-0-Daniel
-Todos exercícios da semana 0 utlizando a plataforma repl.it
+# Daniel
+Repo com todos exercícios de coding até agora!
 
 ## Conteúdo
-- Aula 1: Aula Inaugural
-- Aula 2: Váriaveis e Lógica Booleana
-- Aula 3: Condicionais
-- Aula 4: Laços
-- Projeto WFS01 Blackjack
++ Semana-0
+  * Aula 1: Aula Inaugural
+  * Aula 2: Váriaveis e Lógica Booleana
+  * Aula 3: Condicionais
+  * Aula 4: Laços
+  * Projeto WFS01 Blackjack
++ Semana-1
+  * Aula 6: HTML
+  * Aula 7: Introdução ao CSS
+  * Aula 8: Introdução a Debugging
