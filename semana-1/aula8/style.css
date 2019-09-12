@@ -19,7 +19,7 @@ main {
 }
 
 main > * {
-    padding: 1rem;
+    padding: 1%;
     text-align: center;
 }
 nav {
@@ -28,12 +28,12 @@ nav {
     padding-bottom: 0;
     background-color: #f2e9e4;
     position: sticky;
-    top: 0px;
+    top: 0;
 }
 #logo {
     position: absolute;
-    left: 1rem;
-    top: 0.4rem;
+    left: 1%;
+    top: 10%;
     font-size: 1.5rem;
     font-weight: bold;
 }
@@ -52,9 +52,9 @@ footer ul {
 
 nav ul li,
 footer ul li {
-    margin-left: 1rem;
+    margin-left: 1%;
     float: right;
-    padding-top: 0.5rem;
+    padding-top: 0.5%;
 }
 nav ul li:first-child {
     float: left;
@@ -114,7 +114,7 @@ img {
 table {
     margin: 0 auto;
     border-collapse: collapse;
-    box-shadow: 0px 0px 5px 0px rgba(153, 153, 153, 0.212);
+    box-shadow: 0 0px 5px 0px rgba(153, 153, 153, 0.212);
 }
 table th {
     background-color: #686462;
@@ -131,14 +131,19 @@ table tr {
 }
 
 form {
+    width: 30%;
     margin: 0 auto;
+    text-align: justify;
+    text-align-last: center;
 }
 
 form > *:not(button):not(label) {
-    margin-bottom: 0.2rem;
+    margin-bottom: 5%;
     border-radius: 20px;
     border: 2px solid #6864624b;
-    height: 1.2rem;
+    outline: 0;
+    height: 20px;
+    width: 80%;
 }
 
 form button,#btn-top {
@@ -147,22 +152,20 @@ form button,#btn-top {
     margin-left: 5px;
     border-radius: 2px;
     background-image: linear-gradient(71deg, #83d194, rgb(167, 243, 157) 73%, #85eb5d);
-    margin: 0;
-    margin-left: 0px;
-    padding: 0;
     border: 0;
     outline: 0;
     color: rgb(100, 108, 136);
     font-weight: bold;
     transition: opacity 0.5s ease-in-out;
     opacity: 1;
+
 }
 
 form button:hover {
     opacity: 0.5;
 }
 form button:active {
-    margin: 0.3rem;
+    margin-top: 1%;
     opacity: 0.3;
 }
 .table-funcionarios img {
