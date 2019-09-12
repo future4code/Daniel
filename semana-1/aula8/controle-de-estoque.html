@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8" />
+        <link rel="stylesheet" type="text/css" href="style.css" />
+        <link
+            href="https://fonts.googleapis.com/css?family=Roboto:400,400i,700,700i&display=swap"
+            rel="stylesheet"
+        />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>MoldurArt - Controle de Estoque</title>
+    </head>
+
+    <body>
+        <main>
+            <nav>
+                <ul>
+                    <span id="logo">&#128305;MoldurArt</span>
+                    <li>
+                        <a href="funcionarios.html">Funcionários</a>
+                    </li>
+
+                    <li>
+                        <a href="controle-de-estoque.html">Controle de Estoque</a>
+                    </li>
+                    <li>
+                        <a href="produtos.html">Produtos</a>
+                    </li>
+                    <li>
+                        <a href="index.html">Home</a>
+                    </li>
+                </ul>
+            </nav>
+            <header>
+                <h1>MoldurArt</h1>
+                <h3>Elegante. Acessível.</h3>
+            </header>
+
+            <section>
+                <h4>Adicionar produto:</h4>
+                <form action="http://soter.ninja/form-viewer/">
+                    <label for="nome">Nome:</label>
+                    <input
+                        id="nome"
+                        name="nome"
+                        type="text"
+                        placeholder="Nome do produto"
+                        required
+                    />
+                    <label for="desc">Descrição:</label>
+                    <input
+                        id="desc"
+                        name="desc"
+                        placeholder="Descriçao do produto"
+                        required
+                    />
+                    <label for="preco">Preço(R$):</label>
+                    <input
+                        type="text"
+                        id="preco"
+                        name="preco"
+                        placeholder="Min. R$ 8,00"
+                        required
+                    />
+                    <label for="url">Imagem:</label>
+                    <input
+                        type="url"
+                        id="url"
+                        name="url"
+                        placeholder="https://link-da-imagem.com"
+                        required
+                    />
+                    <button type="submit">Enviar</button>
+                </form>
+            </section>
+            <footer>
+                <div class="div-centralizada">
+                    <ul>
+                        <li>
+                            <h4>Suporte</h4>
+                        </li>
+                        <li>Telefone: 9999-9999</li>
+                        <li>Email: suporte@email.com</li>
+                    </ul>
+                </div>
+            </footer>
+        </main>
+    </body>
+</html>
