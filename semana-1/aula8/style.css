@@ -1,8 +1,10 @@
-body {
+body,html {
     margin: 0;
     padding: 0;
-    width: 100vw;
+    max-width: 100vw;
     height: 100vh;
+}
+body {
     background-color: #cec6c2;
     color: rgb(114, 114, 114);
     font-family: "Roboto", sans-serif;
@@ -20,11 +22,18 @@ main > * {
     text-align: center;
 }
 nav {
+    position: relative;
+    min-height: 36px;
     padding-top: 0;
     padding-bottom: 0;
     background-color: #f2e9e4;
     position: sticky;
     top: 0px;
+}
+#teste {
+    position: absolute;
+    left: 1rem;
+    top: 0.4rem;
 }
 nav a,
 nav a:visited {
@@ -59,12 +68,12 @@ header {
     color: white;
 }
 
-.conteudo {
+.container {
     max-width: 100%;
-    background-color: #f2e9e4;
+    background-color: #f2e9e4;;
 }
 .conteudo ul{
-    text-align: center;
+    text-align: justify;
 }
 
 footer {
@@ -111,6 +120,8 @@ table {
 }
 table th {
     background-color: #686462;
+    position: sticky;
+    top: 36px;
     font-size: 1.1rem;
     text-transform: uppercase;
     color: rgb(241, 241, 241);
@@ -146,7 +157,11 @@ form button:active {
     max-width: 100px;
     max-height: 100px;
 }
+footer {
+
+}
 .div-centralizada {
-    margin: auto;
+    margin: 0 auto;
     max-width: 28%;
+
 }
