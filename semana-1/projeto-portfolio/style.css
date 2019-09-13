@@ -26,6 +26,12 @@ nav ul li:first-child{
 #logo {
     font-size: 1rem;
 }
+#logo::before{
+    content: "\2002"
+}
+#logo::after {
+    content: "\2002\2002\2002"
+}
 main {
     margin: 0 auto;
     max-width: 60%;
@@ -39,4 +45,14 @@ main {
     color: #0A0A0A;
     font-size: 2rem;
     font-weight: bold;
+}
+
+a {
+    text-decoration: underline;
+}
+a::before {
+    content: "\2002"
+}
+a:visited {
+    color: rgb(240, 240, 240);
 }
