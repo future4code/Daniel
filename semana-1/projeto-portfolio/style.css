@@ -33,6 +33,11 @@ nav ul li:first-child {
 #logo::after {
     content: "\2002\2002\2002";
 }
+.icon {
+    width: 4%;
+    position: relative;
+    top: 5px;
+}
 main {
     margin: 0 auto;
     max-width: 60%;
@@ -48,10 +53,10 @@ main {
     font-weight: bold;
 }
 
-a {
+a:not(img) {
     text-decoration: underline;
 }
-a::before {
+a::before:not(img) {
     content: "\2002";
 }
 a:visited {
