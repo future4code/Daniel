@@ -56,7 +56,7 @@ main {
 a:not(img) {
     text-decoration: underline;
 }
-a::before:not(img) {
+a::before:not(img){
     content: "\2002";
 }
 a:visited {
@@ -99,9 +99,9 @@ a:visited {
     left: 0.7%;
     top: 11%;
 }
-.experiencias-list > li:last-child::after,
-.experiencias-list li > ul li::after,
-.experiencias-list li > ul li::before {
+.experiencias-list li:last-child::after,
+.experiencias-list ul li::after,
+.experiencias-list ul li::before {
     display: none;
 }
 
