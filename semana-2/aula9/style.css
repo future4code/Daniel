@@ -34,6 +34,9 @@ nav {
     background-color: black;
     color: white;
     grid-column: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 input {
@@ -57,12 +60,11 @@ input {
     display: flex;
     justify-content: space-around;
 }
-
-
-main > * {
-    border: 2px solid black;
+.post {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
-
 .sidebar-nav {
     grid-column: 2;
 }
@@ -70,14 +72,20 @@ main > * {
 .content {
     display: flex;
     flex-direction: column;
+    border: 2px solid black;
 }
-
-
-
 .content-menu {
+    margin: 2%;
     display: flex;
+    justify-content: center;
 }
-
+.content-menu div {
+    width: 15%;
+    text-align: center;
+    background-color: black;
+    color: white;
+    margin-right: 1%;
+}
 img {
     width: 100%;
 }
@@ -96,4 +104,31 @@ img {
 .poster-icon {
     width: 50px;
     height: 50px;
+}
+
+.post-bottom {
+    margin: 6% 3% 0 3%;
+    display: grid;
+    grid-template-columns: 1fr  1fr 1fr;
+}
+
+.post-bottom-icon {
+    border-radius: 0;
+}
+
+.post-bottom-icons-right {
+    grid-column: 3 
+}
+.sidebar-nav-div,.sidebar-join-div {
+    border: 2px solid black;
+}
+.sidebar-join-div {
+    display: grid;
+    text-align: center;
+}
+
+.top {
+    background-color: black;
+    color: white;
+    flex-basis: 100%;
 }
