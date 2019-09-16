@@ -123,6 +123,10 @@ img {
 .post-heading {
     margin: 0 3%;
 }
+.post-desc {
+    margin: 0 3%;
+    color: #666;
+}
 .poster {
     height: 10%;
     display: flex;
@@ -187,6 +191,20 @@ img {
     border: 1px solid #d6d6d6;
     box-shadow: 1px 1px 0px #c2c2c2;
 }
+
+.nav-heading {
+    text-decoration: underline;
+    color: #666666;
+}
+.sidebar-nav-div ul {
+    list-style-type: none;
+    margin: 5% 5%;
+    padding: 0;
+}
+.sidebar-nav-div li {
+    margin-bottom: 5%;
+}
+
 .sidebar-join-div {
     display: grid;
     text-align: center;
