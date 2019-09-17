@@ -12,3 +12,5 @@ Repo com todos exercícios de coding até agora!
   * Aula 6: HTML
   * Aula 7: Introdução ao CSS
   * Aula 8: Introdução a Debugging
++ Semana-2
+  * Aula 9: Flexbox e Grid
