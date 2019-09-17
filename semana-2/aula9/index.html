@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <title>Document</title>
+</head>
+
+<body>
+    <nav class="grid">
+        <div id="logo">DEV</div>
+        <div id="search"><input type="text" placeholder="search" /></div>
+
+        <div id="write">
+            <div class="icon post">Write a Post</div>
+            <div class="icon">
+                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"
+                    id="Capa_1" x="0px" y="0px" viewBox="0 0 60.064 60.064"
+                    style="enable-background:new 0 0 60.064 60.064;" xml:space="preserve" role="img"
+                    aria-labelledby="app16gi9xpjx48jwkvc4tzdk60iheaiv" width="100%" height="100%">
+                    <title id="app16gi9xpjx48jwkvc4tzdk60iheaiv">Connect</title>
+                    <path
+                        d="M59.84,7.897c-0.218-0.268-0.556-0.393-0.893-0.353c-0.077,0.004-0.149,0.017-0.224,0.039L0.738,23.354  C0.312,23.47,0.012,23.852,0,24.293c-0.011,0.441,0.269,0.838,0.688,0.976l21.217,6.952l-1.898,15.182  c-0.05,0.4,0.145,0.791,0.494,0.991c0.155,0.089,0.327,0.133,0.498,0.133c0.215,0,0.43-0.069,0.608-0.206l7.765-5.946l6.807,9.725  c0.188,0.269,0.494,0.427,0.819,0.427c0.022,0,0.045-0.001,0.068-0.002c0.35-0.024,0.661-0.229,0.821-0.542l22.063-43  C60.134,8.631,60.09,8.205,59.84,7.897z M52.895,11.241L22.861,30.429L4.484,24.408L52.895,11.241z M22.288,45.281l1.382-11.053  l4.555,6.507L22.288,45.281z M36.868,49.594L24.418,31.808l32.1-20.508L36.868,49.594z">
+                    </path>
+                </svg>
+            </div>
+            <div class="icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 47.834 47.834" role="img"
+                    aria-labelledby="ac9lek75pq14qto6da756zwa545xp5e9" width="100%" height="100%">
+                    <title id="ac9lek75pq14qto6da756zwa545xp5e9">Notifications</title>
+                    <path
+                        d="M46.878 41.834H.956L.96 40.83c.022-4.066 2.87-7.55 6.76-8.438V20.697c0-8.93 7.265-16.197 16.196-16.197 8.932 0 16.198 7.266 16.198 16.197v11.695c3.89.89 6.737 4.372 6.76 8.437l.004 1zm-43.836-2h41.75c-.458-2.908-2.804-5.24-5.8-5.61l-.878-.107v-13.42c0-7.828-6.37-14.197-14.198-14.197S9.72 12.87 9.72 20.697v13.42l-.878.106c-2.997.37-5.342 2.702-5.8 5.61z">
+                    </path>
+                    <path
+                        d="M21.125 5.988h-2V4.792C19.125 2.15 21.275 0 23.917 0s4.79 2.15 4.79 4.792v1.176h-2V4.792c0-1.54-1.25-2.792-2.79-2.792s-2.792 1.253-2.792 2.792v1.196zm2.778 41.846c-3.94 0-7.375-2.8-8.164-6.656l1.954-.4c.6 2.93 3.21 5.057 6.205 5.057 3.06 0 5.677-2.18 6.23-5.18l1.966.36c-.725 3.952-4.17 6.82-8.195 6.82zM8.72 32.23h3.682v2H8.72zm9.447 0h20.947v2H18.167z">
+                    </path>
+                </svg>
+            </div>
+            <div class="icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 486.8 486.8" width="100%" height="100%" role="img"
+                    aria-labelledby="a47hzw155jz2ic5lebv1ud2npoo3qiks" class="bars">
+                    <title id="a47hzw155jz2ic5lebv1ud2npoo3qiks">Navigation menu</title>
+                    <g fill="#4f5458">
+                        <path
+                            d="M140.35 32c0-17.6-14.4-32-32-32h-76.3c-17.6 0-32 14.4-32 32v76.2c0 17.6 14.4 32 32 32h76.2c17.6 0 32-14.4 32-32V32h.1zm-24.5 76.3c0 4.1-3.4 7.5-7.5 7.5h-76.3c-4.1 0-7.5-3.4-7.5-7.5V32c0-4.1 3.4-7.5 7.5-7.5h76.2c4.1 0 7.5 3.4 7.5 7.5v76.3h.1zM140.35 205.3c0-17.6-14.4-32-32-32h-76.3c-17.6 0-32 14.4-32 32v76.2c0 17.6 14.4 32 32 32h76.2c17.6 0 32-14.4 32-32v-76.2h.1zm-24.5 76.2c0 4.1-3.4 7.5-7.5 7.5h-76.3c-4.1 0-7.5-3.4-7.5-7.5v-76.2c0-4.1 3.4-7.5 7.5-7.5h76.2c4.1 0 7.5 3.4 7.5 7.5v76.2h.1zM108.35 346.5h-76.3c-17.6 0-32 14.4-32 32v76.2c0 17.6 14.4 32 32 32h76.2c17.6 0 32-14.4 32-32v-76.2c.1-17.6-14.3-32-31.9-32zm7.5 108.3c0 4.1-3.4 7.5-7.5 7.5h-76.3c-4.1 0-7.5-3.4-7.5-7.5v-76.2c0-4.1 3.4-7.5 7.5-7.5h76.2c4.1 0 7.5 3.4 7.5 7.5v76.2h.1zM173.35 281.5c0 17.6 14.4 32 32 32h76.2c17.6 0 32-14.4 32-32v-76.2c0-17.6-14.4-32-32-32h-76.2c-17.6 0-32 14.4-32 32v76.2zm24.5-76.2c0-4.1 3.4-7.5 7.5-7.5h76.2c4.1 0 7.5 3.4 7.5 7.5v76.2c0 4.1-3.4 7.5-7.5 7.5h-76.2c-4.1 0-7.5-3.4-7.5-7.5v-76.2zM173.35 454.8c0 17.6 14.4 32 32 32h76.2c17.6 0 32-14.4 32-32v-76.2c0-17.6-14.4-32-32-32h-76.2c-17.6 0-32 14.4-32 32v76.2zm24.5-76.3c0-4.1 3.4-7.5 7.5-7.5h76.2c4.1 0 7.5 3.4 7.5 7.5v76.2c0 4.1-3.4 7.5-7.5 7.5h-76.2c-4.1 0-7.5-3.4-7.5-7.5v-76.2zM346.55 281.5c0 17.6 14.4 32 32 32h76.2c17.6 0 32-14.4 32-32v-76.2c0-17.6-14.4-32-32-32h-76.2c-17.6 0-32 14.4-32 32v76.2zm24.5-76.2c0-4.1 3.4-7.5 7.5-7.5h76.2c4.1 0 7.5 3.4 7.5 7.5v76.2c0 4.1-3.4 7.5-7.5 7.5h-76.2c-4.1 0-7.5-3.4-7.5-7.5v-76.2zM346.55 454.8c0 17.6 14.4 32 32 32h76.2c17.6 0 32-14.4 32-32v-76.2c0-17.6-14.4-32-32-32h-76.2c-17.6 0-32 14.4-32 32v76.2zm24.5-76.3c0-4.1 3.4-7.5 7.5-7.5h76.2c4.1 0 7.5 3.4 7.5 7.5v76.2c0 4.1-3.4 7.5-7.5 7.5h-76.2c-4.1 0-7.5-3.4-7.5-7.5v-76.2zM173.35 32v76.2c0 17.6 14.4 32 32 32h76.2c17.6 0 32-14.4 32-32V32c0-17.6-14.4-32-32-32h-76.2c-17.7 0-32 14.4-32 32zm24.5 0c0-4.1 3.4-7.5 7.5-7.5h76.2c4.1 0 7.5 3.4 7.5 7.5v76.2c0 4.1-3.4 7.5-7.5 7.5h-76.2c-4.1 0-7.5-3.4-7.5-7.5V32zM378.55 140.3h76.2c17.6 0 32-14.4 32-32V32c0-17.6-14.4-32-32-32h-76.2c-17.6 0-32 14.4-32 32v76.2c0 17.7 14.4 32.1 32 32.1zM371.05 32c0-4.1 3.4-7.5 7.5-7.5h76.2c4.1 0 7.5 3.4 7.5 7.5v76.2c0 4.1-3.4 7.5-7.5 7.5h-76.2c-4.1 0-7.5-3.4-7.5-7.5V32z">
+                        </path>
+                    </g>
+                </svg>
+            </div>
+        </div>
+    </nav>
+
+    <main class="grid">
+        <div class="sidebar-nav">
+            <div class="sidebar-nav-div">
+                <ul>
+                    <li class="nav-heading">design your experience</li>
+                    <li>#javascript</li>
+                    <li>#webdev</li>
+                    <li>#beginners</li>
+                    <li>#discuss</li>
+                    <li>#career</li>
+                    <li>#css</li>
+                    <li>#showdev</li>
+                    <li>#html</li>
+                    <li>#linux</li>
+                    <li>Other Popular Tags</li>
+                    <li>#react</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="content-menu">
+                <div><a href="#">Feed</a></div>
+                <div><a href="#">Week</a></div>
+                <div><a href="#">Month</a></div>
+                <div><a href="#">Infinity</a></div>
+                <div><a href="#">Lastest</a></div>
+            </div>
+
+            <div class="post-container">
+                <img
+                    src="https://res.cloudinary.com/practicaldev/image/fetch/s--R5AXclTO--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://res.cloudinary.com/practicaldev/image/fetch/s--NYd0f94J--/c_imagga_scale%2Cf_auto%2Cfl_progressive%2Ch_420%2Cq_auto%2Cw_1000/https://thepracticaldev.s3.amazonaws.com/i/iiqoesjgyzi7m3vnrvch.jpg">
+                <div class="post-heading">
+                    <h1>The Interview Study Guide For Software Engineers </h1>
+                </div>
+
+                <div class="poster">
+                    <div class="icon poster-icon">
+                        <img class="featured-profile-pic"
+                            src="https://res.cloudinary.com/practicaldev/image/fetch/s--ytBaF3wg--/c_fill,f_auto,fl_progressive,h_90,q_auto,w_90/https://thepracticaldev.s3.amazonaws.com/uploads/user/profile_image/177966/0f8eb580-5b46-4ba7-8390-18d85b04c7be.jpg"
+                            alt="The Interview Study Guide For Software Engineers">
+                    </div>
+
+                    <div class="post-desc">
+                        <h4>Nome do poster - Data do post (tempo relativo ao usuário)</h4>
+                        #hashtag #hashtag #hashtag #hashtag
+                    </div>
+
+                </div>
+                <div class="post-bottom">
+                    <div class="post-bottom-icons-left">
+                        <div>
+                            <img class="post-bottom-icon-heart"
+                                src="https://practicaldev-herokuapp-com.freetls.fastly.net/assets/reactions-stack-ee166e138ca182a567f74c986b6f810f670f4d199aca9c550cc7e6f49f34bd33.png"
+                                alt="heart">
+                            999
+                        </div>
+                        <div><img class="post-bottom-icon-chat"
+                                src="https://practicaldev-herokuapp-com.freetls.fastly.net/assets/comments-bubble-9958d41b969a1620c614347d5ad3f270ab49582c1d9f82b617a6b4156d05dda0.png"
+                                alt="chat">999
+                        </div>
+                    </div>
+                    <div class="post-bottom-icons-right">
+                        <span>12 min read</span>
+                        <button class="post-bottom-button">SAVE</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+
+        <div class="sidebar-join">
+            <div class="sidebar-join-div">
+                <div class="sidebar-join top">Join Dev</div>
+                <div class="sidebar-join"><button>Sign in with Twitter</button></div>
+                <div class="sidebar-join"><button>Sign in with Github</button></div>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>
