@@ -78,14 +78,19 @@ footer {
     height: 80px;
 }
 
-.video-player {
+.video-player-container {
     padding: 2%;
     flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
-
+.video-player {
+    width: 60%;
+}
 video {
-    max-height: 100%;
-    max-width: 56%;
+    max-height: 56%;
+    max-width: 100%;
 }
 
 @media screen and (max-width: 1024px) {
