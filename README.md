@@ -14,3 +14,4 @@ Repo com todos exercícios de coding até agora!
   * Aula 8: Introdução a Debugging
 + Semana-2
   * Aula 9: Flexbox e Grid
+  * Aula 10: Responsividade
