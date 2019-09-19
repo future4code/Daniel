@@ -1,16 +1,13 @@
-html,
 body {
     margin: 0;
     padding: 0;
     max-width: 100vw;
 }
-
 .wrapper {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
 }
-
 * {
     box-sizing: border-box;
 }
@@ -58,15 +55,23 @@ img {
     max-width: 100%;
 
 }
+.main-container{
+    display: grid;
+    grid-template-columns: 5fr 95fr;
+    flex: 1;
+}
 .video-container {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     padding: 2%;
     justify-content: center;
     grid-gap: 25px;
-    flex: 1;
 }
-
+nav ul {
+    padding: 0;
+    margin: 20px 20px;
+    list-style-type: none;
+}
 .video-card {
     text-align: center;
     border: 1px solid #e60000;
@@ -103,6 +108,12 @@ video {
 }
 
 @media screen and (max-width: 768px) {
+    nav {
+        display: none;
+    }
+    .main-container {
+        grid-template-columns: 1fr;
+    }
     .video-container {
         grid-template-columns: repeat(2, 1fr);
         padding: 5%;
@@ -116,11 +127,6 @@ video {
 @media screen and (max-width: 425px) {
     .video-container {
         grid-template-columns: 1fr;
-        padding: 5%;
-    }
-    .searchbar {
-        width: 25%;
-        padding-left: 5%;
     }
 }
 
