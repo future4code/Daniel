@@ -99,6 +99,11 @@ footer {
 .video-others-card {
     display: flex;
     align-items: center;
+ 
+    min-width: 300px;
+}
+.video-others-card a{
+    margin-left: 2%;
 }
 .img-thumb {
     margin: 10px 0;
@@ -151,11 +156,33 @@ video {
         width: 25%;
         padding-left: 5%;
     }
+    .main-video-container {
+        flex-direction: column;
+    }
+    .video-player {
+        flex: 1 1 0;
+    }
+    .video-others-container {
+        align-items: center;
+        padding: 1%;
+    }
+    .video-others-card {
+        flex: 1;
+    }
+    .img-thumb {
+        max-width: 60%;
+    }
 }
 
 @media screen and (max-width: 425px) {
     .video-container {
         grid-template-columns: 1fr;
+    }
+    .video-player {
+        flex: 0;
+    }
+    footer {
+        height: auto;
     }
 }
 
