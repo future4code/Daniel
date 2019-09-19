@@ -44,7 +44,6 @@ header a,header a:visited {
     width: 20%;
     padding-left: 2%;
 }
-
 input {
     height: 100%;
     width: 80%;
@@ -55,23 +54,28 @@ img {
     max-width: 100%;
 
 }
-.main-container{
-    display: grid;
-    grid-template-columns: 5fr 95fr;
-    flex: 1;
-}
-.video-container {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    padding: 2%;
-    justify-content: center;
-    grid-gap: 25px;
+nav {
+    border-right: 2px solid grey;
 }
 nav ul {
     padding: 0;
     margin: 20px 20px;
     list-style-type: none;
 }
+.main-container{
+    display: flex;
+    flex: 1;
+}
+
+.video-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: minmax(min-content, max-content);
+    padding: 2%;
+    justify-content: center;
+    grid-gap: 25px;
+}
+
 .video-card {
     text-align: center;
     border: 1px solid #e60000;
@@ -83,15 +87,40 @@ footer {
     height: 80px;
 }
 
-.video-player-container {
-    padding: 2%;
+.main-video-container {
     flex: 1;
     display: flex;
+}
+.video-others-container {
+    display: flex;
     flex-direction: column;
+    flex: 1 1 0;
+}
+.video-others-card {
+    display: flex;
     align-items: center;
 }
+.img-thumb {
+    margin: 10px 0;
+    max-width: 60%;
+}
 .video-player {
-    width: 60%;
+    flex: 3 1 0;
+    padding: 1%;
+    display: flex;
+    flex-direction: column;
+}
+.video-player-bottom {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+.video-player-bottom h2 {
+    margin-right: auto;
+}
+button {
+    height: 30px;
+    margin-left: 5px;
 }
 video {
     max-height: 56%;
