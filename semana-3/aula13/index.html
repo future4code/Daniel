@@ -1,16 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-let novaListaHeading = document.createElement("li");
-novaListaHeading.innerHTML = `${hora}h`;
-novaListaHeading.classList.add(`li-h${hora}`);
-
-let novaListaTag = document.createElement("ul");
-novaListaTag.classList.add(`h${hora}`);
-
-novaListaHeading.append(novaListaTag);
-
-let lista = document.querySelector(`.${dia} > ul`);
-lista.append(novaListaHeading);
 
 <head>
     <meta charset="UTF-8">
@@ -19,17 +8,18 @@ lista.append(novaListaHeading);
     <title>Document</title>
 </head>
 <script>
-    function ehValido(texto) {
+    function ehValidoTexto(texto) {
         return (texto.trim() == "") ? false : true;
     }
-
+    function ehValidoHora(hora) {
+        return (hora < 0 || hora > 24) ? false : true;
+    }
     function criarListaHora(dia, hora) {
 
 
         for (let i = 0; i <= 24; i++) {
             let novaListaHeading = document.createElement("li");
             novaListaHeading.innerHTML = `${i}h`;
-            console.log(i, Number(hora));
             if (i != Number(hora)) {
                 novaListaHeading.classList.add("display-none");
             }
@@ -46,25 +36,26 @@ lista.append(novaListaHeading);
     function criarTarefa() {
         let tarefa = document.getElementById("novaTarefa").value;
 
-        if (ehValido(tarefa)) {
+        if (ehValidoTexto(tarefa)) {
             const dia = document.getElementById("dia").value;
             const hora = document.getElementById("horario").value;
+            if (ehValidoHora(hora)) {
+                let novoItem = document.createElement("li");
+                novoItem.innerHTML = tarefa;
+                novoItem.onclick = riscaItem;
 
-            let novoItem = document.createElement("li");
-            novoItem.innerHTML = tarefa;
-            novoItem.onclick = riscaItem;
-
-            if (document.querySelector(`.${dia} .h${hora}`)) {
-                let lista = document.querySelector(`.${dia} .h${hora}`);
-                lista.parentNode.classList.remove("display-none");
-                lista.append(novoItem);
+                if (document.querySelector(`.${dia} .h${hora}`)) {
+                    let lista = document.querySelector(`.${dia} .h${hora}`);
+                    lista.parentNode.classList.remove("display-none");
+                    lista.append(novoItem);
+                }
+                else {
+                    criarListaHora(dia, hora);
+                    let lista = document.querySelector(`.${dia} .h${hora}`);
+                    lista.append(novoItem);
+                }
+                document.getElementById("novaTarefa").value = "";
             }
-            else {
-                criarListaHora(dia, hora);
-                let lista = document.querySelector(`.${dia} .h${hora}`);
-                lista.append(novoItem);
-            }
-            document.getElementById("novaTarefa").value = "";
         }
     }
 
@@ -107,7 +98,7 @@ lista.append(novaListaHeading);
                 <option value="sabado">Sábado</option>
                 <option value="domingo">Domingo</option>
             </select>
-            <input id="horario" type="number" min="0" max="23">
+            <input id="horario" type="number" min="0" max="23" />
             <button onclick="criarTarefa()">GO!</button>
             <button onclick="deletarTodasTarefas()">RECOMEÇAR!</button>
 
