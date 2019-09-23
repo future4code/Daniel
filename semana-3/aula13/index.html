@@ -1,5 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+let novaListaHeading = document.createElement("li");
+novaListaHeading.innerHTML = `${hora}h`;
+novaListaHeading.classList.add(`li-h${hora}`);
+
+let novaListaTag = document.createElement("ul");
+novaListaTag.classList.add(`h${hora}`);
+
+novaListaHeading.append(novaListaTag);
+
+let lista = document.querySelector(`.${dia} > ul`);
+lista.append(novaListaHeading);
 
 <head>
     <meta charset="UTF-8">
@@ -12,46 +23,80 @@
         return (texto.trim() == "") ? false : true;
     }
 
+    function criarListaHora(dia, hora) {
+
+
+        for (let i = 0; i <= 24; i++) {
+            let novaListaHeading = document.createElement("li");
+            novaListaHeading.innerHTML = `${i}h`;
+            console.log(i, Number(hora));
+            if (i != Number(hora)) {
+                novaListaHeading.classList.add("display-none");
+            }
+            let novaListaTag = document.createElement("ul");
+            novaListaTag.classList.add(`h${i}`);
+
+            novaListaHeading.append(novaListaTag);
+            let lista = document.querySelector(`.${dia} > ul`);
+            lista.append(novaListaHeading);
+        }
+
+
+    }
     function criarTarefa() {
         let tarefa = document.getElementById("novaTarefa").value;
 
         if (ehValido(tarefa)) {
             const dia = document.getElementById("dia").value;
-            let novoItem = document.createElement("li");
+            const hora = document.getElementById("horario").value;
 
+            let novoItem = document.createElement("li");
             novoItem.innerHTML = tarefa;
             novoItem.onclick = riscaItem;
-            let listaDoDia = document.querySelector(`.${dia} > ul`);
-            listaDoDia.append(novoItem);
-            tarefa.value = "";
+
+            if (document.querySelector(`.${dia} .h${hora}`)) {
+                let lista = document.querySelector(`.${dia} .h${hora}`);
+                lista.parentNode.classList.remove("display-none");
+                lista.append(novoItem);
+            }
+            else {
+                criarListaHora(dia, hora);
+                let lista = document.querySelector(`.${dia} .h${hora}`);
+                lista.append(novoItem);
+            }
+            document.getElementById("novaTarefa").value = "";
         }
     }
 
-    function riscaItem(event){
+    function riscaItem(event) {
         let target = event.target;
         target.classList.toggle("itemRiscado");
     }
 
-    function deletarTodasTarefas(){
+    function deletarTodasTarefas() {
         let todasAsListas = document.querySelectorAll("ul");
-        todasAsListas.forEach(function(lista){
-            while(lista.hasChildNodes()){
-            lista.removeChild(lista.lastChild);
-        }
+        todasAsListas.forEach(function (lista) {
+            while (lista.hasChildNodes()) {
+                lista.removeChild(lista.lastChild);
+            }
         })
-
     }
 </script>
 <style>
-.itemRiscado {
-    text-decoration: line-through;
-}
+    .itemRiscado {
+        text-decoration: line-through;
+    }
+
+    .display-none {
+        display: none;
+    }
 </style>
+
 <body>
     <div class="wrapper">
 
         <section>
-            <h2 style="">Nova Tarefa</h2>
+            <h2>Nova Tarefa</h2>
             <input id="novaTarefa" type="text">
             <select name="dias" id="dia">
                 <option value="segunda">Segunda-Feira</option>
@@ -62,6 +107,7 @@
                 <option value="sabado">Sábado</option>
                 <option value="domingo">Domingo</option>
             </select>
+            <input id="horario" type="number" min="0" max="23">
             <button onclick="criarTarefa()">GO!</button>
             <button onclick="deletarTodasTarefas()">RECOMEÇAR!</button>
 
@@ -69,13 +115,11 @@
         <article class="segunda">
             <h1>Segunda-feira</h1>
             <ul>
-
             </ul>
         </article>
         <article class="terca">
             <h1>Terça-feira</h1>
             <ul>
-
             </ul>
         </article>
         <article class="quarta">
