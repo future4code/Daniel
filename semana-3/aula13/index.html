@@ -32,6 +32,15 @@
         target.classList.toggle("itemRiscado");
     }
 
+    function deletarTodasTarefas(){
+        let todasAsListas = document.querySelectorAll("ul");
+        todasAsListas.forEach(function(lista){
+            while(lista.hasChildNodes()){
+            lista.removeChild(lista.lastChild);
+        }
+        })
+
+    }
 </script>
 <style>
 .itemRiscado {
@@ -54,6 +63,7 @@
                 <option value="domingo">Domingo</option>
             </select>
             <button onclick="criarTarefa()">GO!</button>
+            <button onclick="deletarTodasTarefas()">RECOMEÇAR!</button>
 
         </section>
         <article class="segunda">
