@@ -53,10 +53,10 @@ main {
     font-weight: bold;
 }
 
-a:not(img) {
+a{
     text-decoration: underline;
 }
-a::before:not(img){
+li > a::before{
     content: "\2002";
 }
 a:visited {
