@@ -20,15 +20,24 @@
             let novoItem = document.createElement("li");
 
             novoItem.innerHTML = tarefa;
+            novoItem.onclick = riscaItem;
             let listaDoDia = document.querySelector(`.${dia} > ul`);
             listaDoDia.append(novoItem);
             tarefa.value = "";
         }
     }
 
+    function riscaItem(event){
+        let target = event.target;
+        target.classList.toggle("itemRiscado");
+    }
 
 </script>
-
+<style>
+.itemRiscado {
+    text-decoration: line-through;
+}
+</style>
 <body>
     <div class="wrapper">
 
