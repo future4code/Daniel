@@ -49,33 +49,62 @@
     }
 
     function salvaItem(chave, item) {
-            if (item && chave) {
-                window.localStorage.setItem(chave, JSON.stringify(item));
-            }
+        if (item && chave) {
+            window.localStorage.setItem(chave, JSON.stringify(item));
         }
+    }
+    function deletarAluno(event) {
+        let target = event.target;
+
+        if (confirm("Você tem certeza que deseja apagar todas os alunos?")) {
+            let alunos = [];
+            alunos = buscaItem("alunos");
+            for (let i = 0; i < alunos.length; i++) {
+                if (alunos[i].nome = target.id) {
+                    alunos.splice(i, 1);
+                }
+            }
+            salvaItem("alunos", alunos);
+
+            const divDoAluno = document.getElementById(`div-${target.id}`);
+            while (divDoAluno.hasChildNodes()) {
+                divDoAluno.removeChild(divDoAluno.lastChild);
+            }
+            divDoAluno.remove();
+        }
+
+    }
+
     function carregarAlunos() {
         const listaAlunos = buscaItem("alunos");
 
         for (let i = 0; i < listaAlunos.length; i++) {
             const novaDiv = document.createElement("div");
             novaDiv.classList.add("aluno-card");
+
             const nome = document.createElement("p");
             const idade = document.createElement("p");
             const email = document.createElement("p");
+            const botaoDeletar = document.createElement("button");
 
             nome.innerHTML = `Nome: ${listaAlunos[i].nome}`;
             idade.innerHTML = `Idade: ${listaAlunos[i].idade}`;
             email.innerHTML = `Email: ${listaAlunos[i].email}`;
+            botaoDeletar.innerHTML = "EXCLUIR!"
+            botaoDeletar.onclick = deletarAluno;
+            botaoDeletar.id = listaAlunos[i].nome;
+            novaDiv.id = `div-${listaAlunos[i].nome}`;
 
-            novaDiv.append(nome, idade, email);
+            novaDiv.append(nome, idade, email, botaoDeletar);
             const container = document.querySelector(".container");
             container.append(novaDiv);
         }
     }
+
     function limparTodosAlunos() {
         const todosAlunos = document.querySelectorAll(".container");
 
-        if (confirm("Você tem certeza que deseja apagar todas as tarefas?")) {
+        if (confirm("Você tem certeza que deseja apagar todos os alunos?")) {
 
             todosAlunos.forEach(function (aluno) {
                 while (aluno.hasChildNodes()) {
@@ -86,7 +115,7 @@
             let alunos = [];
             alunos = buscaItem("alunos");
             alunos.length = 0;
-            salvaItem("alunos",alunos);
+            salvaItem("alunos", alunos);
         }
 
     }
