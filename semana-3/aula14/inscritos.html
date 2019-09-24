@@ -37,37 +37,60 @@
     <div class="container">
     </div>
     <a href="index.html"><button id="botao-voltar">Voltar</button></a>
+    <button id="botao-limpar" onclick="limparTodosAlunos()">Limpar TUDO!</button>
 </body>
 <script>
-        function buscaItem(chave) {
-            const valor = window.localStorage.getItem(chave);
-            if (valor) {
-                return JSON.parse(valor);
+    function buscaItem(chave) {
+        const valor = window.localStorage.getItem(chave);
+        if (valor) {
+            return JSON.parse(valor);
+        }
+        return [];
+    }
+
+    function salvaItem(chave, item) {
+            if (item && chave) {
+                window.localStorage.setItem(chave, JSON.stringify(item));
             }
-            return [];
+        }
+    function carregarAlunos() {
+        const listaAlunos = buscaItem("alunos");
+
+        for (let i = 0; i < listaAlunos.length; i++) {
+            const novaDiv = document.createElement("div");
+            novaDiv.classList.add("aluno-card");
+            const nome = document.createElement("p");
+            const idade = document.createElement("p");
+            const email = document.createElement("p");
+
+            nome.innerHTML = `Nome: ${listaAlunos[i].nome}`;
+            idade.innerHTML = `Idade: ${listaAlunos[i].idade}`;
+            email.innerHTML = `Email: ${listaAlunos[i].email}`;
+
+            novaDiv.append(nome, idade, email);
+            const container = document.querySelector(".container");
+            container.append(novaDiv);
+        }
+    }
+    function limparTodosAlunos() {
+        const todosAlunos = document.querySelectorAll(".container");
+
+        if (confirm("Você tem certeza que deseja apagar todas as tarefas?")) {
+
+            todosAlunos.forEach(function (aluno) {
+                while (aluno.hasChildNodes()) {
+                    aluno.removeChild(aluno.lastChild);
+                }
+            })
+
+            let alunos = [];
+            alunos = buscaItem("alunos");
+            alunos.length = 0;
+            salvaItem("alunos",alunos);
         }
 
-        function carregarAlunos() {
-            const listaAlunos = buscaItem("alunos");
+    }
+    carregarAlunos();
+</script>
 
-            for(let i = 0;i < listaAlunos.length;i++){
-                const novaDiv = document.createElement("div");
-                const nome = document.createElement("p");
-                const idade = document.createElement("p");
-                const email = document.createElement("p");
-
-                nome.innerHTML = `Nome: ${listaAlunos[i].nome}`;
-                idade.innerHTML = `Idade: ${listaAlunos[i].idade}`;
-                email.innerHTML = `Email: ${listaAlunos[i].email}`;
-                
-                novaDiv.append(nome,idade,email);
-                const container = document.querySelector(".container");
-                console.log(container);
-                container.append(novaDiv);
-                console.log(novaDiv);
-            }
-
-        }
-        carregarAlunos();
-    </script>
 </html>
