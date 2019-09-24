@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<script>
+    function ehValidoTexto(texto) {
+        return (texto.trim() == "") ? false : true;
+    }
+    function ehValidoHora(hora) {
+        return (hora < 0 || hora > 24) ? false : true;
+    }
+    function criarListaHora(dia, hora) {
+
+
+        for (let i = 0; i <= 24; i++) {
+            let novaListaHeading = document.createElement("li");
+            novaListaHeading.innerHTML = `${i}h`;
+            if (i != Number(hora)) {
+                novaListaHeading.classList.add("display-none");
+            }
+            let novaListaTag = document.createElement("ul");
+            novaListaTag.classList.add(`h${i}`);
+
+            novaListaHeading.append(novaListaTag);
+            let lista = document.querySelector(`.${dia} > ul`);
+            lista.append(novaListaHeading);
+        }
+
+
+    }
+    function criarTarefa() {
+        let tarefa = document.getElementById("novaTarefa").value;
+
+        if (ehValidoTexto(tarefa)) {
+            const dia = document.getElementById("dia").value;
+            const hora = document.getElementById("horario").value;
+            if (ehValidoHora(hora)) {
+                let novoItem = document.createElement("li");
+                novoItem.innerHTML = tarefa;
+                novoItem.onclick = riscaItem;
+
+                if (document.querySelector(`.${dia} .h${hora}`)) {
+                    let lista = document.querySelector(`.${dia} .h${hora}`);
+                    lista.parentNode.classList.remove("display-none");
+                    lista.append(novoItem);
+                }
+                else {
+                    criarListaHora(dia, hora);
+                    let lista = document.querySelector(`.${dia} .h${hora}`);
+                    lista.append(novoItem);
+                }
+                document.getElementById("novaTarefa").value = "";
+            }
+        }
+    }
+
+    function riscaItem(event) {
+        let target = event.target;
+        target.classList.toggle("itemRiscado");
+    }
+
+    function deletarTodasTarefas() {
+        let todasAsListas = document.querySelectorAll("ul");
+        todasAsListas.forEach(function (lista) {
+            while (lista.hasChildNodes()) {
+                lista.removeChild(lista.lastChild);
+            }
+        })
+    }
+</script>
+<style>
+    .itemRiscado {
+        text-decoration: line-through;
+    }
+
+    .display-none {
+        display: none;
+    }
+</style>
+
+<body>
+    <div class="wrapper">
+
+        <section>
+            <h2>Nova Tarefa</h2>
+            <input id="novaTarefa" type="text">
+            <select name="dias" id="dia">
+                <option value="segunda">Segunda-Feira</option>
+                <option value="terca">Terça-Feira</option>
+                <option value="quarta">Quarta-Feira</option>
+                <option value="quinta">Quinta-Feira</option>
+                <option value="sexta">Sexta-Feira</option>
+                <option value="sabado">Sábado</option>
+                <option value="domingo">Domingo</option>
+            </select>
+            <input id="horario" type="number" min="0" max="23" />
+            <button onclick="criarTarefa()">GO!</button>
+            <button onclick="deletarTodasTarefas()">RECOMEÇAR!</button>
+
+        </section>
+        <article class="segunda">
+            <h1>Segunda-feira</h1>
+            <ul>
+            </ul>
+        </article>
+        <article class="terca">
+            <h1>Terça-feira</h1>
+            <ul>
+            </ul>
+        </article>
+        <article class="quarta">
+            <h1>Quarta-feira</h1>
+            <ul>
+
+            </ul>
+        </article>
+        <article class="quinta">
+            <h1>Quinta-feira</h1>
+            <ul>
+
+            </ul>
+        </article>
+        <article class="sexta">
+            <h1>Sexta-feira</h1>
+            <ul>
+
+            </ul>
+        </article>
+        <article class="sabado">
+            <h1>Sábado</h1>
+            <ul>
+
+            </ul>
+        </article>
+        <article class="domingo">
+            <h1>Domingo</h1>
+            <ul>
+
+            </ul>
+        </article>
+    </div>
+</body>
+
+</html>
