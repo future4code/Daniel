@@ -98,7 +98,7 @@
     function deletarAluno(event) {
         let target = event.target;
 
-        if (confirm("Você tem certeza que deseja apagar esse aluno?")) {
+        if (confirm("Você tem certeza que deseja apagar esse registro?")) {
             let alunos = [];
             alunos = buscaItem("alunos");
             for (let i = 0; i < alunos.length; i++) {
@@ -146,7 +146,7 @@
     function limparTodosAlunos() {
         const todosAlunos = document.querySelectorAll(".container");
 
-        if (confirm("Você tem certeza que deseja apagar todos os alunos?")) {
+        if (confirm("Você tem certeza que deseja apagar todos os registros?")) {
 
             todosAlunos.forEach(function (aluno) {
                 while (aluno.hasChildNodes()) {
