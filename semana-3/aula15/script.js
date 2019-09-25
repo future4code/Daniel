@@ -43,25 +43,6 @@ function createPost() {
     limpaCampos();
 }
 
-function loadNewPost(posts) {
-    const container = document.querySelector(".post-container");
-    if (container) {
-        const tagTitulo = document.createElement("h2");
-        const tagAutor = document.createElement("h3");
-        const tagImagem = document.createElement("img");
-        const tagPost = document.createElement("p");
-
-        const newPost = posts[posts.length - 1];
-
-        tagImagem.src = newPost.urlDaImagem;
-        tagTitulo.innerHTML = newPost.titulo;
-        tagAutor.innerHTML = newPost.autor;
-        tagPost.innerHTML = newPost.post;
-
-        container.append(tagTitulo, tagAutor, tagImagem, tagPost);
-    }
-
-}
 function loadAllPosts(posts) {
     const container = document.querySelector(".post-container");
     if (container) {
@@ -72,7 +53,6 @@ function loadAllPosts(posts) {
             const tagImagem = document.createElement("img");
             const tagPost = document.createElement("p");
             const tagCard = document.createElement("article");
-
 
 
             const newPost = posts[i];
