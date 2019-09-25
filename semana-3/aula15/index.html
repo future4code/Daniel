@@ -26,7 +26,7 @@ main {
             <textarea id="inputPost" type="text" placeholder="..."></textarea>
             <button onclick="createPost()" id="send-post">Post IT!</button>
         </section>
-        <section class="post">
+        <section class="post-container">
         </section>
     </main>
 </body>
@@ -51,8 +51,24 @@ main {
         const newPost = new Post(titulo.value,autor.value,post.value);
         
         todosPosts.push(newPost);
-
         console.log(todosPosts);
+        loadPost(todosPosts);
+    }
+
+    function loadPost(posts){
+        const container = document.querySelector(".post-container");
+        const tagTitulo = document.createElement("h2");
+        const tagAutor = document.createElement("h3");
+        const tagPost = document.createElement("p");
+
+        const newPost = posts[posts.length - 1];
+
+        tagTitulo.innerHTML = newPost.titulo;
+        tagAutor.innerHTML = newPost.autor;
+        tagPost.innerHTML = newPost.post;
+        
+        container.append(tagTitulo,tagAutor,tagPost);
+
     }
 </script>
 </html>
