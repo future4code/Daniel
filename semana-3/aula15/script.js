@@ -54,7 +54,6 @@ function loadAllPosts(posts) {
             const tagPost = document.createElement("p");
             const tagCard = document.createElement("article");
 
-
             const newPost = posts[i];
             console.log(newPost);
 
