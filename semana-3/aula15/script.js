@@ -55,7 +55,6 @@ function loadAllPosts(posts) {
             const tagCard = document.createElement("article");
 
             const newPost = posts[i];
-            console.log(newPost);
 
             tagImagem.src = newPost.urlDaImagem;
             tagTitulo.innerHTML = newPost.titulo;

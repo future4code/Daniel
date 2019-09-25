@@ -76,6 +76,10 @@ textarea {
     flex-direction: column;
     align-items: center;
     margin-bottom: 4px;
+    text-align: justify;
+}
+.post-card p {
+    padding: 0 15px;
 }
 .post-card img {
     object-fit: cover;
