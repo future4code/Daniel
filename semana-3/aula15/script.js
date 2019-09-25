@@ -11,6 +11,18 @@ class Post {
         this.post = post;
         this.urlDaImagem = urlDaImagem;
     }
+    getUrlImg(){
+        return this.urlDaImagem;
+    }
+    getPost(){
+        return this.post;
+    }
+    getAutor(){
+        return this.autor;
+    }
+    getTitulo(){
+        return this.titulo;
+    }
 }
 function buscaItem(chave) {
     const valor = window.localStorage.getItem(chave);
@@ -54,12 +66,12 @@ function loadAllPosts(posts) {
             const tagPost = document.createElement("p");
             const tagCard = document.createElement("article");
 
-            const newPost = posts[i];
+            const newPost = new Post(posts[i].titulo,posts[i].autor,posts[i].post,posts[i].urlDaImagem);
 
-            tagImagem.src = newPost.urlDaImagem;
-            tagTitulo.innerHTML = newPost.titulo;
-            tagAutor.innerHTML = `by ${newPost.autor}`;
-            tagPost.innerHTML = newPost.post;
+            tagImagem.src = newPost.getUrlImg();
+            tagTitulo.innerHTML = newPost.getTitulo();
+            tagAutor.innerHTML = `by ${newPost.getAutor()}`;
+            tagPost.innerHTML = newPost.getPost();
             tagCard.classList.add("post-card");
 
             tagCard.append(tagImagem,tagTitulo, tagAutor, tagPost);
