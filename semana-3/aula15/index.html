@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,11 +8,12 @@
     <title>Blog</title>
 </head>
 <style>
-main {
-    display:grid;
-    grid-template-columns: 1fr 1fr;
-}
+    main {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
 </style>
+
 <body>
     <header>
         <h1>Blog</h1>
@@ -22,6 +24,8 @@ main {
             <input id="inputTitulo" type="text" placeholder="Titulo do post">
             <label>Autor</label>
             <input id="inputAutor" type="text" placeholder="Autor do post">
+            <label>URL da Imagem</label>
+            <input id="inputImagem" type="text" placeholder="Link da imagem">
             <label>Conteúdo</label>
             <textarea id="inputPost" type="text" placeholder="..."></textarea>
             <button onclick="createPost()" id="send-post">Post IT!</button>
@@ -31,44 +35,89 @@ main {
     </main>
 </body>
 <script>
-    const todosPosts = [];
+    let todosPosts = buscaItem("posts");
+
+    document.addEventListener("DOMContentLoaded", function () {
+        loadAllPosts(todosPosts);
+    });
+
     class Post {
-        constructor(titulo,autor,post){
+        constructor(titulo, autor, post, urlDaImagem) {
             this.titulo = titulo;
             this.autor = autor;
             this.post = post;
-        }
-        getPost(){
-            return [this.titulo,this.autor,this.post];
+            this.urlDaImagem = urlDaImagem;
         }
     }
-
-    function createPost(){
+    function buscaItem(chave) {
+        const valor = window.localStorage.getItem(chave);
+        if (valor) {
+            return JSON.parse(valor);
+        }
+        return [];
+    }
+    function salvaItem(chave, item) {
+        if (item && chave) {
+            window.localStorage.setItem(chave, JSON.stringify(item));
+        }
+    }
+    function limpaCampos() {
+        const campos = document.querySelectorAll(".form input,.form textarea");
+        for (let input of campos) {
+            input.value = "";
+        }
+    }
+    function createPost() {
         const titulo = document.querySelector("#inputTitulo");
         const autor = document.querySelector("#inputAutor");
+        const imagem = document.querySelector("#inputImagem");
         const post = document.querySelector("#inputPost");
 
-        const newPost = new Post(titulo.value,autor.value,post.value);
-        
+        const newPost = new Post(titulo.value, autor.value, post.value, imagem.value);
+
         todosPosts.push(newPost);
-        console.log(todosPosts);
-        loadPost(todosPosts);
+        salvaItem("posts",todosPosts);
+        loadNewPost(todosPosts);
+        limpaCampos();
     }
 
-    function loadPost(posts){
+    function loadNewPost(posts) {
         const container = document.querySelector(".post-container");
         const tagTitulo = document.createElement("h2");
         const tagAutor = document.createElement("h3");
+        const tagImagem = document.createElement("img");
         const tagPost = document.createElement("p");
 
         const newPost = posts[posts.length - 1];
 
+        tagImagem.src = newPost.urlDaImagem;
         tagTitulo.innerHTML = newPost.titulo;
         tagAutor.innerHTML = newPost.autor;
         tagPost.innerHTML = newPost.post;
-        
-        container.append(tagTitulo,tagAutor,tagPost);
+
+        container.append(tagTitulo, tagAutor, tagImagem, tagPost);
 
     }
+    function loadAllPosts(posts) {
+        for (let i = 0; i < posts.length; i++) {
+            const container = document.querySelector(".post-container");
+            const tagTitulo = document.createElement("h2");
+            const tagAutor = document.createElement("h3");
+            const tagImagem = document.createElement("img");
+            const tagPost = document.createElement("p");
+
+            const newPost = posts[i];
+            console.log(newPost);
+
+            tagImagem.src = newPost.urlDaImagem;
+            tagTitulo.innerHTML = newPost.titulo;
+            tagAutor.innerHTML = newPost.autor;
+            tagPost.innerHTML = newPost.post;
+
+            container.append(tagTitulo, tagAutor, tagImagem, tagPost);
+        }
+    }
+
 </script>
+
 </html>
