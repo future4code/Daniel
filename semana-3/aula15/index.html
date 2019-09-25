@@ -34,6 +34,7 @@ main {
     </main>
 </body>
 <script>
+    const todosPosts = [];
     class Post {
         constructor(titulo,autor,post){
             this.titulo = titulo;
@@ -52,6 +53,9 @@ main {
 
         const newPost = new Post(titulo.value,autor.value,post.value);
         
+        todosPosts.push(newPost);
+
+        console.log(todosPosts);
     }
 </script>
 </html>
