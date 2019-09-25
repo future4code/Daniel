@@ -19,12 +19,12 @@ main {
     <main>
         <section class="form">
             <label>Titulo do post</label>
-            <input type="text" placeholder="Titulo do post">
+            <input id="inputTitulo" type="text" placeholder="Titulo do post">
             <label>Autor</label>
-            <input type="text" placeholder="Autor do post">
+            <input id="inputAutor" type="text" placeholder="Autor do post">
             <label>Conteúdo</label>
-            <textarea type="text" placeholder="..."></textarea>
-            <button id="send-post">Post IT!</button>
+            <textarea id="inputPost" type="text" placeholder="..."></textarea>
+            <button onclick="createPost()" id="send-post">Post IT!</button>
         </section>
         <section class="post">
             <div class="post-card">
@@ -33,4 +33,25 @@ main {
         </section>
     </main>
 </body>
+<script>
+    class Post {
+        constructor(titulo,autor,post){
+            this.titulo = titulo;
+            this.autor = autor;
+            this.post = post;
+        }
+        getPost(){
+            return [this.titulo,this.autor,this.post];
+        }
+    }
+
+    function createPost(){
+        const titulo = document.querySelector("#inputTitulo");
+        const autor = document.querySelector("#inputAutor");
+        const post = document.querySelector("#inputPost");
+
+        const newPost = new Post(titulo.value,autor.value,post.value);
+        
+    }
+</script>
 </html>
