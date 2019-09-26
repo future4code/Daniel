@@ -4,7 +4,6 @@ class Despesa {
         this.tipo = tipo;
         this.desc = desc;
     }
-
     getValor() {
         return this.valor;
     }
@@ -35,21 +34,35 @@ function validaDespesa(valor, tipo, desc) {
 }
 
 function cadastrarDespesa() {
-    const valor = document.getElementById("valor").value;
+    const valor = Number(document.getElementById("valor").value);
     const tipo = document.getElementById("tipo").value;
     const desc = document.getElementById("desc").value;
 
     if (validaDespesa(valor, tipo, desc)) {
         todasAsDepesas.push(new Despesa(valor, tipo, desc));
-        renderizarDespesas(todasAsDepesas,
-            document.querySelector(".despesas-list-container"), true);
+        renderizarDespesas(todasAsDepesas,document.querySelector(".despesas-list-container"), true);
+        renderizarDespesas(todasAsDepesas,document.querySelector(".extrato-list-container"), true);
+        renderizaValorTotal(); 
+        limparCampos("#cadastro");
     }
+}
+
+function limparCampos(onde){
+    const campos = document.querySelectorAll(`${onde} input,${onde} select`);
+    campos.forEach((element) =>{
+        element.value = "";
+    })
 }
 
 function limparDespesas(section) {
     while (section.firstChild) {
         section.removeChild(section.firstChild);
     }
+}
+
+function renderizaValorTotal(){
+    const valorTotal = todasAsDepesas.reduce((acc, despesa) => acc+= despesa.valor, 0);
+    document.getElementById("valorTotal").innerHTML = `R$ ${valorTotal},00`;
 }
 function renderizarDespesas(array, section, novaDespesa) {
     if (!novaDespesa) {
@@ -89,9 +102,11 @@ function renderizarDespesas(array, section, novaDespesa) {
 function filtrarMinMax(elemento, minimo, maximo) {
     return elemento.valor >= (minimo || 0) && elemento.valor <= (maximo || Number.MAX_SAFE_INTEGER);
 }
+
 function filtrarTipo(elemento, tipo) {
     return elemento.tipo === tipo || tipo === "";
 }
+
 function filtrarDespesas() {
     const filtroTipo = document.getElementById("detalhe-tipo").value;
     const filtroVmin = Number(document.getElementById("detalhe-vmin").value);
@@ -103,9 +118,11 @@ function filtrarDespesas() {
 
     limparDespesas(document.querySelector(".despesas-list-container"));
     renderizarDespesas(despesasFiltradas,document.querySelector(".despesas-list-container"));
+    limparCampos("#detalhes");
 }
 
 function limparFiltros(){
     limparDespesas(document.querySelector(".despesas-list-container"));
     renderizarDespesas(todasAsDepesas,document.querySelector(".despesas-list-container"));
+    limparCampos("#detalhes");
 }
