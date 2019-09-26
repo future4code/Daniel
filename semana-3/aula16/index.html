@@ -4,9 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <script src="script.js"></script>
+    <title>Controlador de Despesas</title>
 </head>
 <body>
-    
+    <div class="wrapper">
+        <section class="content-container" id="cadastro">
+            <h1>Controlador de Despesas</h1>
+            <h2>Cadastrar despesa</h2>
+
+            <div class="cadastro-form">
+                <label>Valor</label>
+                <input id="valor" type="number" min="1" placeholder="R$ 00,00"/>
+                <label>Tipo</label>
+                <select id="tipo">
+                    <option value="casa">Casa</option>
+                    <option value="viagem">Viagem</option>
+                    <option value="role">Rolês</option>
+                    <option value="outro">Outros</option>
+                </select>
+                <label>Descrição</label>
+                <input id="desc" type="text">
+                <button onclick="cadastrarDespesa()">Cadastrar</button>
+            </div>
+        </section>
+
+    </div>
 </body>
 </html>
