@@ -5,13 +5,13 @@ class Despesa {
         this.desc = desc;
     }
 
-    getValor(){
+    getValor() {
         return this.valor;
     }
-    getTipo(){
+    getTipo() {
         return this.tipo;
     }
-    getDesc(){
+    getDesc() {
         return this.desc;
     }
 }
@@ -42,12 +42,29 @@ function cadastrarDespesa() {
     if (validaDespesa(valor, tipo, desc)) {
         todasAsDepesas.push(new Despesa(valor, tipo, desc));
         renderizarDespesa(todasAsDepesas,
-            document.querySelector(".despesas-list-container"));
+            document.querySelector(".despesas-list-container"), true);
     }
 }
 
-function renderizarDespesa(array, section) {
-    array.forEach(element => {
+function renderizarDespesa(array, section, novaDespesa) {
+    if (!novaDespesa) {
+        array.forEach(element => {
+            const div = document.createElement("div");
+            const valor = document.createElement("p");
+            const tipo = document.createElement("p");
+            const desc = document.createElement("p");
+
+            div.classList.add("despesas-item-container");
+
+            valor.innerHTML = element.getValor();
+            tipo.innerHTML = element.getTipo();
+            desc.innerHTML = element.getDesc();
+
+            div.append(valor, tipo, desc);
+            section.append(div);
+        });
+    }
+    else {
         const div = document.createElement("div");
         const valor = document.createElement("p");
         const tipo = document.createElement("p");
@@ -55,17 +72,28 @@ function renderizarDespesa(array, section) {
 
         div.classList.add("despesas-item-container");
 
-        valor.innerHTML = element.getValor();
-        tipo.innerHTML = element.getTipo();
-        desc.innerHTML = element.getDesc();
+        valor.innerHTML = todasAsDepesas[todasAsDepesas.length - 1].getValor();
+        tipo.innerHTML = todasAsDepesas[todasAsDepesas.length - 1].getTipo();
+        desc.innerHTML = todasAsDepesas[todasAsDepesas.length - 1].getDesc();
 
-        div.append(valor,tipo,desc);
+        div.append(valor, tipo, desc);
         section.append(div);
-    });
+    }
 }
+function minMax(elemento, minimo, maximo) {
+    return elemento.valor >= (minimo || 0) && elemento.valor <= (maximo || Number.MAX_SAFE_INTEGER);
 
-function filtrarDespesa(){
+}
+function filtrarDespesa() {
     const filtroTipo = document.getElementById("detalhe-tipo").value;
-    const filtroVmin = document.getElementById("detalhe-vmin").value;
-    const filtroVmax = document.getElementById("detalhe-vmax").value;
+    const filtroVmin = Number(document.getElementById("detalhe-vmin").value);
+    const filtroVmax = Number(document.getElementById("detalhe-vmax").value);
+
+    console.log(filtroVmin, filtroVmax);
+    console.log("array", todasAsDepesas);
+
+    let despesasFiltradas = todasAsDepesas.filter((element) => {
+        return minMax(element, filtroVmin, filtroVmax)
+    });
+    console.log("filtrada", despesasFiltradas);
 }
