@@ -41,12 +41,17 @@ function cadastrarDespesa() {
 
     if (validaDespesa(valor, tipo, desc)) {
         todasAsDepesas.push(new Despesa(valor, tipo, desc));
-        renderizarDespesa(todasAsDepesas,
+        renderizarDespesas(todasAsDepesas,
             document.querySelector(".despesas-list-container"), true);
     }
 }
 
-function renderizarDespesa(array, section, novaDespesa) {
+function limparDespesas(section) {
+    while (section.firstChild) {
+        section.removeChild(section.firstChild);
+    }
+}
+function renderizarDespesas(array, section, novaDespesa) {
     if (!novaDespesa) {
         array.forEach(element => {
             const div = document.createElement("div");
@@ -80,20 +85,27 @@ function renderizarDespesa(array, section, novaDespesa) {
         section.append(div);
     }
 }
-function minMax(elemento, minimo, maximo) {
-    return elemento.valor >= (minimo || 0) && elemento.valor <= (maximo || Number.MAX_SAFE_INTEGER);
 
+function filtrarMinMax(elemento, minimo, maximo) {
+    return elemento.valor >= (minimo || 0) && elemento.valor <= (maximo || Number.MAX_SAFE_INTEGER);
 }
-function filtrarDespesa() {
+function filtrarTipo(elemento, tipo) {
+    return elemento.tipo === tipo || tipo === "";
+}
+function filtrarDespesas() {
     const filtroTipo = document.getElementById("detalhe-tipo").value;
     const filtroVmin = Number(document.getElementById("detalhe-vmin").value);
     const filtroVmax = Number(document.getElementById("detalhe-vmax").value);
 
-    console.log(filtroVmin, filtroVmax);
-    console.log("array", todasAsDepesas);
-
     let despesasFiltradas = todasAsDepesas.filter((element) => {
-        return minMax(element, filtroVmin, filtroVmax)
+        return filtrarMinMax(element, filtroVmin, filtroVmax) && filtrarTipo(element, filtroTipo);
     });
-    console.log("filtrada", despesasFiltradas);
+
+    limparDespesas(document.querySelector(".despesas-list-container"));
+    renderizarDespesas(despesasFiltradas,document.querySelector(".despesas-list-container"));
+}
+
+function limparFiltros(){
+    limparDespesas(document.querySelector(".despesas-list-container"));
+    renderizarDespesas(todasAsDepesas,document.querySelector(".despesas-list-container"));
 }
