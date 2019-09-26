@@ -29,6 +29,26 @@
             </div>
         </section>
 
+        <section class="content-container" id="detalhes">
+            <h1>Despesas Detalhadas</h1>
+            <div class="detalhes-form">
+                <label>Tipo</label>
+                <select id="detalhe-tipo">
+                    <option value="casa">Casa</option>
+                    <option value="viagem">Viagem</option>
+                    <option value="role">Rolês</option>
+                    <option value="outro">Outros</option>
+                </select>
+                <label>Valor Mínimo</label>
+                <input id="detalhe-vmin" type="number" />
+                <label>Valor Máximo</label>
+                <input id="detalhe-vmax" type="number" />
+                <button id="detalhe-filtrar" onclick="filtrarDespesa()">Filtrar</button>
+                <button id="detalhe-limpar">Limpar Filtros</button>
+            </div>
+            <div class="despesas-list-container">
+            </div>
+        </section>
     </div>
 </body>
 </html>
