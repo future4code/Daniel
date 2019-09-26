@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="script.js"></script>
+    <link rel="stylesheet" href="style.css">
     <title>Controlador de Despesas</title>
 </head>
+
 <body>
     <div class="wrapper">
         <section class="content-container" id="cadastro">
@@ -15,7 +18,7 @@
 
             <div class="cadastro-form">
                 <label>Valor</label>
-                <input id="valor" type="number" min="1" placeholder="R$ 00,00"/>
+                <input id="valor" type="number" min="1" placeholder="R$ 00,00" />
                 <label>Tipo</label>
                 <select id="tipo">
                     <option value="casa">Casa</option>
@@ -24,7 +27,7 @@
                     <option value="outro">Outros</option>
                 </select>
                 <label>Descrição</label>
-                <input id="desc" type="text">
+                <input id="desc" type="text" placeholder="O que você comprou?">
                 <button onclick="cadastrarDespesa()">Cadastrar</button>
             </div>
         </section>
@@ -53,11 +56,15 @@
         <section class="content-container" id="extrato">
             <h1>Extrato</h1>
             <h2><span id="valorTotal"></span></h2>
+            <div class="filtros">
+                <button onclick="ordemDecrescente()">Mais caro</button>
+                <button onclick="ordemCrescente()">Mais barato</button>
+            </div>
             <div class="extrato-list-container">
             </div>
-            <button onclick="ordemDecrescente()">Mais caro</button>
-            <button onclick="ordemCrescente()">Mais barato</button>
+
         </section>
     </div>
 </body>
+
 </html>

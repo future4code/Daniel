@@ -74,9 +74,9 @@ function renderizarDespesas(array, section, novaDespesa) {
 
             div.classList.add("despesas-item-container");
 
-            valor.innerHTML = element.getValor();
-            tipo.innerHTML = element.getTipo();
-            desc.innerHTML = element.getDesc();
+            valor.innerHTML = `R$ ${element.getValor()},00`;
+            tipo.innerHTML = `Tipo: ${element.getTipo()}`;
+            desc.innerHTML = `Descrição: ${element.getDesc()}`;
 
             div.append(valor, tipo, desc);
             section.append(div);
@@ -90,9 +90,9 @@ function renderizarDespesas(array, section, novaDespesa) {
 
         div.classList.add("despesas-item-container");
 
-        valor.innerHTML = todasAsDepesas[todasAsDepesas.length - 1].getValor();
-        tipo.innerHTML = todasAsDepesas[todasAsDepesas.length - 1].getTipo();
-        desc.innerHTML = todasAsDepesas[todasAsDepesas.length - 1].getDesc();
+        valor.innerHTML = `R$ ${todasAsDepesas[todasAsDepesas.length - 1].getValor()},00`;
+        tipo.innerHTML = `Tipo: ${todasAsDepesas[todasAsDepesas.length - 1].getTipo()}`;
+        desc.innerHTML = `Descrição: ${todasAsDepesas[todasAsDepesas.length - 1].getDesc()}`;
 
         div.append(valor, tipo, desc);
         section.append(div);
