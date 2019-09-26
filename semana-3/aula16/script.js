@@ -98,7 +98,16 @@ function renderizarDespesas(array, section, novaDespesa) {
         section.append(div);
     }
 }
-
+function ordemDecrescente(){
+    const despesasFiltradas = todasAsDepesas.sort((a,b) => (a.valor - b.valor )* -1);
+    limparDespesas(document.querySelector(".extrato-list-container"));
+    renderizarDespesas(despesasFiltradas,document.querySelector(".extrato-list-container"));
+}
+function ordemCrescente(){
+    const despesasFiltradas = todasAsDepesas.sort((a,b) => (a.valor - b.valor ));
+    limparDespesas(document.querySelector(".extrato-list-container"));
+    renderizarDespesas(despesasFiltradas,document.querySelector(".extrato-list-container"));
+}
 function filtrarMinMax(elemento, minimo, maximo) {
     return elemento.valor >= (minimo || 0) && elemento.valor <= (maximo || Number.MAX_SAFE_INTEGER);
 }
