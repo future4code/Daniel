@@ -89,14 +89,23 @@
         }
     }
     //--4)
-    function classificaTriangulo(a,b,c){
-        if (a!==b && b!==c && c!==a){
+    function classificaTriangulo(a, b, c) {
+        if (a !== b && b !== c && c !== a) {
             return "escaleno";
         }
-        if(a===b && b===c && c===a){
+        if (a === b && b === c && c === a) {
             return "equilátero"
         }
         return "isósceles"
+    }
+
+    //--5)
+    function testaNumero(a, b) {
+        console.log(`ENTRADA: \n${a},${b}`);
+        console.log(`SAÍDA:`);
+        console.log(`O maior é ${(a > b) ? a : b}`);
+        console.log(`${a} ${(a % b === 0) ? 'é' : 'não é'} divisível por ${b}`);
+        console.log(`A diferença entre eles é ${Math.abs(a-b)}`);
     }
 </script>
 
