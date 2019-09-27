@@ -164,6 +164,23 @@
         elenco: ["Leonardo DiCaprio", "Ellen Page", "Joseph Gordon-Levitt", "Marion Cotillard", "Ken Watanabe", "Tom Hardy"]
     }
     console.log(`Venha assistir ao filme ${filme.titulo}, de ${filme.ano}, dirigido por ${filme.diretor} e estrelado por ${filme.elenco.join(`, `)}.`);
+
+    //--4)
+    pessoa = {
+        nome: "Solaire of Astora",
+        idade: 35,
+        email: "grossly.incandescent@lordran.com",
+        endereco: "Astora"
+    }
+    function anonimizarPessoa(objeto){
+        return {
+            nome: "ANONIMO",
+            idade: objeto.idade,
+            email: objeto.email,
+            endereco: objeto.endereco
+        }
+    }
+    console.log(anonimizarPessoa(pessoa));
 </script>
 
 </html>
