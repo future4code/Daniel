@@ -172,7 +172,7 @@
         email: "grossly.incandescent@lordran.com",
         endereco: "Astora"
     }
-    function anonimizarPessoa(objeto){
+    function anonimizarPessoa(objeto) {
         return {
             nome: "ANONIMO",
             idade: objeto.idade,
@@ -181,6 +181,32 @@
         }
     }
     console.log(anonimizarPessoa(pessoa));
+
+    /*
+        ---Exercícios de Funções Array---
+    
+    */
+
+    //--1)
+    const fila = [
+        { nome: "Pedro", idade: 20 },
+        { nome: "João", idade: 10 },
+        { nome: "Paula", idade: 12 },
+        { nome: "Artur", idade: 89 }
+    ]
+
+    function retornaAdulto(array){
+        return array.filter((element)=>{
+            return element.idade >= 20
+        })
+    }
+    function retornaCrianca(array){
+        return array.filter((element)=>{
+            return element.idade < 20
+        })
+    }
+
+    //--2)
 </script>
 
 </html>
