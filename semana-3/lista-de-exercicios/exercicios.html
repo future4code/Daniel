@@ -80,13 +80,23 @@
 
 
     //--3)
-    // Nosso amigo não aumentou o contador i. Como começa do 0, o código tem que iterar quantidade-1 vezes. 
+    // O código não funciona. Nosso amigo não aumentou o contador i. Como começa do 0, o código tem que iterar quantidade-1 vezes. 
     function contaNumerosPares(quantidade) {
         let i = 0
         while (i < quantidade) {
             console.log(i * 2);
             i++;
         }
+    }
+    //--4)
+    function classificaTriangulo(a,b,c){
+        if (a!==b && b!==c && c!==a){
+            return "escaleno";
+        }
+        if(a===b && b===c && c===a){
+            return "equilátero"
+        }
+        return "isósceles"
     }
 </script>
 
