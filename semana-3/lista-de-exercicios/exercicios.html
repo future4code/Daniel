@@ -147,7 +147,7 @@
 
     //--2)
 
-    function criaRetangulo(lado1,lado2){
+    function criaRetangulo(lado1, lado2) {
         return {
             largura: lado1,
             altura: lado2,
@@ -156,7 +156,14 @@
         }
     }
 
-
+    //--3)
+    filme = {
+        titulo: "Inception",
+        ano: 2010,
+        diretor: "Christopher Nolan",
+        elenco: ["Leonardo DiCaprio", "Ellen Page", "Joseph Gordon-Levitt", "Marion Cotillard", "Ken Watanabe", "Tom Hardy"]
+    }
+    console.log(`Venha assistir ao filme ${filme.titulo}, de ${filme.ano}, dirigido por ${filme.diretor} e estrelado por ${filme.elenco.join(`, `)}.`);
 </script>
 
 </html>
