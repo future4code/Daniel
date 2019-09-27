@@ -12,36 +12,36 @@
 
 </body>
 <script>
-/*
-    ---Exercícios de interpretação de código---
-    
-    --1)
-    ---O código usa uma váriavel e uma função para converter dolar em reais. A função conversorDeMoeda recebe um valor,
-        pergunta o usuário o valor da cotação do dolar e retorna uma string com o valor em reais. 
-        console.log === R$ 100*(cotação)
-    
-    --2)
-    ---O código usa uma função para retornar um valor investido em algum dos tipos de investimentos. A função recebe uma string com o tipo de investimento
-        e um número com o valor a ser investido. Usando um switch para verificar o tipo de investimento, a função multiplica o valor passado pelo fator do investimento.
-        E finalmente retorna o valor após o investimento. 
-        console.log === 165. console.log === "Tipo de investimento informado incorreto"
-    
-    --3)
-    ---Nesse código temos uma array com números, usando um loop verifica se o número é par ou ímpar e preenche outras duas arrays. 
-        Se for par preenche a array1, se for ímpar a array2. 
-        console.log === "Quantidade total de números",14
-        console.log === 6
-        console.log === 8
-    
-    --4)
-    ---Com uma array de números e um loop o código loga o maior e menor número dentro da array. 
-        console.log === -10
-        console.log === 1590
-*/
+    /*
+        ---Exercícios de interpretação de código---
+        
+        --1)
+        ---O código usa uma váriavel e uma função para converter dolar em reais. A função conversorDeMoeda recebe um valor,
+            pergunta o usuário o valor da cotação do dolar e retorna uma string com o valor em reais. 
+            console.log === R$ 100*(cotação)
+        
+        --2)
+        ---O código usa uma função para retornar um valor investido em algum dos tipos de investimentos. A função recebe uma string com o tipo de investimento
+            e um número com o valor a ser investido. Usando um switch para verificar o tipo de investimento, a função multiplica o valor passado pelo fator do investimento.
+            E finalmente retorna o valor após o investimento. 
+            console.log === 165. console.log === "Tipo de investimento informado incorreto"
+        
+        --3)
+        ---Nesse código temos uma array com números, usando um loop verifica se o número é par ou ímpar e preenche outras duas arrays. 
+            Se for par preenche a array1, se for ímpar a array2. 
+            console.log === "Quantidade total de números",14
+            console.log === 6
+            console.log === 8
+        
+        --4)
+        ---Com uma array de números e um loop o código loga o maior e menor número dentro da array. 
+            console.log === -10
+            console.log === 1590
+    */
 
-/* 
-    ---Exercícios de Lógica de Programação---
-*/
+    /* 
+        ---Exercícios de Lógica de Programação---
+    */
 
     //--1)
     function percorrerLista() {
@@ -59,24 +59,35 @@
             console.log(element);
         })
     }
-/*
-    --2)
-        const booleano1 = true
-        const booleano2 = false
-        const booleano3 = !booleano2
-        const booleano4 = !booleano3
-    
-        a) booleano1 && booleano2 && !booleano4 === FALSE
-    
-        b) (booleano1 && booleano2) || !booleano3 === TRUE
-    
-        c)  (booleano2 || booleano3) && (booleano4 || booleano1) === TRUE
-    
-        d) !(booleano2 && booleano3) || !(booleano1 && booleano3) === FALSE
-    
-        e) !(booleano1) && !(booleano3) || (!booleano4 && booleano3 && booleano3) === TRUE
-    
-*/
+    /*
+        --2)
+            const booleano1 = true
+            const booleano2 = false
+            const booleano3 = !booleano2
+            const booleano4 = !booleano3
+        
+            a) booleano1 && booleano2 && !booleano4 === FALSE
+        
+            b) (booleano1 && booleano2) || !booleano3 === TRUE
+        
+            c)  (booleano2 || booleano3) && (booleano4 || booleano1) === TRUE
+        
+            d) !(booleano2 && booleano3) || !(booleano1 && booleano3) === FALSE
+        
+            e) !(booleano1) && !(booleano3) || (!booleano4 && booleano3 && booleano3) === TRUE
+        
+    */
+
+
+    //--3)
+    // Nosso amigo não aumentou o contador i. Como começa do 0, o código tem que iterar quantidade-1 vezes. 
+    function contaNumerosPares(quantidade) {
+        let i = 0
+        while (i < quantidade) {
+            console.log(i * 2);
+            i++;
+        }
+    }
 </script>
 
 </html>
