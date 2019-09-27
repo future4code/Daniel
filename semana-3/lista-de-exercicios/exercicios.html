@@ -105,8 +105,26 @@
         console.log(`SAÍDA:`);
         console.log(`O maior é ${(a > b) ? a : b}`);
         console.log(`${a} ${(a % b === 0) ? 'é' : 'não é'} divisível por ${b}`);
-        console.log(`A diferença entre eles é ${Math.abs(a-b)}`);
+        console.log(`A diferença entre eles é ${Math.abs(a - b)}`);
     }
+
+    /* 
+        ---Exercícios de Função---
+    */
+
+    //--1)
+    function segundoMinMax(array) {
+        console.log(`Array original: ${array}`)
+
+        const ordenada = array.sort((a, b) => {
+            return a - b;
+        })
+
+        console.log(`Segundo Maior: ${ordenada[ordenada.length - 1]}`)
+        console.log(`Segundo Menor: ${ordenada[1]}`);
+    }
+    segundoMinMax([100, 23, 53, 99, 3, 2, 1]);
+    
 </script>
 
 </html>
