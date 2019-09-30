@@ -1,0 +1,64 @@
+.wrapper {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10%;
+}
+
+.content-container {
+    padding: 10px;
+    border: 1px solid #003ee6;
+    box-shadow: 5px 6px 0px #0030b3;
+}
+
+.cadastro-form {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 5px;
+}
+.detalhes-form {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 5px;
+}
+.despesas-list-container > div,
+.extrato-list-container > div {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+.despesas-list-container p,
+.extrato-list-container p {
+    border-radius: 3px;
+    margin: 0;
+    padding: 4px;
+    border: 1px solid #d6d6d6;
+
+    box-shadow: 1px 1px 0px #c2c2c2;
+}
+.despesas-list-container div:nth-child(even),
+.extrato-list-container div:nth-child(even) {
+    background: #eaf0f7;
+}
+.filtros {
+    display: flex;
+    justify-content: center;
+}
+.filtros button {
+    margin-left: 5px;
+    margin-top: 5px;
+}
+button {
+    background: #0023cf;
+    border: 2px solid transparent;
+    border-radius: 3px;
+    text-align: center;
+    background: #0d36ff;
+    color: white;
+    font-size: 1rem;
+}
+h1,
+h2 {
+    text-align: center;
+}
+.despesas-item-container:first-of-type {
+    margin-top: 5px;
+}

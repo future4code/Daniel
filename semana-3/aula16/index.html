@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="script.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <title>Controlador de Despesas</title>
+</head>
+
+<body>
+    <div class="wrapper">
+        <section class="content-container" id="cadastro">
+            <h1>Controlador de Despesas</h1>
+            <h2>Cadastrar despesa</h2>
+
+            <div class="cadastro-form">
+                <label>Valor</label>
+                <input id="valor" type="number" min="1" placeholder="R$ 00,00" />
+                <label>Tipo</label>
+                <select id="tipo">
+                    <option value="casa">Casa</option>
+                    <option value="viagem">Viagem</option>
+                    <option value="role">Rolês</option>
+                    <option value="outro">Outros</option>
+                </select>
+                <label>Descrição</label>
+                <input id="desc" type="text" placeholder="O que você comprou?">
+                <button onclick="cadastrarDespesa()">Cadastrar</button>
+            </div>
+        </section>
+
+        <section class="content-container" id="detalhes">
+            <h1>Despesas Detalhadas</h1>
+            <div class="detalhes-form">
+                <label>Tipo</label>
+                <select id="detalhe-tipo">
+                    <option value="casa">Casa</option>
+                    <option value="viagem">Viagem</option>
+                    <option value="role">Rolês</option>
+                    <option value="outro">Outros</option>
+                </select>
+                <label>Valor Mínimo</label>
+                <input id="detalhe-vmin" type="number" />
+                <label>Valor Máximo</label>
+                <input id="detalhe-vmax" type="number" />
+                <button id="detalhe-filtrar" onclick="filtrarDespesas()">Filtrar</button>
+                <button id="detalhe-limpar" onclick="limparFiltros()">Limpar Filtros</button>
+            </div>
+            <div class="despesas-list-container">
+            </div>
+        </section>
+
+        <section class="content-container" id="extrato">
+            <h1>Extrato</h1>
+            <h2><span id="valorTotal"></span></h2>
+            <div class="filtros">
+                <button onclick="ordemDecrescente()">Mais caro</button>
+                <button onclick="ordemCrescente()">Mais barato</button>
+            </div>
+            <div class="extrato-list-container">
+            </div>
+
+        </section>
+    </div>
+</body>
+
+</html>
