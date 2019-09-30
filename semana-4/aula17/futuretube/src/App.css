@@ -10,7 +10,7 @@
   margin: 0;
 }
 header {
-  background: #f3a83b;
+  background: white;
 }
 header ul {
   display: flex;
@@ -22,26 +22,38 @@ header ul {
 main {
   display: flex;
   flex: 1;
+  background: #f9f9f9;
+}
+.App-logo {
+  fill: #cc0000 !important;
+  width: 24px;
 }
 .video-card-container {
   display: flex;
   flex-wrap: wrap;
+  padding: 1% 10%;
 }
 .video-card {
-  border: 1px solid green;
   margin: 10px;
 }
 .video-card img {
-  max-width: 360px;
+  max-width: 210px;
 }
-
 footer {
   padding: 10px;
-  background: #808080;
-  color: white;
+  background: white;
 }
 nav {
-  border-right: 1px solid green;
-  width: 20%;
-  padding: 10px;
+  width: 15%;
+  background: white;
+  padding: 1% 0;
+}
+nav > div:hover {
+  background: rgb(243, 243, 243);
+}
+nav > div {
+  padding: 10px 5%;
+}
+nav > hr {
+  border-color: rgba(231, 231, 231, 0.17);
 }

@@ -7,18 +7,18 @@ function App() {
     <div className="App">
       <header>
         <ul>
-          <li><h1>FutureTube</h1></li>
+          <li><h1><img src={logo} className="App-logo" alt="logo" />FutureTube</h1></li>
           <li><input placeholder="Busca" /></li>
         </ul>
       </header>
       <main>
         <nav>
-          <ul>
-            <li>Home</li>
-            <li>Home</li>
-            <li>Home</li>
-            <li>Home</li>
-          </ul>
+          <div>Inicio</div>
+          <div>Em alta</div>
+          <div>Inscrições</div>
+          <hr></hr>
+          <div>Biblioteca</div>
+          <div>Histórico</div>
         </nav>
 
         <section>
