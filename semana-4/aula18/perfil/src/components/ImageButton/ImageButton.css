@@ -1,0 +1,12 @@
+.button-container {
+    max-width: 200px;
+    border: 2px solid black;
+    border-radius: 30px;
+    padding: 0 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.button-container img {
+    width: 40px;
+}
