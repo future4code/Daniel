@@ -27,17 +27,18 @@ const pessoa = {
   endereco: "Rua Portugal, 35"
 }
 
-const empresa1 = {
-  nome: "Mellore Alimentos",
-  cargo: "Analista de sistemas",
-  imagem: avatar
-}
-
-const empresa2 = {
-  nome: "Motofest",
-  cargo: "Assistente de TI",
-  imagem: avatar
-}
+const empresas = [
+  {
+    nome: "Mellore Alimentos",
+    cargo: "Analista de sistemas",
+    imagem: avatar
+  },
+  {
+    nome: "Motofest",
+    cargo: "Assistente de TI",
+    imagem: avatar
+  }
+]
 
 
 function App() {
@@ -51,12 +52,13 @@ function App() {
       </PageSection>
 
       <PageSection heading="Experiências Profissionais">
-        <BigCard nome={empresa1.nome} avatar={empresa1.imagem} texto={empresa1.cargo} />
-        <BigCard nome={empresa1.nome} avatar={empresa2.imagem} texto={empresa2.cargo} />
+        {empresas.map(element => (
+          <BigCard nome={element.nome} avatar={element.imagem} texto={element.cargo} />
+        ))}
       </PageSection>
 
       <PageSection heading="Minhas redes sociais">
-      <ImageButton imagem={botaoFace.imagem} texto={botaoFace.texto} />
+        <ImageButton imagem={botaoFace.imagem} texto={botaoFace.texto} />
       </PageSection>
     </div>
   );
