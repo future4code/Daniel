@@ -1,0 +1,14 @@
+.smallcard-container {
+    border: 2px solid black;
+    max-width: 20%;
+    display:flex;
+    align-items: center;
+}
+
+.smallcard-container > img {
+    width: 35px;
+    margin-right: 10px;
+}
+h3::after {
+    content: "\00a0"
+}
