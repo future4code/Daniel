@@ -1,12 +1,25 @@
 .bigcard-container {
     border: 2px solid black;
-    max-width: 20%;
+    width: 20vw;
     display:flex;
     align-items: center;
+    padding: 0 10px;
 }
 
 .bigcard-container > img {
     max-width: 60px;
     border-radius: 50%;
     margin-right: 10px;
+}
+
+@media screen and (max-width: 840px){
+    .bigcard-container {
+        width: 50vw;
+    }
+}
+
+@media screen and (max-width: 500px){
+    .bigcard-container {
+        width: 80vw;
+    }
 }

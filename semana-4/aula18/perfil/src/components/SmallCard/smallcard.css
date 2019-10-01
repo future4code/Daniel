@@ -1,8 +1,9 @@
 .smallcard-container {
     border: 2px solid black;
-    max-width: 20%;
-    display:flex;
+    width: 20vw;
+    display: flex;
     align-items: center;
+    padding: 0 10px;
 }
 
 .smallcard-container > img {
@@ -10,5 +11,17 @@
     margin-right: 10px;
 }
 h3::after {
-    content: "\00a0"
+    content: "\00a0";
+}
+
+@media screen and (max-width: 840px) {
+    .smallcard-container {
+        width: 50vw;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .smallcard-container {
+        width: 80vw;
+    }
 }
