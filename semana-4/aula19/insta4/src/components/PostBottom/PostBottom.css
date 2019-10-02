@@ -1,9 +1,33 @@
 .post-bottom-container {
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    flex-wrap: wrap;
     padding: 10px;
 }
 
 .post-bottom-container img {
     width: 24px;
+}
+
+.comment-section {
+    flex: 1;
+    font-size: 0.9rem;
+    grid-column: 1 / 3;
+}
+.comment-icon {
+    display: flex;
+    justify-content: flex-end;
+
+}
+.comment-section > p {
+    width: 100%;
+}
+
+.form-comment {
+    grid-column: 1/3;
+}
+.form-comment input {
+    width: 100%;
+    margin: 10px 0;
+    box-sizing: border-box;
 }

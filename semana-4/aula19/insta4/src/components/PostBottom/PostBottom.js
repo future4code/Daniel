@@ -13,7 +13,8 @@ class PostBottom extends React.Component {
             heartIcon: heartWhite,
             favoriteCounter: 0,
             commentCounter: 0,
-            formComentario: ''
+            formComentario: '',
+            comments: []
         }
 
     }
@@ -22,21 +23,18 @@ class PostBottom extends React.Component {
         let like = this.state.liked;
         let counter = this.state.favoriteCounter;
         if (like) {
-            like = !like;
-            counter--;
             const novoEstado = {
-                liked: like,
-                favoriteCounter: counter,
+                liked: !like,
+                favoriteCounter: --counter,
                 heartIcon: heartWhite
             }
             this.setState(novoEstado)
         }
         else {
-            like = !like;
-            counter++;
+
             const novoEstado = {
-                liked: like,
-                favoriteCounter: counter,
+                liked: !like,
+                favoriteCounter: ++counter,
                 heartIcon: heartBlack
             }
             this.setState(novoEstado)
@@ -45,36 +43,49 @@ class PostBottom extends React.Component {
 
     comentar = () => {
         let form = this.state.formComentario;
-        if(!form){
-            form = (<div className="form-comment"><input placeholder="Algo a dizer ?" onKeyPress={this.apertouEnter}/></div>);
+        if (!form) {
+            form = (<div className="form-comment"><input placeholder="Algo a dizer ?" onKeyPress={this.apertouEnter} /></div>);
             this.setState({
                 formComentario: form
             })
         }
+        else {
+            this.setState({
+                formComentario: ''
+            })
+        }
     }
-    apertouEnter = (event) =>{
+    apertouEnter = (event) => {
         const code = event.which;
-        if(code === 13) { 
+        const text = event.target.value;
+        if (code === 13) {
             let counter = this.state.commentCounter;
-            counter++;
+            let newComments = this.state.comments;
+            newComments.push(text);
             this.setState({
                 formComentario: '',
-                commentCounter: counter
+                commentCounter: ++counter,
+                comments: newComments
             })
-        } 
+        }
     }
+
+
     render() {
         return (
             <div className="post-bottom-container">
-                <div className="favorite-container">
+                <div className="favorite-icon">
                     <img onDoubleClick={this.darLike} src={this.state.heartIcon} alt="" />
                     {this.state.favoriteCounter}
                 </div>
-                <div className="comment-container">
+                <div className="comment-icon">
                     <img onClick={this.comentar} src={commentIcon} alt="" />
                     {this.state.commentCounter}
                 </div>
                 {this.state.formComentario}
+                <div className="comment-section">
+                    {this.state.comments.map((element) => (<p>{element}</p>))}
+                </div>
             </div>
         );
     }

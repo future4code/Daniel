@@ -1,6 +1,7 @@
 .post-container {
     width: 426px;
     border: 1px solid black;
+    margin-bottom: 30px;
 }
 .post-header {
     display: flex;
