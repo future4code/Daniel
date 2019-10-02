@@ -12,7 +12,8 @@ class PostBottom extends React.Component {
             liked: false,
             heartIcon: heartWhite,
             favoriteCounter: 0,
-            commentCounter: 0
+            commentCounter: 0,
+            formComentario: ''
         }
 
     }
@@ -42,17 +43,38 @@ class PostBottom extends React.Component {
         }
     };
 
+    comentar = () => {
+        let form = this.state.formComentario;
+        if(!form){
+            form = (<div className="form-comment"><input placeholder="Algo a dizer ?" onKeyPress={this.apertouEnter}/></div>);
+            this.setState({
+                formComentario: form
+            })
+        }
+    }
+    apertouEnter = (event) =>{
+        const code = event.which;
+        if(code === 13) { 
+            let counter = this.state.commentCounter;
+            counter++;
+            this.setState({
+                formComentario: '',
+                commentCounter: counter
+            })
+        } 
+    }
     render() {
         return (
             <div className="post-bottom-container">
                 <div className="favorite-container">
-                    <img onClick={this.darLike} src={this.state.heartIcon} alt="" />
+                    <img onDoubleClick={this.darLike} src={this.state.heartIcon} alt="" />
                     {this.state.favoriteCounter}
                 </div>
                 <div className="comment-container">
-                    <img src={commentIcon} alt="" />
+                    <img onClick={this.comentar} src={commentIcon} alt="" />
                     {this.state.commentCounter}
                 </div>
+                {this.state.formComentario}
             </div>
         );
     }
