@@ -1,0 +1,15 @@
+.post-container {
+    width: 426px;
+    border: 1px solid black;
+}
+.post-header {
+    display: flex;
+    padding: 5px 10px;
+}
+.post-header img {
+    border-radius: 50%;
+    margin-right: 10px;
+}
+.post-image {
+    max-width: 100%;
+}

@@ -1,0 +1,9 @@
+.post-bottom-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.post-bottom-container img {
+    width: 24px;
+}
