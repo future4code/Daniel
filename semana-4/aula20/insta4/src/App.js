@@ -10,6 +10,7 @@ const FormNewPost = styled.section`
     margin-bottom: 10px;
     display: flex;
     flex-direction: column;
+    background: white;
 `;
 
 const Wrapper = styled.div`

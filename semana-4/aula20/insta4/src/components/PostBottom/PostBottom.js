@@ -1,9 +1,8 @@
 import React from "react";
-import "./PostBottom.css";
 import heartWhite from "./icones/favoritewhite.svg";
 import heartBlack from "./icones/favorite.svg";
 import commentIcon from "./icones/commenticon.svg";
-import styled from 'styled-components'
+import styled from "styled-components";
 
 const PostBottomContainer = styled.section`
     display: grid;
@@ -11,7 +10,29 @@ const PostBottomContainer = styled.section`
     flex-wrap: wrap;
     padding: 10px;
 `;
-
+const CommentSection = styled.div`
+    flex: 1;
+    font-size: 0.9rem;
+    grid-column: 1 / 3;
+`;
+const CommentSectionP = styled.p`
+   width: 100%;
+`
+const CommentIcon = styled.img`
+    width: 24px;
+`;
+const CommentIconContainer = styled.div`
+    display: flex;
+    justify-content: flex-end;
+`;
+const FormComment = styled.div`
+    grid-column: 1/3;
+`;
+const FormCommentInput = styled.input`
+    width: 100%;
+    margin: 10px 0;
+    box-sizing: border-box;
+`;
 class PostBottom extends React.Component {
     constructor(props) {
         super(props);
@@ -49,12 +70,12 @@ class PostBottom extends React.Component {
         let form = this.state.formComentario;
         if (!form) {
             form = (
-                <div className="form-comment">
-                    <input
+                <FormComment>
+                    <FormCommentInput
                         placeholder="Algo a dizer ?"
                         onKeyPress={this.apertouEnter}
                     />
-                </div>
+                </FormComment>
             );
             this.setState({
                 formComentario: form
@@ -83,7 +104,7 @@ class PostBottom extends React.Component {
     render() {
         return (
             <PostBottomContainer>
-                <div className="favorite-icon">
+                <div>
                     <img
                         onDoubleClick={this.darLike}
                         src={this.state.heartIcon}
@@ -91,16 +112,20 @@ class PostBottom extends React.Component {
                     />
                     {this.state.favoriteCounter}
                 </div>
-                <div className="comment-icon">
-                    <img onClick={this.comentar} src={commentIcon} alt="" />
+                <CommentIconContainer>
+                    <CommentIcon
+                        onClick={this.comentar}
+                        src={commentIcon}
+                        alt=""
+                    />
                     {this.state.commentCounter}
-                </div>
+                </CommentIconContainer>
                 {this.state.formComentario}
-                <div className="comment-section">
+                <CommentSection>
                     {this.state.comments.map(element => (
-                        <p>{element}</p>
+                        <CommentSectionP>{element}</CommentSectionP>
                     ))}
-                </div>
+                </CommentSection>
             </PostBottomContainer>
         );
     }
