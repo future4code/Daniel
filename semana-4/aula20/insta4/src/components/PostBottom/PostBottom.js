@@ -1,21 +1,28 @@
-import React from 'react'
-import './PostBottom.css'
-import heartWhite from './icones/favoritewhite.svg'
-import heartBlack from './icones/favorite.svg'
-import commentIcon from './icones/commenticon.svg'
+import React from "react";
+import "./PostBottom.css";
+import heartWhite from "./icones/favoritewhite.svg";
+import heartBlack from "./icones/favorite.svg";
+import commentIcon from "./icones/commenticon.svg";
+import styled from 'styled-components'
+
+const PostBottomContainer = styled.section`
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    flex-wrap: wrap;
+    padding: 10px;
+`;
 
 class PostBottom extends React.Component {
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {
             liked: false,
             heartIcon: heartWhite,
             favoriteCounter: 0,
             commentCounter: 0,
-            formComentario: '',
+            formComentario: "",
             comments: []
-        }
-
+        };
     }
 
     darLike = () => {
@@ -26,35 +33,39 @@ class PostBottom extends React.Component {
                 liked: !like,
                 favoriteCounter: --counter,
                 heartIcon: heartWhite
-            }
-            this.setState(novoEstado)
-        }
-        else {
-
+            };
+            this.setState(novoEstado);
+        } else {
             const novoEstado = {
                 liked: !like,
                 favoriteCounter: ++counter,
                 heartIcon: heartBlack
-            }
-            this.setState(novoEstado)
+            };
+            this.setState(novoEstado);
         }
     };
 
     comentar = () => {
         let form = this.state.formComentario;
         if (!form) {
-            form = (<div className="form-comment"><input placeholder="Algo a dizer ?" onKeyPress={this.apertouEnter} /></div>);
+            form = (
+                <div className="form-comment">
+                    <input
+                        placeholder="Algo a dizer ?"
+                        onKeyPress={this.apertouEnter}
+                    />
+                </div>
+            );
             this.setState({
                 formComentario: form
-            })
-        }
-        else {
+            });
+        } else {
             this.setState({
-                formComentario: ''
-            })
+                formComentario: ""
+            });
         }
-    }
-    apertouEnter = (event) => {
+    };
+    apertouEnter = event => {
         const code = event.which;
         const text = event.target.value;
         if (code === 13) {
@@ -62,19 +73,22 @@ class PostBottom extends React.Component {
             let newComments = this.state.comments;
             newComments.push(text);
             this.setState({
-                formComentario: '',
+                formComentario: "",
                 commentCounter: ++counter,
                 comments: newComments
-            })
+            });
         }
-    }
-
+    };
 
     render() {
         return (
-            <div className="post-bottom-container">
+            <PostBottomContainer>
                 <div className="favorite-icon">
-                    <img onDoubleClick={this.darLike} src={this.state.heartIcon} alt="" />
+                    <img
+                        onDoubleClick={this.darLike}
+                        src={this.state.heartIcon}
+                        alt=""
+                    />
                     {this.state.favoriteCounter}
                 </div>
                 <div className="comment-icon">
@@ -83,11 +97,13 @@ class PostBottom extends React.Component {
                 </div>
                 {this.state.formComentario}
                 <div className="comment-section">
-                    {this.state.comments.map((element) => (<p>{element}</p>))}
+                    {this.state.comments.map(element => (
+                        <p>{element}</p>
+                    ))}
                 </div>
-            </div>
+            </PostBottomContainer>
         );
     }
 }
 
-export default PostBottom
+export default PostBottom;

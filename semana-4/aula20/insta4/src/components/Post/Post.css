@@ -1,5 +1,5 @@
 .post-container {
-    width: 426px;
+    width: 100%;
     border: 1px solid black;
     margin-bottom: 30px;
 }
@@ -13,5 +13,6 @@
     margin-right: 10px;
 }
 .post-image {
-    max-width: 100%;
+    min-width: 100%;
+    max-width: 30%;
 }
