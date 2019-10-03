@@ -1,0 +1,27 @@
+.smallcard-container {
+    border: 2px solid black;
+    width: 20vw;
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+}
+
+.smallcard-container > img {
+    width: 35px;
+    margin-right: 10px;
+}
+h3::after {
+    content: "\00a0";
+}
+
+@media screen and (max-width: 840px) {
+    .smallcard-container {
+        width: 50vw;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .smallcard-container {
+        width: 80vw;
+    }
+}
