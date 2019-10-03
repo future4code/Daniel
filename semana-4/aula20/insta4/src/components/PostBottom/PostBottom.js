@@ -3,6 +3,7 @@ import heartWhite from "./icones/favoritewhite.svg";
 import heartBlack from "./icones/favorite.svg";
 import commentIcon from "./icones/commenticon.svg";
 import styled from "styled-components";
+import {PostBottomComment} from './../PostBottomComment/PostBottomComment.js'
 
 const PostBottomContainer = styled.section`
     display: grid;
@@ -15,9 +16,6 @@ const CommentSection = styled.div`
     font-size: 0.9rem;
     grid-column: 1 / 3;
 `;
-const CommentSectionP = styled.p`
-   width: 100%;
-`
 const CommentIcon = styled.img`
     width: 24px;
 `;
@@ -47,18 +45,17 @@ class PostBottom extends React.Component {
     }
 
     darLike = () => {
-        let like = this.state.liked;
         let counter = this.state.favoriteCounter;
-        if (like) {
+        if (this.state.liked) {
             const novoEstado = {
-                liked: !like,
+                liked: false,
                 favoriteCounter: --counter,
                 heartIcon: heartWhite
             };
             this.setState(novoEstado);
         } else {
             const novoEstado = {
-                liked: !like,
+                liked: true,
                 favoriteCounter: ++counter,
                 heartIcon: heartBlack
             };
@@ -123,7 +120,7 @@ class PostBottom extends React.Component {
                 {this.state.formComentario}
                 <CommentSection>
                     {this.state.comments.map(element => (
-                        <CommentSectionP>{element}</CommentSectionP>
+                        <PostBottomComment comment={element}/>
                     ))}
                 </CommentSection>
             </PostBottomContainer>
