@@ -11,15 +11,19 @@ const Template = styled.section`
     min-height: 100vh;
     justify-content: flex-end;
     box-sizing: border-box;
+    padding-bottom: 21px;
 `;
 const Form = styled.div`
+    position: fixed;
+    box-sizing: border-box;
+    bottom: 0;
     display: flex;
-    width: 100%;
+    width: 500px;
 `;
-
 const BarraInput = styled.input`
     flex: 1;
 `;
+
 export class Chat extends React.Component {
     constructor(props) {
         super(props);
@@ -41,34 +45,57 @@ export class Chat extends React.Component {
         });
     };
     enviarMensagem = () => {
-        const tempoAtual = Date.now();
-        console.log(tempoAtual);
-        const valorDoEstadoDoAutor = this.state.valorInputUsuario;
-        const valorDoEstadoDaMensagem = this.state.valorInputMensagem;
-        const objetoMensagem = {
-            autor: valorDoEstadoDoAutor,
-            mensagem: valorDoEstadoDaMensagem,
-            key: tempoAtual
-        };
+        if (this.state.valorInputUsuario && this.state.valorInputMensagem) {
+            const valorDoEstadoDoAutor = this.state.valorInputUsuario;
+            const valorDoEstadoDaMensagem = this.state.valorInputMensagem;
+            const objetoMensagem = {
+                autor: valorDoEstadoDoAutor,
+                mensagem: valorDoEstadoDaMensagem
+            };
 
-        const listaDeMensagemAtuais = [...this.state.mensagens, objetoMensagem];
-        this.setState({
-            mensagens: listaDeMensagemAtuais
-        });
+            const listaDeMensagemAtuais = [
+                ...this.state.mensagens,
+                objetoMensagem
+            ];
+            this.setState({
+                mensagens: listaDeMensagemAtuais
+            });
+            this.limparCampos();
+        }
     };
-
     apertaEnter = event => {
         if (event.which === 13) {
             this.enviarMensagem();
         }
     };
+    limparCampos = () => {
+        this.setState({
+            valorInputMensagem: "",
+            valorInputUsuario: ""
+        });
+    };
+    deletarMensagem = event => {
+        const mensagensAtuais = [...this.state.mensagens];
+        const mensagensMantidas = mensagensAtuais.filter((element, index) => {
+            if (index === event) {
+                return false;
+            }
+            return true;
+        });
+        console.log(event, mensagensMantidas);
+        this.setState({
+            mensagens: mensagensMantidas
+        });
+    };
     render() {
-        const listaDeMensagem = this.state.mensagens.map(element => {
+        const listaDeMensagem = this.state.mensagens.map((element, index) => {
             return (
                 <Mensagem
                     autor={element.autor}
                     mensagem={element.mensagem}
-                    key={element.tempoAtual}
+                    key={index}
+                    keyProps={index}
+                    seOCaraDeletar={this.deletarMensagem}
                 />
             );
         });
@@ -80,12 +107,14 @@ export class Chat extends React.Component {
                         type="text"
                         placeholder="Usuário"
                         onChange={this.inserirUsuario}
+                        value={this.state.valorInputUsuario}
                     />
                     <BarraInput
                         type="text"
                         placeholder="Mensagens"
                         onChange={this.inserirMensagem}
                         onKeyPress={this.apertaEnter}
+                        value={this.state.valorInputMensagem}
                     />
                     <button onClick={this.enviarMensagem}>Enviar</button>
                 </Form>
