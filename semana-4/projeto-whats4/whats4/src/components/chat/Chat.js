@@ -1,5 +1,5 @@
 import React from "react";
-import styled from 'styled-components'
+import styled from "styled-components";
 //import PropTypes from 'prop-types'
 import { Mensagem } from "./mensagem/Mensagem.js";
 
@@ -11,15 +11,15 @@ const Template = styled.section`
     min-height: 100vh;
     justify-content: flex-end;
     box-sizing: border-box;
-`
+`;
 const Form = styled.div`
     display: flex;
     width: 100%;
-`
+`;
 
 const BarraInput = styled.input`
     flex: 1;
-`
+`;
 export class Chat extends React.Component {
     constructor(props) {
         super(props);
@@ -40,7 +40,6 @@ export class Chat extends React.Component {
             valorInputMensagem: event.target.value
         });
     };
-
     enviarMensagem = () => {
         const tempoAtual = Date.now();
         console.log(tempoAtual);
@@ -51,16 +50,27 @@ export class Chat extends React.Component {
             mensagem: valorDoEstadoDaMensagem,
             key: tempoAtual
         };
-        
-        const listaDeMensagemAtuais = [...this.state.mensagens,objetoMensagem];
+
+        const listaDeMensagemAtuais = [...this.state.mensagens, objetoMensagem];
         this.setState({
             mensagens: listaDeMensagemAtuais
         });
     };
 
+    apertaEnter = event => {
+        if (event.which === 13) {
+            this.enviarMensagem();
+        }
+    };
     render() {
         const listaDeMensagem = this.state.mensagens.map(element => {
-            return <Mensagem autor={element.autor} mensagem={element.mensagem} key={element.tempoAtual}/>;
+            return (
+                <Mensagem
+                    autor={element.autor}
+                    mensagem={element.mensagem}
+                    key={element.tempoAtual}
+                />
+            );
         });
         return (
             <Template>
@@ -75,6 +85,7 @@ export class Chat extends React.Component {
                         type="text"
                         placeholder="Mensagens"
                         onChange={this.inserirMensagem}
+                        onKeyPress={this.apertaEnter}
                     />
                     <button onClick={this.enviarMensagem}>Enviar</button>
                 </Form>
