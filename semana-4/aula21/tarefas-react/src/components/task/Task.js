@@ -8,7 +8,6 @@ const FormTask = styled.input`
 export class Task extends React.Component {
   constructor(props) {
     super(props);
-
   }
   handleChangeInput = e => {
     this.setState({
@@ -17,18 +16,25 @@ export class Task extends React.Component {
   };
   handleButtonClick = () => {
     this.props.onTaskChange({
-        name: this.props.name,
-        id: this.props.id,
-        done: !this.props.done});
+      name: this.props.name,
+      id: this.props.id,
+      done: !this.props.done
+    });
   };
-  handleChange = (e) => {
+  handleChange = e => {
     this.props.onTaskChange({
-        name: e.target.value,
-        id: this.props.id,
-        done: this.props.done});
-  }
+      name: e.target.value,
+      id: this.props.id,
+      done: this.props.done
+    });
+  };
+  handleDeleteButtonClick = () => {
+    this.props.onTaskDelete({
+      id: this.props.id,
+    });
+  };
   render() {
-      let name = this.props.name;
+    let name = this.props.name;
     return (
       <div>
         <FormTask
@@ -37,6 +43,7 @@ export class Task extends React.Component {
           isDone={this.props.done}
         />
         <button onClick={this.handleButtonClick}>Done!</button>
+        <button onClick={this.handleDeleteButtonClick}>Delete!</button>
       </div>
     );
   }

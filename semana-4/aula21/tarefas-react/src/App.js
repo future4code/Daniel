@@ -54,6 +54,17 @@ export class App extends React.Component {
       tasks: allTasks
     });
   };
+  handleTaskDelete = task => {
+    const allTasks = this.state.tasks.filter((element)=>{
+      if(task.id===element.id){
+        return false;
+      }
+      return true;
+    })
+    this.setState({
+      tasks: allTasks
+    });
+  }
   eraseAllTasks = () => {
     this.setState({
       tasks: []
@@ -84,6 +95,7 @@ export class App extends React.Component {
           key={index}
           id={element.id}
           onTaskChange={this.handleTaskChange}
+          onTaskDelete={this.handleTaskDelete}
         />
       );
     });
@@ -99,6 +111,7 @@ export class App extends React.Component {
           key={index}
           id={element.id}
           onTaskChange={this.handleTaskChange}
+          onTaskDelete={this.handleTaskDelete}
         />
       );
     });
