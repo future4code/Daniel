@@ -83,9 +83,10 @@ export class App extends React.Component {
   };
   getList = () => {
     const storedState = JSON.parse(window.localStorage.getItem("tasks"));
+    if(storedState){
     this.setState({
       tasks: storedState
-    });
+    });}
   };
   render() {
     let form;
