@@ -34,13 +34,31 @@ export class App extends React.Component {
   createTask = () => {
     const newTask = {
       name: this.state.formNewTaskValue,
-      done: false
+      done: false,
+      id: Date.now()
     };
     const allTasks = [...this.state.tasks, newTask];
     this.setState({
       tasks: allTasks
     });
   };
+  handleTaskChange = task => {
+    const allTasks = [...this.state.tasks];
+    allTasks.forEach(element=>{
+      if(element.id===task.id){
+        element.name = task.name;
+        element.done = task.done;
+      }
+    })
+    this.setState({
+      tasks: allTasks
+    });
+  };
+  eraseAllTasks = () => {
+    this.setState({
+      tasks: []
+    })
+  }
   render() {
     let form;
     if (this.state.shouldShowForm) {
@@ -53,13 +71,34 @@ export class App extends React.Component {
         />
       );
     }
-    const tasks = this.state.tasks.map((element, index) => {
+
+    let tasksToDo = this.state.tasks.filter(element => {
+      return !element.done
+    });
+
+    tasksToDo = tasksToDo.map((element, index) => {
       return (
         <Task
           name={element.name}
           done={element.done}
           key={index}
-          index={index}
+          id={element.id}
+          onTaskChange={this.handleTaskChange}
+        />
+      );
+    });
+
+    let tasksDone = this.state.tasks.filter(element => {
+      return element.done
+    });
+    tasksDone = tasksDone.map((element, index) => {
+      return (
+        <Task
+          name={element.name}
+          done={element.done}
+          key={index}
+          id={element.id}
+          onTaskChange={this.handleTaskChange}
         />
       );
     });
@@ -68,7 +107,12 @@ export class App extends React.Component {
         <button onClick={this.handleButtonClick}>Nova Tarefa</button>
         {form}
         <hr></hr>
-        {tasks}
+        <button onClick={this.eraseAllTasks}>Limpar TUDO!</button>
+        <h1>Tarefas</h1>
+        {tasksToDo}
+        <hr />
+        <h1>Tarefas concluídas</h1>
+        {tasksDone}
       </div>
     );
   }
