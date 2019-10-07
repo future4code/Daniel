@@ -15,6 +15,12 @@ export class App extends React.Component {
     };
   }
 
+  componentDidMount(){
+    this.getList();
+  }
+  componentDidUpdate(){
+    this.saveList();
+  }
   handleButtonClick = () => {
     const shouldShowFormCurrentValue = this.state.shouldShowForm;
     this.setState({
@@ -44,32 +50,43 @@ export class App extends React.Component {
   };
   handleTaskChange = task => {
     const allTasks = [...this.state.tasks];
-    allTasks.forEach(element=>{
-      if(element.id===task.id){
+    allTasks.forEach(element => {
+      if (element.id === task.id) {
         element.name = task.name;
         element.done = task.done;
       }
-    })
+    });
     this.setState({
       tasks: allTasks
     });
   };
   handleTaskDelete = task => {
-    const allTasks = this.state.tasks.filter((element)=>{
-      if(task.id===element.id){
+    const allTasks = this.state.tasks.filter(element => {
+      if (task.id === element.id) {
         return false;
       }
       return true;
-    })
+    });
     this.setState({
       tasks: allTasks
     });
-  }
+  };
   eraseAllTasks = () => {
     this.setState({
       tasks: []
-    })
-  }
+    });
+  };
+  saveList = () => {
+    console.log(this.state.tasks)
+    const stateAsString = JSON.stringify(this.state.tasks);
+    window.localStorage.setItem("tasks", stateAsString);
+  };
+  getList = () => {
+    const storedState = JSON.parse(window.localStorage.getItem("tasks"));
+    this.setState({
+      tasks: storedState
+    });
+  };
   render() {
     let form;
     if (this.state.shouldShowForm) {
@@ -84,7 +101,7 @@ export class App extends React.Component {
     }
 
     let tasksToDo = this.state.tasks.filter(element => {
-      return !element.done
+      return !element.done;
     });
 
     tasksToDo = tasksToDo.map((element, index) => {
@@ -101,7 +118,7 @@ export class App extends React.Component {
     });
 
     let tasksDone = this.state.tasks.filter(element => {
-      return element.done
+      return element.done;
     });
     tasksDone = tasksDone.map((element, index) => {
       return (
