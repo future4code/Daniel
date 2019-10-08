@@ -3,6 +3,7 @@ import "./App.css";
 import Etapa1 from "./components/etapa1/Etapa1";
 import Etapa2 from "./components/etapa2/Etapa2";
 import Etapa3 from "./components/etapa3/Etapa3";
+import Etapa4 from "./components/etapa4/Etapa4";
 
 export class App extends React.Component {
   constructor(props) {
@@ -11,24 +12,39 @@ export class App extends React.Component {
       etapaAtual: 1
     };
   }
-  handleButtonClick = () => {
-    debugger
-    let novaEtapa = this.state.etapaAtual;
-    novaEtapa = novaEtapa === 4 ? (novaEtapa = 1) : ++novaEtapa;
-    this.setState({ etapaAtual: novaEtapa });
-  };
+  handleClickNextForm = (form) => {
+    if(form.etapaAtual === 1 && (form.respostaChave === "esc" ||form.respostaChave === "esi" )){
+      this.setState({
+        etapaAtual: 2
+      });
+    }
+    if(form.etapaAtual === 1 && (form.respostaChave === "emi" ||form.respostaChave === "emc" )){
+      this.setState({
+        etapaAtual: 3
+      });
+    }
+    if(form.etapaAtual === 2 ||form.etapaAtual === 3 ){
+      this.setState({
+        etapaAtual: 4
+      });
+    }
+
+  }
   render() {
     let etapa;
-    if(this.state.etapaAtual===1){etapa=<Etapa1/>}
-    if(this.state.etapaAtual===2){etapa=<Etapa2/>}
-    if(this.state.etapaAtual===3){etapa=<Etapa3/>}
-    if(this.state.etapaAtual===4){etapa=<h1>Acabou!</h1>}
-    return (
-      <div className="App">
-        {etapa}
-        <button onClick={this.handleButtonClick}>Continuar</button>
-      </div>
-    );
+    if (this.state.etapaAtual === 1) {
+      etapa = <Etapa1 onClickButton={this.handleClickNextForm} />;
+    }
+    if (this.state.etapaAtual === 2) {
+      etapa = <Etapa2 onClickButton={this.handleClickNextForm} />;
+    }
+    if (this.state.etapaAtual === 3) {
+      etapa = <Etapa3 onClickButton={this.handleClickNextForm}/>;
+    }
+    if (this.state.etapaAtual === 4) {
+      etapa = <Etapa4 />;
+    }
+    return <div className="App">{etapa}</div>;
   }
 }
 
