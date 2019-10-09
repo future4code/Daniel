@@ -8,6 +8,7 @@ const ItemWrapper = styled.div`
     > *{
         margin-right: 5px;
     }
+    
 `
 
 export default class ExtratoItem extends Component {
@@ -23,7 +24,7 @@ export default class ExtratoItem extends Component {
         return (
             <ItemWrapper>
                 <p>{this.props.despesa.desc}</p>
-                <p>{this.props.despesa.tipo}</p>
+                <p>{this.props.despesa.tipo.charAt(0).toUpperCase() + this.props.despesa.tipo.slice(1)}</p>
                 <p>{this.props.despesa.valor}</p>
             </ItemWrapper>
         )

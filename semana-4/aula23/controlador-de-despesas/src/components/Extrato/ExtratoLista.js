@@ -13,10 +13,6 @@ const Header = styled.header`
 export default class ExtratoLista extends Component {
     constructor(props) {
         super(props)
-    
-        this.state = {
-             
-        }
     }
     
     render() {

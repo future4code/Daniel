@@ -1,25 +1,38 @@
-import React, { Component } from 'react'
-import FilterAction from './FilterAction.js'
+import React, { Component } from "react";
+import FilterButton from "./FilterButton.js";
+import styled from 'styled-components'
+
+const FilterWrapper = styled.section`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`
 export default class ExtratoFiltros extends Component {
-    constructor(props) {
-        super(props)
-    
-        this.state = {
-             
-        }
-    }
-    
-    render() {
-        return (
-            <div>
-                <FilterAction onClick={()=>this.props.onChangeFilter("vmax")} nome={"Valor Máximo"} tipo="button"/>
-                <FilterAction onClick={()=>this.props.onChangeFilter("vmin")} nome={"Valor Mínimo"} tipo="button"/>
-                <select>
-                    <option>Previsto</option>
-                    <option>Realizado</option>
-                    <option>Histórico</option>
-                </select>
-            </div>
-        )
-    }
+  onChangeSelect = e => {
+    this.props.onChangeFilter(e.target.value);
+  };
+
+  render() {
+    return (
+      <FilterWrapper>
+        <FilterButton
+          onClick={() => this.props.onChangeFilter("vmax")}
+          nome={"Valor Máximo"}
+        />
+        <FilterButton
+          onClick={() => this.props.onChangeFilter("vmin")}
+          nome={"Valor Mínimo"}
+        />
+        <FilterButton
+          onClick={() => this.props.onChangeFilter("reset")}
+          nome={"Reset"}
+        />
+        <select onChange={this.onChangeSelect}>
+          <option value="previsto">Previsto</option>
+          <option value="realizado">Realizado</option>
+          <option value="historico">Histórico</option>
+        </select>
+      </FilterWrapper>
+    );
+  }
 }
