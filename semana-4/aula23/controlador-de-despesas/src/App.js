@@ -1,24 +1,32 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import CriarDespesa from './components/CriarDespesa/CriarDespesa'
+import Extrato from './components/Extrato/Extrato'
 
+const mockDespesas = [
+  {
+    id: Date.now(),
+    desc: "Barra de chocolate",
+    tipo: "Realizado",
+    valor: 10
+  },
+  {
+    id: Date.now(),
+    desc: "Mensalidade Netflix",
+    tipo: "Previsto",
+    valor: 40
+  },
+  {
+    id: Date.now(),
+    desc: "Bilhete de estacionamento 09/09",
+    tipo: "Histórico",
+    valor: 13
+  }
+]
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Extrato todasDespesas={mockDespesas}/>
     </div>
   );
 }
