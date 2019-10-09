@@ -41,7 +41,7 @@ export class CriarDespesa extends Component {
   novaDespesa = () => {
     const novaDespesa = {
       id: Date.now(),
-      valor: this.state.valorTotal,
+      valor: parseInt(this.state.valorTotal),
       desc: this.state.valorDesc,
       tipo: this.state.valorTipo
     };

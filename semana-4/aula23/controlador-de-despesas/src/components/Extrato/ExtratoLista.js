@@ -11,10 +11,6 @@ const Header = styled.header`
     grid-template-columns: 1fr 0.5fr 1fr;
 `
 export default class ExtratoLista extends Component {
-    constructor(props) {
-        super(props)
-    }
-    
     render() {
         const listaDeTodasDespesas = this.props.todasDespesas.map((element)=>{
             return (<ExtratoItem despesa={element}/>);
