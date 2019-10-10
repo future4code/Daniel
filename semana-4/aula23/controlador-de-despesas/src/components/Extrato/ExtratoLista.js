@@ -16,7 +16,7 @@ export default class ExtratoLista extends Component {
             return (<ExtratoItem despesa={element}/>);
         })
         return (
-            <ListWrapper>
+            <ListWrapper className="nes-container is-rounded">
                 <Header>
                     <p>Descrição</p>
                     <p>Tipo</p>

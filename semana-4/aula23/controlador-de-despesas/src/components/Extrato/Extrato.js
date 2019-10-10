@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import ExtratoFiltros from "./ExtratoFiltros.js";
 import ExtratoLista from "./ExtratoLista.js";
+import "../../App.css"
 
 export class Extrato extends Component {
   constructor(props) {
@@ -45,7 +46,7 @@ export class Extrato extends Component {
     return (
       <div>
         <h1>Extrato</h1>
-        <button onClick={()=> this.props.onClickExtrato("criaDespesa")}>Voltar</button>
+        <button onClick={()=> this.props.onClickExtrato("criaDespesa")} className="nes-btn is-warning">Voltar</button>
         <ExtratoFiltros onChangeFilter={this.onChangeFilter} />
         <ExtratoLista todasDespesas={this.state.todasDespesas} />
       </div>

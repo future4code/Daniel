@@ -7,10 +7,6 @@ const FormNovaDespesa = styled.section`
   max-width: 425px;
   flex: 1;
   text-align: center;
-
-  > * {
-    height: 30px;
-  }
 `;
 export class CriarDespesa extends Component {
   constructor(props) {
@@ -51,25 +47,38 @@ export class CriarDespesa extends Component {
     return (
       <FormNovaDespesa>
         <h1>Nova Despesa</h1>
-        <input
-          value={this.state.valorDesc}
-          onChange={this.handleDesc}
-          type="text"
-          placeholder="Descrição da despesa"
-        />
-        <select value={this.state.valorTipo} onChange={this.handleTipo}>
-          <option>Previsto</option>
-          <option>Realizado</option>
-          <option>Histórico</option>
-        </select>
-        <input
-          value={this.state.valorTotal}
-          onChange={this.handleValor}
-          type="number"
-          placeholder="Valor R$"
-        />
-        <button onClick={this.novaDespesa}>Criar Despesa</button>
-        <button onClick={() => this.props.onClickDespesa("extrato")}>
+        <div class="nes-field">
+          <label for="name_field">Descrição da Despesa</label>
+          <input
+            id="name_field"
+            class="nes-input"
+            value={this.state.valorDesc}
+            onChange={this.handleDesc}
+            type="text"
+            placeholder="Descrição da despesa"
+          />
+        </div>
+        <label for="tipo_select">Tipo da Despesa</label>
+        <div class="nes-select">
+          <select id="tipo_select" value={this.state.valorTipo} onChange={this.handleTipo}>
+            <option>Previsto</option>
+            <option>Realizado</option>
+            <option>Histórico</option>
+          </select>
+        </div>
+        <div class="nes-field">
+          <label for="valor_field">Descrição da Despesa</label>
+          <input
+            id="valor_field"
+            class="nes-input"
+            value={this.state.valorTotal}
+            onChange={this.handleValor}
+            type="number"
+            placeholder="Valor R$"
+          />
+        </div>
+        <button onClick={this.novaDespesa} className={"nes-btn is-primary"}>Criar Despesa</button>
+        <button onClick={() => this.props.onClickDespesa("extrato")} className={"nes-btn is-warning"}>
           Extratos
         </button>
       </FormNovaDespesa>
