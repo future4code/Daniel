@@ -973,6 +973,797 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "11) Here we go again",
+			"item": [
+				{
+					"name": "https://us-central1-spotif4.cloudfunctions.net/api/playlists/deletePlaylist?playlistId=dbeb001a-6974-4b84-8239-6dbf7bd5f947",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "auth",
+								"value": "0d9df3ca53dd0c469bd3d30469d5d1b8",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://us-central1-spotif4.cloudfunctions.net/api/playlists/deletePlaylist?playlistId=dbeb001a-6974-4b84-8239-6dbf7bd5f947",
+							"protocol": "https",
+							"host": [
+								"us-central1-spotif4",
+								"cloudfunctions",
+								"net"
+							],
+							"path": [
+								"api",
+								"playlists",
+								"deletePlaylist"
+							],
+							"query": [
+								{
+									"key": "playlistId",
+									"value": "dbeb001a-6974-4b84-8239-6dbf7bd5f947"
+								}
+							]
+						},
+						"description": "Deletar a playlist \"Trap\""
+					},
+					"response": []
+				},
+				{
+					"name": "https://us-central1-spotif4.cloudfunctions.net/api/playlists/deletePlaylist?playlistId=3808c5d2-9942-486b-b548-cbc738ba5ea6",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "auth",
+								"value": "0d9df3ca53dd0c469bd3d30469d5d1b8",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://us-central1-spotif4.cloudfunctions.net/api/playlists/deletePlaylist?playlistId=3808c5d2-9942-486b-b548-cbc738ba5ea6",
+							"protocol": "https",
+							"host": [
+								"us-central1-spotif4",
+								"cloudfunctions",
+								"net"
+							],
+							"path": [
+								"api",
+								"playlists",
+								"deletePlaylist"
+							],
+							"query": [
+								{
+									"key": "playlistId",
+									"value": "3808c5d2-9942-486b-b548-cbc738ba5ea6"
+								}
+							]
+						},
+						"description": "Deletar a playlist \"80's\""
+					},
+					"response": []
+				},
+				{
+					"name": "https://us-central1-spotif4.cloudfunctions.net/api/playlists/deletePlaylist?playlistId=cd025434-b5c1-46ef-a310-94f43c3bba58",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "auth",
+								"value": "0d9df3ca53dd0c469bd3d30469d5d1b8",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://us-central1-spotif4.cloudfunctions.net/api/playlists/deletePlaylist?playlistId=cd025434-b5c1-46ef-a310-94f43c3bba58",
+							"protocol": "https",
+							"host": [
+								"us-central1-spotif4",
+								"cloudfunctions",
+								"net"
+							],
+							"path": [
+								"api",
+								"playlists",
+								"deletePlaylist"
+							],
+							"query": [
+								{
+									"key": "playlistId",
+									"value": "cd025434-b5c1-46ef-a310-94f43c3bba58"
+								}
+							]
+						},
+						"description": "Deletar a playlist \"Lofi\""
+					},
+					"response": []
+				},
+				{
+					"name": "https://us-central1-spotif4.cloudfunctions.net/api/playlists/getAllPlaylists",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "auth",
+								"value": "0d9df3ca53dd0c469bd3d30469d5d1b8",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://us-central1-spotif4.cloudfunctions.net/api/playlists/getAllPlaylists",
+							"protocol": "https",
+							"host": [
+								"us-central1-spotif4",
+								"cloudfunctions",
+								"net"
+							],
+							"path": [
+								"api",
+								"playlists",
+								"getAllPlaylists"
+							]
+						},
+						"description": "Verificar se existe playlist"
+					},
+					"response": []
+				},
+				{
+					"name": "https://us-central1-spotif4.cloudfunctions.net/api/playlists/createPlaylist",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "auth",
+								"value": "0d9df3ca53dd0c469bd3d30469d5d1b8",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Future Hype\"\n}\n\n"
+						},
+						"url": {
+							"raw": "https://us-central1-spotif4.cloudfunctions.net/api/playlists/createPlaylist",
+							"protocol": "https",
+							"host": [
+								"us-central1-spotif4",
+								"cloudfunctions",
+								"net"
+							],
+							"path": [
+								"api",
+								"playlists",
+								"createPlaylist"
+							],
+							"query": [
+								{
+									"key": "auth",
+									"value": "0d9df3ca53dd0c469bd3d30469d5d1b8",
+									"disabled": true
+								}
+							]
+						},
+						"description": "Criar playlit \"Future Hype\""
+					},
+					"response": []
+				},
+				{
+					"name": "https://us-central1-spotif4.cloudfunctions.net/api/playlists/getAllPlaylists",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "auth",
+								"value": "0d9df3ca53dd0c469bd3d30469d5d1b8",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://us-central1-spotif4.cloudfunctions.net/api/playlists/getAllPlaylists",
+							"protocol": "https",
+							"host": [
+								"us-central1-spotif4",
+								"cloudfunctions",
+								"net"
+							],
+							"path": [
+								"api",
+								"playlists",
+								"getAllPlaylists"
+							]
+						},
+						"description": "Verficiar se a playlist foi criada"
+					},
+					"response": []
+				},
+				{
+					"name": "https://us-central1-spotif4.cloudfunctions.net/api/playlists/addMusicToPlaylist",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "auth",
+								"value": "0d9df3ca53dd0c469bd3d30469d5d1b8",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"playlistId\": \"cdf0e679-5c14-4403-8fba-6a06ab5d4506\",\n    \"music\": {\n        \"name\": \"HIGHEST IN THE ROOM\",\n        \"artist\": \"Travis Scott\"\n    }\n}"
+						},
+						"url": {
+							"raw": "https://us-central1-spotif4.cloudfunctions.net/api/playlists/addMusicToPlaylist",
+							"protocol": "https",
+							"host": [
+								"us-central1-spotif4",
+								"cloudfunctions",
+								"net"
+							],
+							"path": [
+								"api",
+								"playlists",
+								"addMusicToPlaylist"
+							]
+						},
+						"description": "Adicionar música na playlist \"Future Hype\""
+					},
+					"response": []
+				},
+				{
+					"name": "https://us-central1-spotif4.cloudfunctions.net/api/playlists/addMusicToPlaylist",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "auth",
+								"value": "0d9df3ca53dd0c469bd3d30469d5d1b8",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"playlistId\": \"cdf0e679-5c14-4403-8fba-6a06ab5d4506\",\n    \"music\": {\n        \"name\": \"Panini\",\n        \"artist\": \"Lil Nas X\"\n    }\n}"
+						},
+						"url": {
+							"raw": "https://us-central1-spotif4.cloudfunctions.net/api/playlists/addMusicToPlaylist",
+							"protocol": "https",
+							"host": [
+								"us-central1-spotif4",
+								"cloudfunctions",
+								"net"
+							],
+							"path": [
+								"api",
+								"playlists",
+								"addMusicToPlaylist"
+							]
+						},
+						"description": "Adicionar música na playlist \"Future Hype\""
+					},
+					"response": []
+				},
+				{
+					"name": "https://us-central1-spotif4.cloudfunctions.net/api/playlists/addMusicToPlaylist",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "auth",
+								"value": "0d9df3ca53dd0c469bd3d30469d5d1b8",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"playlistId\": \"cdf0e679-5c14-4403-8fba-6a06ab5d4506\",\n    \"music\": {\n        \"name\": \"Take What You Want ft. Ozzy Osbourne, Travis Scott\",\n        \"artist\": \"Post Malone\"\n    }\n}"
+						},
+						"url": {
+							"raw": "https://us-central1-spotif4.cloudfunctions.net/api/playlists/addMusicToPlaylist",
+							"protocol": "https",
+							"host": [
+								"us-central1-spotif4",
+								"cloudfunctions",
+								"net"
+							],
+							"path": [
+								"api",
+								"playlists",
+								"addMusicToPlaylist"
+							]
+						},
+						"description": "Adicionar música na playlist \"Future Hype\""
+					},
+					"response": []
+				},
+				{
+					"name": "https://us-central1-spotif4.cloudfunctions.net/api/playlists/getPlaylistMusics/:playlistId",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "auth",
+								"value": "0d9df3ca53dd0c469bd3d30469d5d1b8",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://us-central1-spotif4.cloudfunctions.net/api/playlists/getPlaylistMusics/:playlistId",
+							"protocol": "https",
+							"host": [
+								"us-central1-spotif4",
+								"cloudfunctions",
+								"net"
+							],
+							"path": [
+								"api",
+								"playlists",
+								"getPlaylistMusics",
+								":playlistId"
+							],
+							"variable": [
+								{
+									"key": "playlistId",
+									"value": "cdf0e679-5c14-4403-8fba-6a06ab5d4506"
+								}
+							]
+						},
+						"description": "Verificação das músicas adicionadas"
+					},
+					"response": []
+				},
+				{
+					"name": "https://us-central1-spotif4.cloudfunctions.net/api/playlists/removeMusicFromPlaylist?playlistId=cdf0e679-5c14-4403-8fba-6a06ab5d4506&musicId=fc93cfcd-6500-4c8a-867f-ac2027db0cc9",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "auth",
+								"value": "0d9df3ca53dd0c469bd3d30469d5d1b8",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://us-central1-spotif4.cloudfunctions.net/api/playlists/removeMusicFromPlaylist?playlistId=cdf0e679-5c14-4403-8fba-6a06ab5d4506&musicId=fc93cfcd-6500-4c8a-867f-ac2027db0cc9",
+							"protocol": "https",
+							"host": [
+								"us-central1-spotif4",
+								"cloudfunctions",
+								"net"
+							],
+							"path": [
+								"api",
+								"playlists",
+								"removeMusicFromPlaylist"
+							],
+							"query": [
+								{
+									"key": "playlistId",
+									"value": "cdf0e679-5c14-4403-8fba-6a06ab5d4506"
+								},
+								{
+									"key": "musicId",
+									"value": "fc93cfcd-6500-4c8a-867f-ac2027db0cc9"
+								}
+							]
+						},
+						"description": "Deletar uma música da playlist"
+					},
+					"response": []
+				},
+				{
+					"name": "https://us-central1-spotif4.cloudfunctions.net/api/playlists/getPlaylistMusics/:playlistId",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "auth",
+								"value": "0d9df3ca53dd0c469bd3d30469d5d1b8",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://us-central1-spotif4.cloudfunctions.net/api/playlists/getPlaylistMusics/:playlistId",
+							"protocol": "https",
+							"host": [
+								"us-central1-spotif4",
+								"cloudfunctions",
+								"net"
+							],
+							"path": [
+								"api",
+								"playlists",
+								"getPlaylistMusics",
+								":playlistId"
+							],
+							"variable": [
+								{
+									"key": "playlistId",
+									"value": "cdf0e679-5c14-4403-8fba-6a06ab5d4506"
+								}
+							]
+						},
+						"description": "Verificar se a música foi deletada"
+					},
+					"response": []
+				},
+				{
+					"name": "https://us-central1-spotif4.cloudfunctions.net/api/playlists/createPlaylist",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "auth",
+								"value": "0d9df3ca53dd0c469bd3d30469d5d1b8",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"80's\"\n}\n\n"
+						},
+						"url": {
+							"raw": "https://us-central1-spotif4.cloudfunctions.net/api/playlists/createPlaylist",
+							"protocol": "https",
+							"host": [
+								"us-central1-spotif4",
+								"cloudfunctions",
+								"net"
+							],
+							"path": [
+								"api",
+								"playlists",
+								"createPlaylist"
+							],
+							"query": [
+								{
+									"key": "auth",
+									"value": "0d9df3ca53dd0c469bd3d30469d5d1b8",
+									"disabled": true
+								}
+							]
+						},
+						"description": "Nova playlist"
+					},
+					"response": []
+				},
+				{
+					"name": "https://us-central1-spotif4.cloudfunctions.net/api/playlists/getAllPlaylists",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "auth",
+								"value": "0d9df3ca53dd0c469bd3d30469d5d1b8",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://us-central1-spotif4.cloudfunctions.net/api/playlists/getAllPlaylists",
+							"protocol": "https",
+							"host": [
+								"us-central1-spotif4",
+								"cloudfunctions",
+								"net"
+							],
+							"path": [
+								"api",
+								"playlists",
+								"getAllPlaylists"
+							]
+						},
+						"description": "Verificar criação da playlist"
+					},
+					"response": []
+				},
+				{
+					"name": "https://us-central1-spotif4.cloudfunctions.net/api/playlists/addMusicToPlaylist",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "auth",
+								"value": "0d9df3ca53dd0c469bd3d30469d5d1b8",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"playlistId\": \"463d6852-d07e-4266-b3b9-2ae69371a872\",\n    \"music\": {\n        \"name\": \"Down Under\",\n        \"artist\": \"Men At Work\"\n    }\n}"
+						},
+						"url": {
+							"raw": "https://us-central1-spotif4.cloudfunctions.net/api/playlists/addMusicToPlaylist",
+							"protocol": "https",
+							"host": [
+								"us-central1-spotif4",
+								"cloudfunctions",
+								"net"
+							],
+							"path": [
+								"api",
+								"playlists",
+								"addMusicToPlaylist"
+							]
+						},
+						"description": "Adicionar música na playlist \"80's\""
+					},
+					"response": []
+				},
+				{
+					"name": "https://us-central1-spotif4.cloudfunctions.net/api/playlists/getPlaylistMusics/:playlistId",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "auth",
+								"value": "0d9df3ca53dd0c469bd3d30469d5d1b8",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://us-central1-spotif4.cloudfunctions.net/api/playlists/getPlaylistMusics/:playlistId",
+							"protocol": "https",
+							"host": [
+								"us-central1-spotif4",
+								"cloudfunctions",
+								"net"
+							],
+							"path": [
+								"api",
+								"playlists",
+								"getPlaylistMusics",
+								":playlistId"
+							],
+							"variable": [
+								{
+									"key": "playlistId",
+									"value": "463d6852-d07e-4266-b3b9-2ae69371a872"
+								}
+							]
+						},
+						"description": "Verificar música na playlsit \"80's\""
+					},
+					"response": []
+				},
+				{
+					"name": "https://us-central1-spotif4.cloudfunctions.net/api/playlists/createPlaylist",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "auth",
+								"value": "0d9df3ca53dd0c469bd3d30469d5d1b8",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Lofi\"\n}\n\n"
+						},
+						"url": {
+							"raw": "https://us-central1-spotif4.cloudfunctions.net/api/playlists/createPlaylist",
+							"protocol": "https",
+							"host": [
+								"us-central1-spotif4",
+								"cloudfunctions",
+								"net"
+							],
+							"path": [
+								"api",
+								"playlists",
+								"createPlaylist"
+							],
+							"query": [
+								{
+									"key": "auth",
+									"value": "0d9df3ca53dd0c469bd3d30469d5d1b8",
+									"disabled": true
+								}
+							]
+						},
+						"description": "Nova playlist"
+					},
+					"response": []
+				},
+				{
+					"name": "https://us-central1-spotif4.cloudfunctions.net/api/playlists/getAllPlaylists",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "auth",
+								"value": "0d9df3ca53dd0c469bd3d30469d5d1b8",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://us-central1-spotif4.cloudfunctions.net/api/playlists/getAllPlaylists",
+							"protocol": "https",
+							"host": [
+								"us-central1-spotif4",
+								"cloudfunctions",
+								"net"
+							],
+							"path": [
+								"api",
+								"playlists",
+								"getAllPlaylists"
+							]
+						},
+						"description": "Verificar a criação da playlist \"Lofi\""
+					},
+					"response": []
+				},
+				{
+					"name": "https://us-central1-spotif4.cloudfunctions.net/api/playlists/addMusicToPlaylist",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "auth",
+								"value": "0d9df3ca53dd0c469bd3d30469d5d1b8",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"playlistId\": \"c14cbf4b-22b9-46d7-b0de-01fb0dad80b9\",\n    \"music\": {\n        \"name\": \"Preciso Me Encontrar\",\n        \"artist\": \"Cartola\"\n    }\n}"
+						},
+						"url": {
+							"raw": "https://us-central1-spotif4.cloudfunctions.net/api/playlists/addMusicToPlaylist",
+							"protocol": "https",
+							"host": [
+								"us-central1-spotif4",
+								"cloudfunctions",
+								"net"
+							],
+							"path": [
+								"api",
+								"playlists",
+								"addMusicToPlaylist"
+							]
+						},
+						"description": "Adicionar música na playlist \"Lofi\""
+					},
+					"response": []
+				},
+				{
+					"name": "https://us-central1-spotif4.cloudfunctions.net/api/playlists/getPlaylistMusics/:playlistId",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "auth",
+								"value": "0d9df3ca53dd0c469bd3d30469d5d1b8",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://us-central1-spotif4.cloudfunctions.net/api/playlists/getPlaylistMusics/:playlistId",
+							"protocol": "https",
+							"host": [
+								"us-central1-spotif4",
+								"cloudfunctions",
+								"net"
+							],
+							"path": [
+								"api",
+								"playlists",
+								"getPlaylistMusics",
+								":playlistId"
+							],
+							"variable": [
+								{
+									"key": "playlistId",
+									"value": "c14cbf4b-22b9-46d7-b0de-01fb0dad80b9"
+								}
+							]
+						},
+						"description": "Verificação da música na playlist \"Lofi\""
+					},
+					"response": []
+				}
+			],
+			"description": "\ta. Apague todas as playlists anteriores. Faça a validação deste item.\n\n    b. Crie uma nova playlist. Faça a validação.\n\n    c. Agora, adicione três músicas. Faça a validação.\n\n    d. Apague uma destas músicas. Faça a validação.\n\n    e. Crie duas novas playlists, e coloque uma música em cada uma delas. Faça a validação."
 		}
 	]
 }
