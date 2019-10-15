@@ -29,7 +29,7 @@ class App extends React.Component {
         component = <CadastrarUser />;
         break;
       case "listar":
-        component = <ListarUsuario />;
+        component = <ListarUsuario handleButtonClick={this.changeComponent}/>;
         break;
     }
     return (

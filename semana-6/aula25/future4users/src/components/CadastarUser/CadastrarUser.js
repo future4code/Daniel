@@ -38,6 +38,7 @@ export default class CadastrarUser extends Component {
     this.newUserRequest(novoUsuario);
   }
   newUserRequest = (novoUsuario) => {
+   
     const request = axios.post(
         "https://us-central1-future4-users.cloudfunctions.net/api/users/createUser",novoUsuario,
         {
@@ -48,10 +49,10 @@ export default class CadastrarUser extends Component {
       );
       request
         .then(response => {
-          console.log(response)
+          alert("Usuário cadastrado com sucesso!")
         })
         .catch(error => {
-          console.log(error);
+            alert("Não foi possível cadastrar, tente novamente.")
         });
   }
   render() {
@@ -75,7 +76,7 @@ export default class CadastrarUser extends Component {
             <DivCentralizada className="col s12">
               <a
                 className="btn waves-effect waves-light center blue darken-3"
-                onClick = {this.newUserRequest}
+                onClick = {this.handleButtonClick}
               >
                 Cadastrar
                 <i className="material-icons right">send</i>

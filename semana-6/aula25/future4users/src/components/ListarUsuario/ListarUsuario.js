@@ -1,15 +1,23 @@
 import React, { Component } from "react";
 import axios from "axios";
+import styled from "styled-components";
+import DetalheUsuario from "./DetalheUsuario";
 
 const apiToken = "0d9df3ca53dd0c469bd3d30469d5d1b8";
 
+const LinkCentralizado = styled.a`
+  display: flex !important;
+  align-items: center !important;
+  width: 100%;
+`;
 export default class ListarUsuario extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
       todosIds: [],
-      todosUsuarios: []
+      todosUsuarios: [],
+      mostraDetalhe: false
     };
   }
 
@@ -44,7 +52,9 @@ export default class ListarUsuario extends Component {
       );
       request
         .then(response => {
-          this.setState({ todosUsuarios: [...this.state.todosUsuarios,response.data.result]});
+          this.setState({
+            todosUsuarios: [...this.state.todosUsuarios, response.data.result]
+          });
         })
         .catch(error => {
           console.log(error);
@@ -54,16 +64,32 @@ export default class ListarUsuario extends Component {
   componentDidMount() {
     this.getAllUsers();
   }
+  handleClickDelete = (e) =>{
+    if(window.confirm("Tem certeza disso ?")){
+        console.log("foi")
+    }
+  }
   render() {
-    const todosUsuarios = this.state.todosUsuarios.map(element => {
+    const todosUsuarios = this.state.todosUsuarios.map((element,index) => {
       return (
-        <li key={Date.now()} className="collection-item avatar">
-          <i className="material-icons circle">grade</i>
-          <span className="title">{element.name}</span>
-          <p>Email: {element.email} </p>
+        <li className="collection-item avatar" key={index}>
+          <a
+            href="#2"
+            className="black-text"
+
+            onClick={this.handleClick}
+          >
+            <i className="material-icons circle">grade</i>
+            <p className="title">{element.name}</p>
+            <p className="light">Email: {element.email} </p>
+          </a>
+          <a id={index} class="secondary-content waves-effect waves-light btn red darken-3" onClick={this.handleClickDelete}>
+            <i class="material-icons right">cancel</i>Deletar
+          </a>
         </li>
       );
     });
+
     return (
       <div className="container">
         <h3 className="header center blue-text text-darken-1">
