@@ -39,7 +39,6 @@ export default class ListarUsuario extends Component {
         console.log(error);
       });
   };
-
   renderAllUsers = () => {
     this.state.todosIds.forEach(element => {
       const request = axios.get(
@@ -64,27 +63,48 @@ export default class ListarUsuario extends Component {
   componentDidMount() {
     this.getAllUsers();
   }
-  handleClickDelete = (e) =>{
-    if(window.confirm("Tem certeza disso ?")){
-        console.log("foi")
+  handleClickDelete = e => {
+    if (window.confirm("Tem certeza disso ?")) {
+      this.deleteUser(e.target.id);
     }
-  }
+  };
+  deleteUser = index => {
+    const user = this.state.todosUsuarios[index];
+    const request = axios.delete(
+      `https://us-central1-future4-users.cloudfunctions.net/api/users/deleteUser?id=${user.id}`,
+      {
+        headers: {
+          "api-token": apiToken
+        }
+      }
+    );
+    request.then(()=>{
+        alert(`${user.name} foi deletado!`);
+        const newUsersListing = [...this.state.todosUsuarios];
+        newUsersListing.splice(index,1);
+        this.setState({
+            todosUsuarios: newUsersListing
+        })
+    })
+    .catch((error)=>{
+        console.log(error);
+    })
+  };
   render() {
-    const todosUsuarios = this.state.todosUsuarios.map((element,index) => {
+    const todosUsuarios = this.state.todosUsuarios.map((element, index) => {
       return (
         <li className="collection-item avatar" key={index}>
-          <a
-            href="#2"
-            className="black-text"
-
-            onClick={this.handleClick}
-          >
+          <a href="#2" className="black-text" onClick={this.handleClick}>
             <i className="material-icons circle">grade</i>
             <p className="title">{element.name}</p>
             <p className="light">Email: {element.email} </p>
           </a>
-          <a id={index} class="secondary-content waves-effect waves-light btn red darken-3" onClick={this.handleClickDelete}>
-            <i class="material-icons right">cancel</i>Deletar
+          <a
+            id={index}
+            className="secondary-content waves-effect waves-light btn red darken-3"
+            onClick={this.handleClickDelete}
+          >
+            <i className="material-icons right">cancel</i>Deletar
           </a>
         </li>
       );
