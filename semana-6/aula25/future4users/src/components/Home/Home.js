@@ -10,8 +10,9 @@ constructor(props) {
 }
 
   handleClick = () =>{
-      this.props.handleButtonClick();
+      this.props.handleButtonClick("cadastrar");
   }
+
   render() {
     return (
       <div className="container">

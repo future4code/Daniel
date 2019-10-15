@@ -1,11 +1,59 @@
 import React, { Component } from "react";
 import styled from "styled-components";
+import axios from 'axios'
+
+const apiToken = "0d9df3ca53dd0c469bd3d30469d5d1b8";
 
 const DivCentralizada = styled.div`
   display: flex;
   justify-content: center;
 `;
+
 export default class CadastrarUser extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+        nameValue: "",
+        emailValue: ""
+    };
+  }
+
+  handleChangeName = (e) => {
+    this.setState({
+        nameValue: e.target.value
+    })
+  }
+  handleChangeEmail = (e) => {
+    this.setState({
+        emailValue: e.target.value
+    })
+  }
+
+  handleButtonClick = () => {
+    const novoUsuario = {
+        name: this.state.nameValue,
+        email: this.state.emailValue
+    };
+    this.newUserRequest(novoUsuario);
+  }
+  newUserRequest = (novoUsuario) => {
+    const request = axios.post(
+        "https://us-central1-future4-users.cloudfunctions.net/api/users/createUser",novoUsuario,
+        {
+          headers: {
+            "api-token": apiToken
+          }
+        }
+      );
+      request
+        .then(response => {
+          console.log(response)
+        })
+        .catch(error => {
+          console.log(error);
+        });
+  }
   render() {
     return (
       <div className="container">
@@ -16,22 +64,22 @@ export default class CadastrarUser extends Component {
           <form className="col s12">
             <div className="input-field col s12">
               <i className="material-icons prefix">account_circle</i>
-              <input id="icon_prefix" type="text" className="validate" />
-              <label for="icon_prefix">Nome</label>
+              <input id="icon_prefix" type="text" className="validate" value={this.state.nameValue} onChange={this.handleChangeName} />
+              <label htmlFor="icon_prefix">Nome</label>
             </div>
             <div className="input-field col s12">
               <i className="material-icons prefix">email</i>
-              <input id="icon_prefix" type="text" className="validate" />
-              <label for="icon_prefix">Email</label>
+              <input id="icon_prefix" type="text" className="validate" value={this.state.emailValue} onChange={this.handleChangeEmail} />
+              <label htmlFor="icon_prefix">Email</label>
             </div>
             <DivCentralizada className="col s12">
-              <button
+              <a
                 className="btn waves-effect waves-light center blue darken-3"
-                name="action"
+                onClick = {this.newUserRequest}
               >
                 Cadastrar
-                <i class="material-icons right">send</i>
-              </button>
+                <i className="material-icons right">send</i>
+              </a>
             </DivCentralizada>
           </form>
         </div>
