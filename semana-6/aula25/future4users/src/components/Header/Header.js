@@ -1,10 +1,6 @@
 import React, { Component } from "react";
 
 export default class Header extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   handleClick = e => {
     switch (e.target.id) {
       case "home":
@@ -16,6 +12,9 @@ export default class Header extends Component {
       case "listar":
         this.props.handleButtonClick("listar");
         break;
+      default:
+        this.props.handleButtonClick("home");
+        break;
     }
   };
   render() {
@@ -26,19 +25,19 @@ export default class Header extends Component {
             id="home"
             onClick={this.handleClick}
             className="brand-logo"
-            href="#"
+            href="#1"
           >
             <i className="material-icons prefix">gradient</i>
             Future4Users
           </a>
           <ul id="nav-mobile" className="right hide-on-med-and-down">
             <li>
-              <a id="cadastrar" onClick={this.handleClick}>
+              <a href="#2" id="cadastrar" onClick={this.handleClick}>
                 Cadastrar Usuário
               </a>
             </li>
             <li>
-              <a id="listar" onClick={this.handleClick}>
+              <a href="#3" id="listar" onClick={this.handleClick}>
                 Todos usuários
               </a>
             </li>

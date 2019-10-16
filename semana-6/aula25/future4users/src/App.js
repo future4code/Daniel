@@ -35,13 +35,23 @@ class App extends React.Component {
         component = <ListarUsuario handleButtonClick={this.changeComponent} />;
         break;
       case "detalhe":
-        component = <DetalheUsuario id={this.state.idDoDetalhe} />;
+        component = (
+          <DetalheUsuario
+            id={this.state.idDoDetalhe}
+            handleButtonClick={this.changeComponent}
+          />
+        );
+        break;
+      default:
+        component = <Home handleButtonClick={this.changeComponent} />;
         break;
     }
     return (
       <div className="App">
         <Header handleButtonClick={this.changeComponent} />
-        <section className="section">{component}</section>
+        <section className="section">
+          {component}
+        </section>
       </div>
     );
   }

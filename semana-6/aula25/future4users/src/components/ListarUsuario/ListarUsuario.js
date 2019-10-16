@@ -1,15 +1,8 @@
 import React, { Component } from "react";
 import axios from "axios";
-import styled from "styled-components";
-import DetalheUsuario from "./DetalheUsuario";
 
 const apiToken = "0d9df3ca53dd0c469bd3d30469d5d1b8";
 
-const LinkCentralizado = styled.a`
-  display: flex !important;
-  align-items: center !important;
-  width: 100%;
-`;
 export default class ListarUsuario extends Component {
   constructor(props) {
     super(props);
@@ -36,7 +29,9 @@ export default class ListarUsuario extends Component {
         this.renderAllUsers();
       })
       .catch(error => {
-        console.log(error);
+        alert(
+          "Não foi possível listar os usuários, por favor atualize a página."
+        );
       });
   };
   renderAllUsers = () => {
@@ -56,7 +51,9 @@ export default class ListarUsuario extends Component {
           });
         })
         .catch(error => {
-          console.log(error);
+          alert(
+            "Não foi possível listar os usuários, por favor atualize a página."
+          );
         });
     });
   };
@@ -78,31 +75,37 @@ export default class ListarUsuario extends Component {
         }
       }
     );
-    request.then(()=>{
+    request
+      .then(() => {
         alert(`${user.name} foi deletado!`);
         const newUsersListing = [...this.state.todosUsuarios];
-        newUsersListing.splice(index,1);
+        newUsersListing.splice(index, 1);
         this.setState({
-            todosUsuarios: newUsersListing
+          todosUsuarios: newUsersListing
         });
-    })
-    .catch((error)=>{
-        console.log(error);
-    })
+      })
+      .catch(error => {
+        alert("Não foi possível realizar a ação, por favor atualize a página.");
+      });
   };
-  handleClick = (e) => {
-      this.props.handleButtonClick("detalhe",e)
-  }
+  handleClick = e => {
+    this.props.handleButtonClick("detalhe", e);
+  };
   render() {
     const todosUsuarios = this.state.todosUsuarios.map((element, index) => {
       return (
         <li className="collection-item avatar" key={index}>
-          <a href="#" className="black-text" onClick={()=> (this.handleClick(element.id))}>
+          <a
+            href="#1"
+            className="black-text"
+            onClick={() => this.handleClick(element.id)}
+          >
             <i className="material-icons circle">grade</i>
             <p className="title">{element.name}</p>
             <p className="light">Email: {element.email} </p>
           </a>
           <a
+            href="#2"
             id={index}
             className="secondary-content waves-effect waves-light btn red darken-3"
             onClick={this.handleClickDelete}

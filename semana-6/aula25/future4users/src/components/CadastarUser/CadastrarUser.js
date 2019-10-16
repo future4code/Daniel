@@ -75,6 +75,7 @@ export default class CadastrarUser extends Component {
             </div>
             <DivCentralizada className="col s12">
               <a
+                href="#1"
                 className="btn waves-effect waves-light center blue darken-3"
                 onClick = {this.handleButtonClick}
               >

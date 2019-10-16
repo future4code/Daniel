@@ -23,7 +23,7 @@ constructor(props) {
           </h5>
         </div>
         <div className="row center">
-          <a onClick={this.handleClick} className="waves-effect waves-light btn-large blue darken-3">
+          <a href="#1" onClick={this.handleClick} className="waves-effect waves-light btn-large blue darken-3">
             Começar!
           </a>
         </div>
