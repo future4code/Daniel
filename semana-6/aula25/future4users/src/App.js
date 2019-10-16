@@ -4,19 +4,22 @@ import CadastrarUser from "./components/CadastarUser/CadastrarUser";
 import Home from "./components/Home/Home";
 import ListarUsuario from "./components/ListarUsuario/ListarUsuario";
 import Header from "./components/Header/Header";
+import DetalheUsuario from "./components/ListarUsuario/DetalheUsuario";
 
 class App extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      component: "home"
+      component: "home",
+      idDoDetalhe: ""
     };
   }
 
-  changeComponent = novoComponente => {
+  changeComponent = (novoComponente, id) => {
     this.setState({
-      component: novoComponente
+      component: novoComponente,
+      idDoDetalhe: id
     });
   };
   render() {
@@ -29,7 +32,10 @@ class App extends React.Component {
         component = <CadastrarUser />;
         break;
       case "listar":
-        component = <ListarUsuario handleButtonClick={this.changeComponent}/>;
+        component = <ListarUsuario handleButtonClick={this.changeComponent} />;
+        break;
+      case "detalhe":
+        component = <DetalheUsuario id={this.state.idDoDetalhe} />;
         break;
     }
     return (

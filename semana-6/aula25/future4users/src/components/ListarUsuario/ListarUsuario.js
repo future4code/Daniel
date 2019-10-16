@@ -84,17 +84,20 @@ export default class ListarUsuario extends Component {
         newUsersListing.splice(index,1);
         this.setState({
             todosUsuarios: newUsersListing
-        })
+        });
     })
     .catch((error)=>{
         console.log(error);
     })
   };
+  handleClick = (e) => {
+      this.props.handleButtonClick("detalhe",e)
+  }
   render() {
     const todosUsuarios = this.state.todosUsuarios.map((element, index) => {
       return (
         <li className="collection-item avatar" key={index}>
-          <a href="#2" className="black-text" onClick={this.handleClick}>
+          <a href="#" className="black-text" onClick={()=> (this.handleClick(element.id))}>
             <i className="material-icons circle">grade</i>
             <p className="title">{element.name}</p>
             <p className="light">Email: {element.email} </p>
