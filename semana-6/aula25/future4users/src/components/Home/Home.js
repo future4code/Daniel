@@ -19,7 +19,7 @@ constructor(props) {
         <h1 className="header center blue-text text-darken-3">Future4Users</h1>
         <div className="row center">
           <h5 className="header col s12 light">
-            Gerencimento de usuários de maneira simples e eficiente!
+            Gerencimento de usuários de maneira simples <s>e eficiente</s>!
           </h5>
         </div>
         <div className="row center">

@@ -4,7 +4,7 @@ import CadastrarUser from "./components/CadastarUser/CadastrarUser";
 import Home from "./components/Home/Home";
 import ListarUsuario from "./components/ListarUsuario/ListarUsuario";
 import Header from "./components/Header/Header";
-import DetalheUsuario from "./components/ListarUsuario/DetalheUsuario";
+import DetalheUsuario from "./components/DetalheUsuario/DetalheUsuario";
 
 class App extends React.Component {
   constructor(props) {
