@@ -26,7 +26,7 @@ export default class ListarUsuario extends Component {
     );
     request
       .then(response => {
-        this.setState({ todosIds: response.data.result });
+        this.setState({ todosIds: response.data.result, todosUsuarios: [] });
         this.renderAllUsers();
       })
       .catch(error => {
@@ -104,7 +104,7 @@ export default class ListarUsuario extends Component {
       );
       request
         .then(response => {
-          this.setState({ todosIds: response.data.result, todosUsuarios: []});
+          this.setState({ todosIds: response.data.result, todosUsuarios: [] });
           this.renderAllUsers();
         })
         .catch(error => {
@@ -112,8 +112,7 @@ export default class ListarUsuario extends Component {
             "Não foi possível listar os usuários, por favor atualize a página."
           );
         });
-    }
-    else {
+    } else {
       this.getAllUsers();
     }
   };
