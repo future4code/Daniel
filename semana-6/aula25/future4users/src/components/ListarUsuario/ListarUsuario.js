@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import PesquisaUsuario from "./PesquisaUsuario";
 
 const apiToken = "0d9df3ca53dd0c469bd3d30469d5d1b8";
 
@@ -91,6 +92,31 @@ export default class ListarUsuario extends Component {
   handleClick = e => {
     this.props.handleButtonClick("detalhe", e);
   };
+  searchUser = param => {
+    if (param) {
+      const request = axios.get(
+        `https://us-central1-future4-users.cloudfunctions.net/api/users/searchUsers?name=${param}`,
+        {
+          headers: {
+            "api-token": apiToken
+          }
+        }
+      );
+      request
+        .then(response => {
+          this.setState({ todosIds: response.data.result, todosUsuarios: []});
+          this.renderAllUsers();
+        })
+        .catch(error => {
+          alert(
+            "Não foi possível listar os usuários, por favor atualize a página."
+          );
+        });
+    }
+    else {
+      this.getAllUsers();
+    }
+  };
   render() {
     const todosUsuarios = this.state.todosUsuarios.map((element, index) => {
       return (
@@ -121,6 +147,7 @@ export default class ListarUsuario extends Component {
         <h3 className="header center blue-text text-darken-1">
           Todos usuários
         </h3>
+        <PesquisaUsuario getSerchParam={this.searchUser} />
         <ul className="collection">{todosUsuarios}</ul>
       </div>
     );
