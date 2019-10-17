@@ -1,8 +1,9 @@
 import React from "react";
 import "./App.css";
-import MainQuest from "./components/mainQuest/Action";
+import MainQuest from "./components/mainQuest/mainQuest";
 import axios from "axios";
 import Hud from "./components/hud/Hud";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
 
 class App extends React.Component {
   constructor(props) {
@@ -60,11 +61,15 @@ class App extends React.Component {
           level={this.state.level}
           maxexp={this.state.maxexp}
         />
-        <MainQuest
-          action={this.state.action}
-          doneClick={this.getReward}
-          cancelClick={this.getAction}
-        />
+        <TransitionGroup>
+          <CSSTransition key={this.state.action.key} timeout={300} classNames="slide">
+            <MainQuest
+              action={this.state.action}
+              doneClick={this.getReward}
+              cancelClick={this.getAction}
+            />
+          </CSSTransition>
+        </TransitionGroup>
       </div>
     );
   }

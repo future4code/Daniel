@@ -9,10 +9,13 @@ export default class MainQuest extends Component {
   handleDoneClick = () =>{
     this.props.doneClick();
   }
+  handleCancelClick = () => {
+    this.props.cancelClick();
+  }
   render() {
     const name = this.props.action.activity || "";
     return (
-      <div className="nes-container with-title is-centered is-rounded is-dark">
+      <div className="nes-container with-title is-centered is-rounded is-dark quest">
         <p className="title">
           <h3>Main Quest</h3>
           <p>
@@ -28,7 +31,7 @@ export default class MainQuest extends Component {
         <p>
         <button type="button" onClick={this.handleDoneClick} className="nes-btn is-success">Done</button>
 
-        <button type="button" className="nes-btn is-error">Cancel</button>
+        <button type="button" onClick={this.handleDoneClick} className="nes-btn is-error">Cancel</button>
         </p>
       </div>
     );
