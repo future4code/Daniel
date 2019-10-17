@@ -6,17 +6,30 @@ export default class MainQuest extends Component {
     this.state = {};
   }
 
+  handleDoneClick = () =>{
+    this.props.doneClick();
+  }
   render() {
     const name = this.props.action.activity || "";
     return (
-      <div class="nes-container with-title is-centered is-rounded is-dark">
-        <p class="title">Main Quest</p>
-        {name} <br />
-        <a href="#" class="nes-badge is-splited">
-          <span class="is-warning">{1 - this.props.action.accessibility || ""}</span>
-          <span class="is-primary">Pts</span>
-        </a>
-        
+      <div className="nes-container with-title is-centered is-rounded is-dark">
+        <p className="title">
+          <h3>Main Quest</h3>
+          <p>
+            <a href="#" className="nes-badge is-splited">
+              <span className="is-warning">
+                {this.props.action.accessibility || "0"}
+              </span>
+              <span className="is-primary">Pts</span>
+            </a>
+          </p>
+        </p>
+        {name}
+        <p>
+        <button type="button" onClick={this.handleDoneClick} className="nes-btn is-success">Done</button>
+
+        <button type="button" className="nes-btn is-error">Cancel</button>
+        </p>
       </div>
     );
   }

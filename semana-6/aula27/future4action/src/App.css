@@ -3,7 +3,8 @@
 }
 
 .hud {
-    width: 30vw;
+    width: 410px;
+    min-height: 152px;
 }
 
 .App {

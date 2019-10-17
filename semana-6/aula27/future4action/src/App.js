@@ -9,18 +9,9 @@ class App extends React.Component {
     super(props);
 
     this.state = {
-      action: [
-        {
-          activity: "Get the one quest!",
-          accessibility: 1,
-          type: "DIY",
-          participants: 1,
-          price: 0,
-          link: "",
-          key: "1"
-        }
-      ],
+      action: "",
       exp: 0,
+      maxexp: 1.5,
       level: 1
     };
   }
@@ -29,7 +20,7 @@ class App extends React.Component {
     request
       .then(res => {
         this.setState({
-          action: [res.data, ...this.state.action]
+          action: res.data
         });
       })
       .catch(err => {
@@ -39,11 +30,41 @@ class App extends React.Component {
   componentDidMount() {
     this.getAction();
   }
+
+  checkLevel = () => {
+    let level = this.state.level;
+    if (this.state.exp >= this.state.maxexp) {
+      this.setState({
+        exp: 0,
+        level: ++level
+      });
+    }
+  };
+  getReward = () => {
+    const rewardExp = this.state.exp + Number(this.state.action.accessibility);
+    this.setState(
+      {
+        exp: rewardExp
+      },
+      () => {
+        this.checkLevel();
+        this.getAction();
+      }
+    );
+  };
   render() {
     return (
       <div className="App">
-        <Hud />
-        <MainQuest action={this.state.action[0]} />
+        <Hud
+          exp={this.state.exp}
+          level={this.state.level}
+          maxexp={this.state.maxexp}
+        />
+        <MainQuest
+          action={this.state.action}
+          doneClick={this.getReward}
+          cancelClick={this.getAction}
+        />
       </div>
     );
   }
