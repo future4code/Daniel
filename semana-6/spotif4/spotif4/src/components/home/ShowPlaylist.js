@@ -1,11 +1,35 @@
-import React, { Component } from 'react'
+import React, { Component } from "react";
 
 export default class ShowPlaylist extends Component {
-    render() {
-        return (
-            <div>
-                teste
-            </div>
-        )
-    }
+  handlePlaylistClick = e => {
+    const playlist = this.props.playlists.filter((element, i) => {
+      if (Number(e.target.id) === i) {
+        return true;
+      }
+      return false;
+    });
+    this.props.onClickPlaylist(playlist);
+  };
+  handleDeleteClick = e => {
+    const playlist = this.props.playlists.filter((element, i) => {
+      if (e === i) {
+        return true;
+      }
+      return false;
+    });
+    this.props.onDeletePlaylist(playlist);
+  };
+  render() {
+    const allPlaylists = this.props.playlists.map((element, i) => {
+      return (
+        <div>
+          <p onClick={this.handlePlaylistClick} id={i} key={i}>
+            {element.name}
+          </p>
+          <button onClick={() => this.handleDeleteClick(i)}>Delete</button>
+        </div>
+      );
+    });
+    return <div>{allPlaylists}</div>;
+  }
 }
