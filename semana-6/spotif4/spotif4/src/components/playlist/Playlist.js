@@ -1,13 +1,16 @@
 import React, { Component } from "react";
 import axios from "axios";
 import AddMusic from "./AddMusic";
+import MusicPlayer from "./MusicPlayer";
+
 export default class Playlist extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
       musics: [],
-      showAddMusic: false
+      showAddMusic: false,
+      urlCurrentMusic: undefined
     };
   }
   getAllMusics = () => {
@@ -75,10 +78,18 @@ export default class Playlist extends Component {
         console.log(err);
       });
   };
+  playThisMusic = e => {
+    this.setState({ urlCurrentMusic: this.state.musics[e.target.id].url });
+  };
   render() {
     const musics = this.state.musics.map((element, i) => {
-      return <li key={i}>{element.name}</li>;
+      return (
+        <li id={i} onClick={this.playThisMusic} key={i}>
+          {element.name}
+        </li>
+      );
     });
+    console.log(this.state.urlCurrentMusic);
     return (
       <div>
         <button onClick={this.handleBackClick}>Back</button>
@@ -90,6 +101,7 @@ export default class Playlist extends Component {
             <button onClick={this.handleAddButton}>Add Music</button>
           )}
         </div>
+          <MusicPlayer music={this.state.urlCurrentMusic} />
         <ul>{musics}</ul>
       </div>
     );
