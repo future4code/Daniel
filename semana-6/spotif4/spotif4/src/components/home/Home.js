@@ -99,12 +99,18 @@ export default class Home extends Component {
   render() {
     return (
       <div>
-        <CreatePlaylist onCreatePlaylist={this.newPlaylistCheck} />
-        <ShowPlaylist
-          onClickPlaylist={this.handleClickPlaylist}
-          playlists={this.state.playlists}
-          onDeletePlaylist={this.handleDeletePlaylist}
-        />
+        <div className="container">
+          <h1>Spotif4</h1>
+          <CreatePlaylist onCreatePlaylist={this.newPlaylistCheck} />
+        </div>
+        <div className="show">
+          <h2>Playlists</h2>
+          <ShowPlaylist
+            onClickPlaylist={this.handleClickPlaylist}
+            playlists={this.state.playlists}
+            onDeletePlaylist={this.handleDeletePlaylist}
+          />
+        </div>
       </div>
     );
   }

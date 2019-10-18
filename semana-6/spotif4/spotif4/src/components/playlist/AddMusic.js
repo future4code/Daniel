@@ -30,7 +30,7 @@ export default class AddMusic extends Component {
   };
   render() {
     return (
-      <div>
+      <div className="music-form">
         <label htmlFor="name">Name: </label>
         <input
           value={this.state.nameValue}
@@ -38,6 +38,7 @@ export default class AddMusic extends Component {
           name="name"
           placeholder="name"
         />
+
         <label htmlFor="artist">Artist:</label>
         <input
           value={this.state.artistValue}
@@ -45,6 +46,7 @@ export default class AddMusic extends Component {
           name="artist"
           placeholder="artist"
         />
+
         <label htmlFor="url">URL: </label>
         <input
           value={this.state.urlValue}
@@ -52,7 +54,8 @@ export default class AddMusic extends Component {
           name="url"
           placeholder="url"
         />
-        <button onClick={this.handleAddButton}>Add</button>
+
+        <button className="button margin-top" onClick={this.handleAddButton}>Add</button>
       </div>
     );
   }

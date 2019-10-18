@@ -92,17 +92,24 @@ export default class Playlist extends Component {
     console.log(this.state.urlCurrentMusic);
     return (
       <div>
-        <button onClick={this.handleBackClick}>Back</button>
-        <h1>{this.props.data.name}</h1>
-        <div>
+        <button className="button" onClick={this.handleBackClick}>
+          Back
+        </button>
+        <div className="container">
+          <h1>{this.props.data.name}</h1>
           {this.state.showAddMusic ? (
             <AddMusic onClickAddMusic={this.checkNewMusic} />
           ) : (
             <button onClick={this.handleAddButton}>Add Music</button>
           )}
         </div>
-          <MusicPlayer music={this.state.urlCurrentMusic} />
-        <ul>{musics}</ul>
+        <MusicPlayer music={this.state.urlCurrentMusic} />
+        <div className="container">
+          <h2>Músicas</h2>
+          <ul className="music-list">
+            {musics}
+          </ul>
+        </div>
       </div>
     );
   }

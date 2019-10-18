@@ -19,14 +19,14 @@ export default class CreatePlaylist extends Component {
   }
   render() {
     return (
-      <div>
+      <div >
         <label htmlFor="playlist_name">New playlist: </label>
         <input
           name="playlist_name"
           value={this.state.nameValue}
           onChange={this.onChangeName}
         />
-        <button onClick={this.handleCreatePlaylist}>Create!</button>
+        <button className="button" onClick={this.handleCreatePlaylist}>Create!</button>
       </div>
     );
   }

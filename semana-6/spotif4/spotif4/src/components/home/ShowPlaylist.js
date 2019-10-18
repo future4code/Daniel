@@ -22,11 +22,11 @@ export default class ShowPlaylist extends Component {
   render() {
     const allPlaylists = this.props.playlists.map((element, i) => {
       return (
-        <div>
+        <div className="show-playlist">
           <p onClick={this.handlePlaylistClick} id={i} key={i}>
             {element.name}
           </p>
-          <button onClick={() => this.handleDeleteClick(i)}>Delete</button>
+          <button className="show-button button" onClick={() => this.handleDeleteClick(i)}>Delete</button>
         </div>
       );
     });
