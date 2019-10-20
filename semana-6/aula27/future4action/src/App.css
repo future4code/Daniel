@@ -1,0 +1,44 @@
+* {
+  font-family: "Press Start 2P", cursive;
+  box-sizing: border-box;
+}
+
+.hud {
+  width: 400px;
+  min-height: 152px;
+  min-width: 100px;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+}
+.quest {
+ max-width: 400px;
+}
+
+.slide-enter {
+  opacity: 0;
+  transform: scale(0.1) translatey(-400px);
+  z-index: 1;
+}
+.slide-enter.slide-enter-active {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+  transition: opacity 300ms linear, transform 300ms ease-in-out;
+}
+.slide-exit {
+  opacity: 1;
+  transform: scale(1) translateY(-200px);
+}
+.slide-exit.slide-exit-active {
+  opacity: 1;
+  transform: scale(0.1) translateY(0);
+  transition: opacity 300ms linear, transform 300ms ease-in;
+}
+.slide-exit-done {
+  opacity: 0;
+  transform: scale(1) translateY(-200px);
+}
