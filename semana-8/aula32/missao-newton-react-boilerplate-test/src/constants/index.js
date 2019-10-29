@@ -1,0 +1,7 @@
+export const CREATE_TASK = "CREATE_TASK";
+
+export const COMPLETE_TASK = "COMPLETE_TASK";
+
+export const DELETE_TASK = "DELETE_TASK";
+
+export const CHANGE_TASKINPUT_VALUE = "CHANGE_TASKINPUT_VALUE";

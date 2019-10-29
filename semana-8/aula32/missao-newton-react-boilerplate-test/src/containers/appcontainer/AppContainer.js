@@ -1,9 +1,9 @@
 import React from "react";
-import TaskInput from "./TaskInput";
+import TaskInput from "../../components/TaskInput";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import "typeface-roboto";
-import TaskList from "./TaskList";
+import TaskList from "../../components/TaskList";
 
 export class AppContainer extends React.Component {
   constructor(props) {
