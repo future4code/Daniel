@@ -19,7 +19,7 @@ export const setTasksAction = taskList => {
   };
 };
 
-export const fetchPosts = () => async (dispatch, getState) => {
+export const fetchTasks = () => async (dispatch, getState) => {
   const result = await axios.get(
     "https://us-central1-missao-newton.cloudfunctions.net/reduxTodo/daniel/todos"
   );
@@ -27,17 +27,31 @@ export const fetchPosts = () => async (dispatch, getState) => {
   dispatch(setTasksAction(result.data.todos));
 };
 
-export function createTaskAction(taskName) {
+export function createLocalTaskAction(name, id, done) {
   return {
     type: CREATE_TASK,
     payload: {
-      id: Date.now(),
-      name: taskName,
-      done: false
+      id: id,
+      text: name,
+      done: done
     }
   };
 }
-
+export const postTaskAction = taskName => async (dispatch, getState) => {
+  const response = await axios.post(
+    "https://us-central1-missao-newton.cloudfunctions.net/reduxTodo/daniel/todos",
+    {
+      text: taskName
+    }
+  );
+  dispatch(
+    createLocalTaskAction(
+      response.data.todo.text,
+      response.data.todo.id,
+      response.data.todo.done
+    )
+  );
+};
 export function completeTaskAction(taskID) {
   return {
     type: COMPLETE_TASK,

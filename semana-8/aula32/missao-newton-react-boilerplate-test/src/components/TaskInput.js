@@ -2,7 +2,7 @@ import React from "react";
 import TextField from "@material-ui/core/TextField";
 import styled from "styled-components";
 import { connect } from "react-redux";
-import { createTaskAction, changeTaskInputValueAction } from "../actions/Actions";
+import { postTaskAction, changeTaskInputValueAction } from "../actions/Actions";
 
 const StyledInput = styled(TextField)`
   border-radius: 3px;
@@ -10,11 +10,11 @@ const StyledInput = styled(TextField)`
 `;
 
 function TaskInput(props) {
-	const handleKeyPress = (e) =>{
-		if(e.key === "Enter"){
-			props.handleCreateTask(props.inputValue)
-		}
-	}
+  const handleKeyPress = e => {
+    if (e.key === "Enter") {
+      props.handleCreateTask(props.inputValue);
+    }
+  };
   return (
     <React.Fragment>
       <StyledInput
@@ -24,17 +24,19 @@ function TaskInput(props) {
         type="text"
         name="taskinput"
         margin="normal"
-		variant="outlined"
-		onChange={(e)=>{props.handleChangeInput(e.target.value)}}
-		onKeyPress={handleKeyPress}
+        variant="outlined"
+        onChange={e => {
+          props.handleChangeInput(e.target.value);
+        }}
+        onKeyPress={handleKeyPress}
       />
     </React.Fragment>
   );
 }
 const mapDispatchToProps = dispatch => {
   return {
-	handleChangeInput: value => dispatch(changeTaskInputValueAction(value)),
-	handleCreateTask: taskName => dispatch(createTaskAction(taskName))
+    handleChangeInput: value => dispatch(changeTaskInputValueAction(value)),
+    handleCreateTask: taskName => dispatch(postTaskAction(taskName))
   };
 };
 const mapStateToProps = state => {

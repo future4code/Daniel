@@ -15,7 +15,7 @@ const initialState = {
   tasks: [
     {
       id: 0,
-      name: "Test Task",
+      text: "Test Task",
       done: true
     }
   ]

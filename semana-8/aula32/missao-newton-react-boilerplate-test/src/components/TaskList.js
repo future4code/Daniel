@@ -8,7 +8,7 @@ import {
   FILTER_DONE_TASKS,
   FILTER_TODO_TASKS
 } from "../constants/index";
-import { fetchPosts } from "../actions/Actions.js";
+import { fetchTasks } from "../actions/Actions.js";
 
 const StyledGrid = styled(Grid)`
   padding: 0 32px 0 12px;
@@ -73,7 +73,7 @@ const mapStateToProps = state => {
 };
 const mapDispatchToProps = dispatch => {
   return {
-    fetchAllTasks: () => dispatch(fetchPosts())
+    fetchAllTasks: () => dispatch(fetchTasks())
   };
 };
 
