@@ -8,6 +8,7 @@ import { removeTaskAction, completeTaskAction } from "../actions/Actions.js";
 
 const StyledDiv = styled.div`
   flex: 1;
+  padding-top: 5px;
 `;
 const StyledDone = styled.p`
   color: grey;
@@ -43,7 +44,7 @@ function TaskCard(props) {
 const mapDispatchToProps = dispatch => {
   return {
     deleteTask: id => dispatch(removeTaskAction(id)),
-    completeTask: id => dispatch(completeTaskAction(id))
+	completeTask: id => dispatch(completeTaskAction(id)),
   };
 };
 

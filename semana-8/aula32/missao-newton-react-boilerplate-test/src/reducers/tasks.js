@@ -2,11 +2,16 @@ import {
   CREATE_TASK,
   DELETE_TASK,
   COMPLETE_TASK,
-  CHANGE_TASKINPUT_VALUE
+  CHANGE_TASKINPUT_VALUE,
+  FILTER_ALL_TASKS,
+  FILTER_DONE_TASKS,
+  FILTER_TODO_TASKS,
+  SET_TASKS
 } from "../constants/index";
 
 const initialState = {
   currentInputTaskValue: "",
+  filter: FILTER_ALL_TASKS,
   tasks: [
     {
       id: 0,
@@ -21,8 +26,7 @@ const tasks = (state = initialState, action) => {
     case COMPLETE_TASK:
       const doneTasks = [...state.tasks].map(ele => {
         if (ele.id === action.payload.id) {
-          ele.done = !ele.done;
-          return ele;
+          return { ...ele, done: !ele.done };
         }
         return ele;
       });
@@ -40,6 +44,15 @@ const tasks = (state = initialState, action) => {
         return ele.id !== action.payload.id;
       });
       return { ...state, tasks: allTasks };
+    case SET_TASKS:
+		console.log(action.payload)
+      return { ...state};
+    case FILTER_ALL_TASKS:
+      return { ...state, filter: FILTER_ALL_TASKS };
+    case FILTER_DONE_TASKS:
+      return { ...state, filter: FILTER_DONE_TASKS };
+    case FILTER_TODO_TASKS:
+      return { ...state, filter: FILTER_TODO_TASKS };
     default:
       return state;
   }
