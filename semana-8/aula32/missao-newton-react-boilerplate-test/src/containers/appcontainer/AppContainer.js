@@ -18,7 +18,7 @@ export class AppContainer extends React.Component {
         <Grid container justify="center" item xs={12} sm={6} lg={4}>
           <TaskInput />
         </Grid>
-		<Grid item xs={12} lg={4} sm={6}>
+		<Grid item xs={12} lg={4} sm={6} container justify="center">
           <Filters/>
         </Grid>
         <Grid container item xs={12} sm={6} lg={4}>

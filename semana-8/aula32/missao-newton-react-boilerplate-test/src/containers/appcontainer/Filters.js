@@ -6,12 +6,14 @@ import {
   filterAllTasksAction,
   filterCompletedTasksAction,
   filterTodoTasksAction,
-  sendDeleteAll
+  sendDeleteAll,
+  sendCompleteAll
 } from "../../actions/Actions.js";
 import DeleteIcon from "@material-ui/icons/Delete";
-
+import DoneIcon from "@material-ui/icons/Done";
 const StyledButton = styled(Button)`
   margin-right: 8px;
+  margin-top: 8px;
 `;
 class Filters extends Component {
   constructor(props) {
@@ -58,21 +60,26 @@ class Filters extends Component {
         </StyledButton>
         <StyledButton
           variant="outlined"
+          color="primary"
+          onClick={() => {
+            this.props.sendCompleteAll();
+          }}
           size="small"
-          onClick={this.handleClickTodo}
-          color={this.state.active === "Todo" ? "secondary" : ""}
         >
-          Pendentes
+          COMPLETAR TODAS
+          <DoneIcon />
         </StyledButton>
-        <Button
+        <StyledButton
           variant="outlined"
           color="secondary"
-          onClick={() => {this.props.sendDeleteAll()}}
+          onClick={() => {
+            this.props.sendDeleteAll();
+          }}
           size="small"
         >
           DELETAR TODAS
           <DeleteIcon />
-        </Button>
+        </StyledButton>
       </React.Fragment>
     );
   }
@@ -82,7 +89,8 @@ const mapDispatchToProps = dispatch => {
     filterAllTasks: () => dispatch(filterAllTasksAction()),
     filterCompletedTasks: () => dispatch(filterCompletedTasksAction()),
     filterTodoTasks: () => dispatch(filterTodoTasksAction()),
-    sendDeleteAll: () => dispatch(sendDeleteAll())
+    sendDeleteAll: () => dispatch(sendDeleteAll()),
+    sendCompleteAll: () => dispatch(sendCompleteAll())
   };
 };
 export default connect(

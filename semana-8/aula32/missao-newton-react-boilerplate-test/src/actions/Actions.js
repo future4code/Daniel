@@ -118,3 +118,13 @@ export const sendDeleteAll = () => async (dispatch, getState) => {
     }
   });
 };
+
+export const sendCompleteAll = () => async (dispatch, getState) => {
+  getState().tasks.tasks.forEach(ele => {
+    try {
+      dispatch(toggleDone(ele.id));
+    } catch (e) {
+      console.log(e);
+    }
+  });
+};
