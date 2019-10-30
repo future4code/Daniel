@@ -4,7 +4,7 @@ import Done from "@material-ui/icons/Done";
 import IconButton from "@material-ui/core/IconButton";
 import styled from "styled-components";
 import { connect } from "react-redux";
-import { removeTaskAction, toggleDone } from "../actions/Actions.js";
+import { sendDeleteTask, toggleDone } from "../actions/Actions.js";
 
 const StyledDiv = styled.div`
   flex: 1;
@@ -43,7 +43,7 @@ function TaskCard(props) {
 }
 const mapDispatchToProps = dispatch => {
   return {
-    deleteTask: id => dispatch(removeTaskAction(id)),
+    deleteTask: id => dispatch(sendDeleteTask(id)),
     completeTask: id => dispatch(toggleDone(id))
   };
 };

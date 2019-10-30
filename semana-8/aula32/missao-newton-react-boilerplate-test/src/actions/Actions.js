@@ -76,7 +76,6 @@ export const fetchTasks = () => async (dispatch, getState) => {
   const result = await axios.get(
     "https://us-central1-missao-newton.cloudfunctions.net/reduxTodo/daniel/todos"
   );
-
   dispatch(setTasksAction(result.data.todos));
 };
 export const postTaskAction = taskName => async (dispatch, getState) => {
@@ -99,6 +98,23 @@ export const toggleDone = id => async (dispatch, getState) => {
   const response = await axios.put(
     `https://us-central1-missao-newton.cloudfunctions.net/reduxTodo/daniel/todos/${id}/toggle`
   );
-
   dispatch(completeTaskAction(id));
+};
+
+export const sendDeleteTask = id => async (dispatch, getState) => {
+  const response = await axios.delete(
+    `https://us-central1-missao-newton.cloudfunctions.net/reduxTodo/daniel/todos/${id}`
+  );
+
+  dispatch(removeTaskAction(id));
+};
+
+export const sendDeleteAll = () => async (dispatch, getState) => {
+  getState().tasks.tasks.forEach(ele => {
+    try {
+      dispatch(sendDeleteTask(ele.id));
+    } catch (e) {
+      console.log(e);
+    }
+  });
 };

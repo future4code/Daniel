@@ -5,8 +5,10 @@ import { connect } from "react-redux";
 import {
   filterAllTasksAction,
   filterCompletedTasksAction,
-  filterTodoTasksAction
+  filterTodoTasksAction,
+  sendDeleteAll
 } from "../../actions/Actions.js";
+import DeleteIcon from "@material-ui/icons/Delete";
 
 const StyledButton = styled(Button)`
   margin-right: 8px;
@@ -16,26 +18,17 @@ class Filters extends Component {
     super(props);
 
     this.state = {
-      colorCompletedButton: "",
-      colorTodoButton: ""
+      active: ""
     };
   }
 
   handleClickCompleted = () => {
     this.props.filterCompletedTasks();
-    if (this.state.colorCompletedButton) {
-      this.setState({ colorCompletedButton: "" });
-    } else {
-      this.setState({ colorCompletedButton: "secondary" });
-    }
+    this.setState({ active: "Completed" });
   };
   handleClickTodo = () => {
     this.props.filterTodoTasks();
-    if (this.state.colorTodoButton) {
-      this.setState({ colorTodoButton: "" });
-    } else {
-      this.setState({ colorTodoButton: "secondary" });
-    }
+    this.setState({ active: "Todo" });
   };
   render() {
     return (
@@ -51,7 +44,7 @@ class Filters extends Component {
           variant="outlined"
           size="small"
           onClick={this.handleClickCompleted}
-          color={this.state.colorCompletedButton}
+          color={this.state.active === "Completed" ? "secondary" : ""}
         >
           Completadas
         </StyledButton>
@@ -59,10 +52,27 @@ class Filters extends Component {
           variant="outlined"
           size="small"
           onClick={this.handleClickTodo}
-          color={this.state.colorTodoButton}
+          color={this.state.active === "Todo" ? "secondary" : ""}
         >
           Pendentes
         </StyledButton>
+        <StyledButton
+          variant="outlined"
+          size="small"
+          onClick={this.handleClickTodo}
+          color={this.state.active === "Todo" ? "secondary" : ""}
+        >
+          Pendentes
+        </StyledButton>
+        <Button
+          variant="outlined"
+          color="secondary"
+          onClick={() => {this.props.sendDeleteAll()}}
+          size="small"
+        >
+          DELETAR TODAS
+          <DeleteIcon />
+        </Button>
       </React.Fragment>
     );
   }
@@ -71,7 +81,8 @@ const mapDispatchToProps = dispatch => {
   return {
     filterAllTasks: () => dispatch(filterAllTasksAction()),
     filterCompletedTasks: () => dispatch(filterCompletedTasksAction()),
-    filterTodoTasks: () => dispatch(filterTodoTasksAction())
+    filterTodoTasks: () => dispatch(filterTodoTasksAction()),
+    sendDeleteAll: () => dispatch(sendDeleteAll())
   };
 };
 export default connect(
