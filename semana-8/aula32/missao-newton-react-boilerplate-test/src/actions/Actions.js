@@ -6,7 +6,8 @@ import {
   FILTER_ALL_TASKS,
   FILTER_DONE_TASKS,
   FILTER_TODO_TASKS,
-  SET_TASKS
+  SET_TASKS,
+  SEARCH_TASK
 } from "../constants/index";
 import axios from "axios";
 
@@ -47,7 +48,14 @@ export const removeTaskAction = taskID => {
     }
   };
 };
-
+export const searchTaskAction = task => {
+  return {
+    type: SEARCH_TASK,
+    payload: {
+      search: task
+    }
+  };
+};
 export const changeTaskInputValueAction = inputValue => {
   return {
     type: CHANGE_TASKINPUT_VALUE,

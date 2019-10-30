@@ -6,9 +6,9 @@ import {
   FILTER_ALL_TASKS,
   FILTER_DONE_TASKS,
   FILTER_TODO_TASKS,
-  SET_TASKS
+  SET_TASKS,
+  SEARCH_TASK
 } from "../constants/index";
-
 const initialState = {
   currentInputTaskValue: "",
   filter: FILTER_ALL_TASKS,
@@ -23,6 +23,11 @@ const initialState = {
 
 const tasks = (state = initialState, action) => {
   switch (action.type) {
+    case SEARCH_TASK:
+      const search = [...state.tasks].filter(ele => {
+        return action.payload.search === ele.text;
+      });
+      return { ...state, tasks: search };
     case COMPLETE_TASK:
       const doneTasks = [...state.tasks].map(ele => {
         if (ele.id === action.payload.id) {

@@ -11,6 +11,7 @@ import {
 } from "../../actions/Actions.js";
 import DeleteIcon from "@material-ui/icons/Delete";
 import DoneIcon from "@material-ui/icons/Done";
+
 const StyledButton = styled(Button)`
   margin-right: 8px;
   margin-top: 8px;
@@ -32,13 +33,18 @@ class Filters extends Component {
     this.props.filterTodoTasks();
     this.setState({ active: "Todo" });
   };
+  handleClickAll = () => {
+    this.props.filterAllTasks();
+    this.setState({ active: "none" });
+  };
+
   render() {
     return (
       <React.Fragment>
         <StyledButton
           variant="outlined"
           size="small"
-          onClick={this.props.filterAllTasks}
+          onClick={this.handleClickAll}
         >
           Todas
         </StyledButton>
