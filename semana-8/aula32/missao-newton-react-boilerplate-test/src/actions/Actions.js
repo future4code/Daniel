@@ -19,14 +19,6 @@ export const setTasksAction = taskList => {
   };
 };
 
-export const fetchTasks = () => async (dispatch, getState) => {
-  const result = await axios.get(
-    "https://us-central1-missao-newton.cloudfunctions.net/reduxTodo/daniel/todos"
-  );
-
-  dispatch(setTasksAction(result.data.todos));
-};
-
 export function createLocalTaskAction(name, id, done) {
   return {
     type: CREATE_TASK,
@@ -37,21 +29,7 @@ export function createLocalTaskAction(name, id, done) {
     }
   };
 }
-export const postTaskAction = taskName => async (dispatch, getState) => {
-  const response = await axios.post(
-    "https://us-central1-missao-newton.cloudfunctions.net/reduxTodo/daniel/todos",
-    {
-      text: taskName
-    }
-  );
-  dispatch(
-    createLocalTaskAction(
-      response.data.todo.text,
-      response.data.todo.id,
-      response.data.todo.done
-    )
-  );
-};
+
 export function completeTaskAction(taskID) {
   return {
     type: COMPLETE_TASK,
@@ -94,3 +72,33 @@ export function filterTodoTasksAction() {
     type: FILTER_TODO_TASKS
   };
 }
+export const fetchTasks = () => async (dispatch, getState) => {
+  const result = await axios.get(
+    "https://us-central1-missao-newton.cloudfunctions.net/reduxTodo/daniel/todos"
+  );
+
+  dispatch(setTasksAction(result.data.todos));
+};
+export const postTaskAction = taskName => async (dispatch, getState) => {
+  const response = await axios.post(
+    "https://us-central1-missao-newton.cloudfunctions.net/reduxTodo/daniel/todos",
+    {
+      text: taskName
+    }
+  );
+  dispatch(
+    createLocalTaskAction(
+      response.data.todo.text,
+      response.data.todo.id,
+      response.data.todo.done
+    )
+  );
+};
+
+export const toggleDone = id => async (dispatch, getState) => {
+  const response = await axios.put(
+    `https://us-central1-missao-newton.cloudfunctions.net/reduxTodo/daniel/todos/${id}/toggle`
+  );
+
+  dispatch(completeTaskAction(id));
+};
