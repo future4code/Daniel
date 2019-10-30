@@ -45,8 +45,7 @@ const tasks = (state = initialState, action) => {
       });
       return { ...state, tasks: allTasks };
     case SET_TASKS:
-		console.log(action.payload)
-      return { ...state};
+      return { ...state, tasks: action.payload.tasks };
     case FILTER_ALL_TASKS:
       return { ...state, filter: FILTER_ALL_TASKS };
     case FILTER_DONE_TASKS:

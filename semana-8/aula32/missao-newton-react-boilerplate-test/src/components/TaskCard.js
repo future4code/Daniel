@@ -27,9 +27,9 @@ function TaskCard(props) {
       </StyledIconButton>
       <StyledDiv>
         {props.task.done ? (
-          <StyledDone>{props.task.name}</StyledDone>
+          <StyledDone>{props.task.text}</StyledDone>
         ) : (
-          <p>{props.task.name}</p>
+          <p>{props.task.text}</p>
         )}
       </StyledDiv>
       <StyledIconButton
@@ -44,7 +44,7 @@ function TaskCard(props) {
 const mapDispatchToProps = dispatch => {
   return {
     deleteTask: id => dispatch(removeTaskAction(id)),
-	completeTask: id => dispatch(completeTaskAction(id)),
+    completeTask: id => dispatch(completeTaskAction(id))
   };
 };
 

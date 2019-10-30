@@ -21,7 +21,7 @@ class TaskList extends React.Component {
     this.state = {};
   }
   componentDidMount() {
-    this.props.fetchAllTasks();
+	this.props.fetchAllTasks();
   }
   render() {
     const filter = this.props.activeFilter;
