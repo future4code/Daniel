@@ -15,7 +15,13 @@ import { swipeLeft, swipeRight } from "../../components/UserSwipeCard/styled";
 import { updateCurrentPage } from "../../actions/route";
 import { getProfileToSwipe, chooseProfile } from "../../actions/profiles";
 import { Loader } from "../../components/Loader";
+import styled from "styled-components";
 
+const StyledDiv = styled.div`
+    position: absolute;
+    width: 100%;
+    height: 100%;
+`;
 export class SwipeScreen extends Component {
     constructor(props) {
         super(props);
@@ -56,42 +62,45 @@ export class SwipeScreen extends Component {
         const { currentAnimation } = this.state;
 
         return (
-            <SwipeScreenWrapper>
-                <AppBar
-                    rightAction={
-                        <MatchIcon
-                            size={1.5}
-                            path={mdiAccountMultipleCheck}
-                            onClick={goToMatchScreen}
-                        />
-                    }
-                />
-                <ContentWrapper>
-                    {currentAnimation !== null && <Loader />}
-                    {profileToSwipe ? (
-                        <UserSwipeCard
-                            userToSwipe={profileToSwipe}
-                            animationDirection={currentAnimation}
-                        />
-                    ) : (
-                        <Loader />
-                    )}
-                    <ButtonsWrapper>
-                        <OptionButton
-                            onClick={this.onChooseOption("dislike")}
-                            option="dislike"
-                        >
-                            X
-                        </OptionButton>
-                        <OptionButton
-                            onClick={this.onChooseOption("like")}
-                            option="like"
-                        >
-                            ♥️
-                        </OptionButton>
-                    </ButtonsWrapper>
-                </ContentWrapper>
-            </SwipeScreenWrapper>
+            <StyledDiv>
+                <SwipeScreenWrapper>
+                    <AppBar
+                        rightAction={
+                            <MatchIcon
+                                size={1.5}
+                                path={mdiAccountMultipleCheck}
+                                onClick={goToMatchScreen}
+                            />
+                        }
+                    />
+                    <ContentWrapper>
+                        {<Loader />}
+                        
+                        {profileToSwipe ? (
+                            <UserSwipeCard
+                                userToSwipe={profileToSwipe}
+                                animationDirection={currentAnimation}
+                            />
+                        ) : (
+                            <Loader />
+                        )}
+                        <ButtonsWrapper>
+                            <OptionButton
+                                onClick={this.onChooseOption("dislike")}
+                                option="dislike"
+                            >
+                                X
+                            </OptionButton>
+                            <OptionButton
+                                onClick={this.onChooseOption("like")}
+                                option="like"
+                            >
+                                ♥️
+                            </OptionButton>
+                        </ButtonsWrapper>
+                    </ContentWrapper>
+                </SwipeScreenWrapper>
+            </StyledDiv>
         );
     }
 }
@@ -111,7 +120,7 @@ const mapDispatchToProps = dispatch => {
     return {
         goToMatchScreen: () => dispatch(updateCurrentPage("MatchScreen")),
         getProfileToSwipe: () => dispatch(getProfileToSwipe()),
-        chooseProfile: (id,option) => dispatch(chooseProfile(id, option))
+        chooseProfile: (id, option) => dispatch(chooseProfile(id, option))
     };
 };
 

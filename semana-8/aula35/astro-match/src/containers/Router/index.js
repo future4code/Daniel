@@ -7,8 +7,10 @@ import ProfileScreen from "../ProfileScreen";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import styled from "styled-components";
 import "./style.css";
+
 const StyledSection = styled.section`
     position: relative;
+
 `;
 const Router = props => {
     let page;
@@ -27,17 +29,15 @@ const Router = props => {
             break;
     }
     return (
-        <StyledSection>
-            <TransitionGroup className="move">
-                <CSSTransition
-                    key={props.currentPage}
-                    timeout={500}
-                    classNames="move"
-                >
-                    {page}
-                </CSSTransition>
-            </TransitionGroup>
-        </StyledSection>
+        <TransitionGroup className="slide">
+            <CSSTransition
+                key={props.currentPage}
+                timeout={300}
+                classNames="slide"
+            >
+                <StyledSection>{page}</StyledSection>
+            </CSSTransition>
+        </TransitionGroup>
     );
 };
 

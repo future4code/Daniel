@@ -9,7 +9,9 @@ import { Avatar, List, ListItem, ListText, MatchIcon } from "./styled";
 import styled from 'styled-components'
 
 const StyledDiv = styled.div`
-	
+	position: absolute;
+	width: 100%;
+	height: 100%;
 `
 class MatchScreen extends Component {
     componentDidMount() {
@@ -22,7 +24,7 @@ class MatchScreen extends Component {
         const { goToSwipeScreen, matches } = this.props;
 
         return (
-            <div>
+            <StyledDiv>
                 <AppBar
                     leftAction={
                         <MatchIcon
@@ -41,7 +43,7 @@ class MatchScreen extends Component {
                             </ListItem>
                         ))}
                 </List>
-            </div>
+            </StyledDiv>
         );
     }
 }

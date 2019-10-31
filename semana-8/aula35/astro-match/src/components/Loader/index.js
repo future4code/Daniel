@@ -25,7 +25,7 @@ const beatingAnimation = keyframes`
 const LoaderWrapper = styled.div`
   display: inline-block;
   position: absolute;
-  bottom: 60%;
+  bottom: 50%;
   margin-left: auto;
   margin-right: auto;
   left: 0;
