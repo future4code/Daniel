@@ -10,6 +10,7 @@ import Navbar from "../../components/Navbar";
 import hero from "../../imgs/undraw_Outer_space_drqu.svg";
 import desc from "../../imgs/undraw_launching_125y.svg";
 import TripCard from "../../components/TripCard";
+
 const StyledGridHeader = styled(Grid)`
     height: 768px;
     background: url(${hero});
@@ -66,7 +67,7 @@ function HomePage(props) {
                     </Grid>
                 </Grid>
                 <Grid item container xs={12} justify="center">
-                    <Grid item container lg={8} xs={12} >
+                    <Grid item container lg={8} xs={12}>
                         {tripCards}
                     </Grid>
                 </Grid>

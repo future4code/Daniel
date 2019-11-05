@@ -4,19 +4,22 @@ import { Switch, Route } from "react-router-dom";
 import LoginPage from "../LoginPage";
 import HomePage from "../HomePage";
 import TripList from "../Trips/List";
+import TripDetail from "../Trips/Detail";
+
 export const routes = {
     root: "/",
     appForm: "/application-form",
     login: "/login",
     createTrip: "/trips/create",
     listTrip: "/trips/list",
-    detailTrip: "/trips/details"
+    detailTrip: "/trips/detail/:id"
 };
 
 function Router(props) {
     return (
         <ConnectedRouter history={props.history}>
             <Switch>
+                <Route path={routes.detailTrip} component={TripDetail} />
                 <Route path={routes.listTrip} component={TripList} />
                 <Route path={routes.login} component={LoginPage} />
                 <Route path={routes.root} component={HomePage} />
