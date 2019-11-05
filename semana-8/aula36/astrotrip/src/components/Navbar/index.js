@@ -16,9 +16,9 @@ function Navbar() {
                 Logo
             </Grid>
             <Grid item container xs justify="flex-end">
-                <StyledLink href="">Home</StyledLink>
-                <StyledLink href="">Viagens</StyledLink>
-                <StyledLink href="">Login</StyledLink>
+                <StyledLink href="/">Home</StyledLink>
+                <StyledLink href="/trips/list">Viagens</StyledLink>
+                <StyledLink href="/login">Login</StyledLink>
             </Grid>
         </StyledGrid>
     );
