@@ -6,7 +6,7 @@ import HomePage from "../HomePage";
 import TripList from "../Trips/List";
 import TripDetail from "../Trips/Detail";
 import AppForm from "../AppForm";
-
+import NewTripForm from "../NewTripForm";
 export const routes = {
     root: "/",
     appForm: "/application-form",
@@ -20,7 +20,7 @@ function Router(props) {
     return (
         <ConnectedRouter history={props.history}>
             <Switch>
-                
+                <Route path={routes.createTrip} component={NewTripForm} />
                 <Route path={routes.detailTrip} component={TripDetail} />
                 <Route path={routes.listTrip} component={TripList} />
                 <Route path={routes.login} component={LoginPage} />

@@ -23,7 +23,7 @@ const loginForm = [
         type: "text",
         label: "Nome",
         required: true,
-        pattern: "^[a-zA-Z]{3,}"
+        pattern: `[a-zA-Z\\s]{3,}`
     },
     {
         name: "age",

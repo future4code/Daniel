@@ -55,7 +55,7 @@ function TripsList(props) {
             <Grid item xs={6}>
                 <Navbar />
                 <Grid item>
-                    <Button size="small" color="primary">
+                    <Button size="small" color="primary" onClick={()=>{props.goNewTripForm()}}>
                         Criar Viagem
                     </Button>
                 </Grid>
@@ -76,6 +76,7 @@ function mapDispatchToProps(dispatch) {
     return {
         fetchTrips: () => dispatch(fetchAllTrips()),
         goDetail: () => dispatch(push(routes.detailTrip)),
+        goNewTripForm: () => dispatch(push(routes.createTrip)),
         setTripDetail: (tripId) => dispatch(push(`/trips/detail/${tripId}`))
     };
 }
