@@ -33,7 +33,7 @@ export default function TripCard(props) {
             </CardContent>
             <CardActions>
                 <Grid container justify="center">
-                    <Button size="small" color="primary">
+                    <Button size="small" color="primary" onClick={()=>{props.onClickForm()}}>
                         Inscrever
                     </Button>
                 </Grid>

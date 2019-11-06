@@ -9,6 +9,7 @@ import { connect } from "react-redux";
 import { push } from "connected-react-router";
 import { fetchTripDetail } from "../../../actions";
 import ListItem from "@material-ui/core/ListItem";
+
 const StyledGrid = styled(Grid)`
     width: 100vw;
     height: 100vh;

@@ -27,3 +27,15 @@ export const fetchTripDetail = id => async dispatch => {
     );
     dispatch(setTripDetailAction(response.data.trip));
 };
+
+export const postTripCandidate = (form) =>  async dispatch => {
+    const response = await axios.post(
+        `https://us-central1-missao-newton.cloudfunctions.net/futureX/${alunoParam}/trips/${form.tripId}/apply`,{
+            name: form.name,
+            profession: form.profession,
+            applicationText: form.applicationText,
+            age: form.age,
+            country: form.country
+        }
+    );
+}; 

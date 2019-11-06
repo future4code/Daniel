@@ -32,9 +32,13 @@ function HomePage(props) {
         fetchTrips();
     }, []);
 
+    const handleClickForm = () => {
+        props.goAppForm();
+    };
+    
     const tripCards = allTrips
         ? allTrips.map(el => {
-              return <TripCard trip={el} />;
+              return <TripCard trip={el} onClickForm={handleClickForm} />;
           })
         : "";
 
@@ -85,6 +89,7 @@ function mapDispatchToProps(dispatch) {
     return {
         goHome: () => dispatch(push(routes.root)),
         goLogin: () => dispatch(push(routes.login)),
+        goAppForm: () => dispatch(push(routes.appForm)),
         fetchTrips: () => dispatch(fetchAllTrips())
     };
 }
