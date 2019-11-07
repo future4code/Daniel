@@ -13,7 +13,6 @@ export const setTripDetailAction = tripDetail => ({
         tripDetail
     }
 });
-
 export const fetchAllTrips = () => async dispatch => {
     const response = await axios.get(
         `https://us-central1-missao-newton.cloudfunctions.net/futureX/${alunoParam}/trips`
@@ -22,33 +21,27 @@ export const fetchAllTrips = () => async dispatch => {
 };
 
 export const fetchTripDetail = id => async dispatch => {
+    const token = window.localStorage.getItem("token");
+    console.log(id);
     const response = await axios.get(
-        `https://us-central1-missao-newton.cloudfunctions.net/futureX/${alunoParam}/trip/${id}`
+        `https://us-central1-missao-newton.cloudfunctions.net/futureX/${alunoParam}/trip/${id}?=`,
+        {
+            headers: { auth: token }
+        }
     );
     dispatch(setTripDetailAction(response.data.trip));
 };
 
-export const postTripCandidate = (form) =>  async dispatch => {
-    const response = await axios.post(
-        `https://us-central1-missao-newton.cloudfunctions.net/futureX/${alunoParam}/trips/${form.tripId}/apply`,{
+export const postTripCandidate = form => async dispatch => {
+    console.log(form);
+    /*const response = await axios.post(
+        `https://us-central1-missao-newton.cloudfunctions.net/futureX/${alunoParam}/trips/${form.tripId}/apply`,
+        {
             name: form.name,
             profession: form.profession,
             applicationText: form.applicationText,
             age: form.age,
             country: form.country
         }
-    );
-}; 
-
-export const postNewTrip = (form) =>  async dispatch => {
-    const response = await axios.post(
-        `https://us-central1-missao-newton.cloudfunctions.net/futureX/${alunoParam}/trips`,{
-            name: form.name,
-            planet: form.planet,
-            date: form.date,
-            description: form.description,
-            durationInDays: form.durationInDays
-        }
-    );
-    console.log(response)
-}; 
+    );*/
+};
