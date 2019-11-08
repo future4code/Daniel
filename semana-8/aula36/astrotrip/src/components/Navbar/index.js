@@ -31,7 +31,7 @@ const styles = {
     }
 };
 function Navbar(props) {
-    const { classes,color } = props;
+    const { classes, color } = props;
     return (
         <AppBar position="static" className={classes[color]}>
             <Toolbar>
@@ -53,7 +53,7 @@ function Navbar(props) {
                     Home
                 </Button>
                 <Button color="inherit" onClick={props.onClickLogin}>
-                    Login
+                    Trips
                 </Button>
             </Toolbar>
         </AppBar>

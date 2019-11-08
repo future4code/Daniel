@@ -7,7 +7,7 @@ import { connect } from "react-redux";
 import { push } from "connected-react-router";
 import TextField from "@material-ui/core/TextField";
 import Typography from "@material-ui/core/Typography";
-import { fetchAllTrips } from "../../actions/trips";
+import { fetchAllTrips, postNewTrip } from "../../actions/trips";
 import Button from "@material-ui/core/Button";
 
 const StyledHeader = styled(Grid)`
@@ -52,7 +52,7 @@ class CreateTrip extends Component {
     };
     handleOnSubmit = event => {
         event.preventDefault();
-        console.log(this.state);
+        this.props.postNewTrip(this.state.form);
     };
     render() {
         return (
@@ -64,7 +64,7 @@ class CreateTrip extends Component {
                                 this.props.goHome();
                             }}
                             onClickLogin={() => {
-                                this.props.goLogin();
+                                this.props.goTrips();
                             }}
                             color="black"
                         />
@@ -203,8 +203,9 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
     return {
         goHome: () => dispatch(push(routes.root)),
-        goLogin: () => dispatch(push(routes.login)),
-        fetchTrips: () => dispatch(fetchAllTrips())
+        fetchTrips: () => dispatch(fetchAllTrips()),
+        goTrips: () => dispatch(push(routes.triplist)),
+        postNewTrip: (form) => dispatch(postNewTrip(form))
     };
 }
 export default connect(

@@ -2,21 +2,14 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { push } from "connected-react-router";
 import { routes } from "../Router";
-import { fetchTripDetail } from "../../actions/trips";
+import { fetchTripDetail, postDecideCandidate } from "../../actions/trips";
 import Grid from "@material-ui/core/Grid";
 import styled from "styled-components";
 import Navbar from "../../components/Navbar";
 import Typography from "@material-ui/core/Typography";
 import Paper from "@material-ui/core/Paper";
 import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemAvatar from "@material-ui/core/ListItemAvatar";
-import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
-import ListItemText from "@material-ui/core/ListItemText";
-import Avatar from "@material-ui/core/Avatar";
-import IconButton from "@material-ui/core/IconButton";
-import DeleteIcon from "@material-ui/icons/Delete";
-import WorldIcon from "@material-ui/icons/VpnLock";
+import TripDetailItem from "../../components/TripDetailItem";
 
 const StyledHeader = styled(Grid)`
     width: 100vw;
@@ -38,28 +31,21 @@ class DetailTrip extends Component {
             }
         }
     }
-
+    handleApprove = id => {
+        this.props.decideCandidate(id, true, this.props.tripDetail.id);
+    };
+    handleReprove = id => {
+        this.props.decideCandidate(id, false, this.props.tripDetail.id);
+    };
     render() {
         const candidatesListItem = this.props.tripDetail
-            ? this.props.tripDetail.candidates.map((el, i) => {
+            ? this.props.tripDetail.candidates.map(el => {
                   return (
-                      <ListItem
-                          button
-                          onClick={() => this.handleClickDetail(el.id)}
-                          key={i}
-                      >
-                          <ListItemAvatar>
-                              <Avatar>
-                                  <WorldIcon />
-                              </Avatar>
-                          </ListItemAvatar>
-                          <ListItemText primary={el.name} />
-                          <ListItemSecondaryAction>
-                              <IconButton aria-label="Delete">
-                                  <DeleteIcon />
-                              </IconButton>
-                          </ListItemSecondaryAction>
-                      </ListItem>
+                      <TripDetailItem
+                          candidate={el}
+                          onApprove={this.handleApprove}
+                          onReprove={this.handleReprove}
+                      />
                   );
               })
             : "";
@@ -72,7 +58,7 @@ class DetailTrip extends Component {
                                 this.props.goHome();
                             }}
                             onClickLogin={() => {
-                                this.props.goLogin();
+                                this.props.goTrips();
                             }}
                             color="black"
                         />
@@ -95,13 +81,36 @@ class DetailTrip extends Component {
                         <Paper>
                             <Typography>
                                 <ul>
-                                    <li>Nome: Tararal</li>
-                                    <li>Data: 10/10/2000</li>
-                                    <li>Duração: 222 dias</li>
-                                    <li>Planet: Marte</li>
                                     <li>
-                                        Descrição: Uma viagem bem legal, na
-                                        melhor época de marte
+                                        Nome: 
+                                        {this.props.tripDetail
+                                            ? this.props.tripDetail.name
+                                            : ""}
+                                    </li>
+                                    <li>
+                                        Data: 
+                                        {this.props.tripDetail
+                                            ? this.props.tripDetail.date
+                                            : ""}
+                                    </li>
+                                    <li>
+                                        Duração: 
+                                        {this.props.tripDetail
+                                            ? this.props.tripDetail
+                                                  .durationInDays
+                                            : ""}
+                                    </li>
+                                    <li>
+                                        Planet: 
+                                        {this.props.tripDetail
+                                            ? this.props.tripDetail.planet
+                                            : ""}
+                                    </li>
+                                    <li>
+                                        Descrição: 
+                                        {this.props.tripDetail
+                                            ? this.props.tripDetail.description
+                                            : ""}
                                     </li>
                                 </ul>
                             </Typography>
@@ -117,16 +126,17 @@ class DetailTrip extends Component {
 }
 function mapStateToProps(state) {
     return {
-        tripDetail: state.trips.tripDetail,
-        allTrips: state.trips.trips
+        tripDetail: state.trips.tripDetail
     };
 }
 function mapDispatchToProps(dispatch) {
     return {
-        goLogin: () => dispatch(push(routes.login)),
+        goTrips: () => dispatch(push(routes.triplist)),
         goHome: () => dispatch(push(routes.root)),
         goTripDetail: tripId => dispatch(push(`/trips/detail/${tripId}`)),
-        fetchTripDetail: id => dispatch(fetchTripDetail(id))
+        fetchTripDetail: id => dispatch(fetchTripDetail(id)),
+        decideCandidate: (id, app, tripId) =>
+            dispatch(postDecideCandidate(id, app, tripId))
     };
 }
 export default connect(

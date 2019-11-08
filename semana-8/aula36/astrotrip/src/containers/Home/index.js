@@ -7,7 +7,6 @@ import Button from "@material-ui/core/Button";
 import { routes } from "../Router";
 import { connect } from "react-redux";
 import { push } from "connected-react-router";
-//100% 0% 100% 0% / 0% 39% 61% 100%
 
 const StyledHeroBanner = styled(Grid)`
     width: 100vw;
@@ -18,8 +17,7 @@ const StyledHeroBanner = styled(Grid)`
         rgba(255, 152, 0, 1) 0%,
         rgba(207, 48, 48, 1) 100%
     );
-    border-radius: 0% 100% 0% 100% / 84% 0% 100% 16%   ;
-    
+    border-radius: 0% 100% 0% 100% / 84% 0% 100% 16%;
 `;
 const StyledCampaign = styled(Grid)`
     width: 100vw;
@@ -57,7 +55,7 @@ class Home extends Component {
                                 this.props.goHome();
                             }}
                             onClickLogin={() => {
-                                this.props.goLogin();
+                                this.props.goTrips();
                             }}
                             color="white"
                         />
@@ -89,7 +87,8 @@ function mapDispatchToProps(dispatch) {
     return {
         goHome: () => dispatch(push(routes.root)),
         goLogin: () => dispatch(push(routes.login)),
-        goAppform: () => dispatch(push(routes.appform))
+        goAppform: () => dispatch(push(routes.appform)),
+        goTrips: () => dispatch(push(routes.triplist))
     };
 }
 export default connect(

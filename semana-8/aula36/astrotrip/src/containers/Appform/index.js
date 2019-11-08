@@ -51,9 +51,9 @@ class AppForm extends Component {
     };
     handleOnSubmit = event => {
         event.preventDefault();
+        this.props.sendForm(this.state.form);
     };
     render() {
-        console.log(this.props.allTrips);
         const tripsOptions = this.props.allTrips
             ? this.props.allTrips.map(el => {
                   return <option value={el.id}>{el.name}</option>;
@@ -154,8 +154,6 @@ class AppForm extends Component {
                             <TextField
                                 id="outlined-applicationText"
                                 label="Motivo"
-                                multiline
-                                rowsMax="4"
                                 value={this.state.form["applicationText"]}
                                 onChange={this.handleChange("applicationText")}
                                 margin="normal"
