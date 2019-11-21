@@ -15,7 +15,7 @@ const StyledForm = styled.form`
 const StyledButton = styled(Button)`
     margin-bottom: 16px;
 `
-function SignupPage(props) {
+export function SignupPage(props) {
 
   const [form, setForm] = useState({})
 
@@ -100,7 +100,7 @@ function SignupPage(props) {
             onChange={handleInputChange("password")}
             value={form["password"]}
           />
-          <StyledButton variant="contained" color="primary" type="submit">
+          <StyledButton variant="contained" color="primary" type="submit" id="submit-button">
             Cadastrar
           </StyledButton>
         </StyledForm>
