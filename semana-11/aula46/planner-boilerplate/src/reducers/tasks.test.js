@@ -1,5 +1,5 @@
 import { tasks } from "./tasks"
-import { setTaskAction } from "../actions/expenses"
+import { setTaskAction } from "../actions/tasks"
 
 const mockTask = {
     id: "xyz",

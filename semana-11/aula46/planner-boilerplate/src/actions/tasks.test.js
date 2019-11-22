@@ -1,4 +1,4 @@
-import { setTaskAction, baseURL, fetchTasksAction } from './expenses';
+import { setTaskAction, baseURL, fetchTasksAction } from './tasks';
 import axios from "axios";
 
 const mockTasks =
