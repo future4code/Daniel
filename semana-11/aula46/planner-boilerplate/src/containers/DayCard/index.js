@@ -12,7 +12,11 @@ export class DayCard extends Component {
     }
 
     render() {
-        const taskList = this.props.tasks.map((el, i) => (<TaskItem text={el.text} key={i} />))
+        const { tasks } = this.props
+        let taskList = null;
+        if (tasks) {
+            taskList = tasks.map((el, i) => (<TaskItem text={el.text} key={i} />))
+        }
         return (
             <div>
                 <h3>{this.props.day}</h3>

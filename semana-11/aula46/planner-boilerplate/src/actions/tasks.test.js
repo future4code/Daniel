@@ -1,14 +1,19 @@
-import { setTaskAction, baseURL, fetchTasksAction } from './tasks';
+import { setTaskAction, baseURL, fetchTasksAction, postTaskAction } from './tasks';
 import axios from "axios";
 
 const mockTasks =
     [
         {
-            id: "jGH9xnVXQMeU3tZOQ2Gy",
             day: "Segunda",
             text: "Lavar a louça"
         }
-    ]
+    ];
+
+let mockDispatch;
+
+beforeEach(() => {
+    mockDispatch = jest.fn();
+});
 
 describe("setTaskAction", () => {
     test("return a correct object", () => {
@@ -29,8 +34,6 @@ describe("fetchTasksAction", () => {
             data: mockTasks
         }))
 
-        const mockDispatch = jest.fn();
-
         const expectedAction = {
             type: "SET_TASKS",
             payload: {
@@ -40,5 +43,21 @@ describe("fetchTasksAction", () => {
 
         await fetchTasksAction()(mockDispatch)
         expect(mockDispatch).toHaveBeenCalledWith(expectedAction)
-    })
+    });
+});
+
+describe("postTaskAction", () => {
+    test("post new task", async () => {
+        axios.post = jest.fn(() => ({
+            status: 200
+        }));
+
+
+        const { text, day } = mockTasks[0]
+
+        await postTaskAction(text, day)(mockDispatch);
+
+        expect(axios.post).toHaveBeenCalledWith(baseURL, mockTasks[0]);
+        expect(mockDispatch).toHaveBeenCalledTimes(1);
+    });
 })

@@ -1,14 +1,20 @@
 import React from "react";
 import { connect } from "react-redux";
 import DayCard from '../DayCard/index';
-import { fetchTasksAction } from '../../actions/tasks';
+import { fetchTasksAction, postTaskAction } from '../../actions/tasks';
+import NewTaskForm from "../../components/NewTaskForm";
 
 
 export class Planner extends React.Component {
+
   componentDidMount() {
-    this.props.fetchTasksAction();
+    this.props.fetchTasks();
   }
 
+  createNewTask = (formObject) => {
+    const { day, text } = formObject;
+    this.props.postTask(text,day);
+  }
   render() {
     const { allTasks } = this.props
     let allDays = [
@@ -17,22 +23,25 @@ export class Planner extends React.Component {
       { day: "Sexta", tasks: [] }, { day: "Sábado", tasks: [] },
       { day: "Domingo", tasks: [] }
     ];
-    if (allTasks) {
-      allDays = allDays.map(element => ({ day: element.day, tasks: allTasks.filter(task => task.day === element.day) }))
-      allDays = allDays.map((element, i) => (<DayCard key={i} day={element.day} tasks={element.tasks} />))
-    }
-    else { allDays = allDays.map((el, i) => (<DayCard key={i} day={el.day} />)) }
+    allDays = allDays.map(element => ({ day: element.day, tasks: allTasks.filter(task => task.day === element.day) }))
+    allDays = allDays.map((element, i) => (<DayCard key={i} day={element.day} tasks={element.tasks} />))
 
-
-    return <section>{allDays}</section>;
+    return (
+      <section>
+        <NewTaskForm createTask={this.createNewTask} />
+        {allDays}
+      </section>
+    );
   }
 }
 const mapStateToProps = state => ({
-  allTasks: state.tasks.alltasks
+  allTasks: state.tasks.allTasks
 });
 
 const mapDispatchToProps = dispatch => ({
-  fetchTasksAction: () => dispatch(fetchTasksAction())
+  fetchTasks: () => dispatch(fetchTasksAction()),
+  postTask: (text,day) => dispatch(postTaskAction(text,day))
+  
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Planner);

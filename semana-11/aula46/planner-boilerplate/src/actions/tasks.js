@@ -10,6 +10,15 @@ export const setTaskAction = (tasks) => ({
 })
 
 export const fetchTasksAction = () => async (dispatch) => {
-    const response = axios.get(baseURL);
+    const response = await axios.get(baseURL);
     dispatch(setTaskAction(response.data))
 }
+
+export const postTaskAction = (text, day) => async dispatch => {
+    const task = { text, day };
+    const response = await axios.post(baseURL, task);
+
+    if (response.status === 200) {
+        dispatch(fetchTasksAction());
+    }
+};

@@ -1,11 +1,11 @@
 const initialState = {
-    alltasks: []
+    allTasks: []
 }
 
 export const tasks = (state = initialState,action) => {
     switch(action.type){
         case "SET_TASKS":
-            return {...state, alltasks: action.payload.tasks}
+            return {...state, allTasks: action.payload.tasks}
         default:
             return state
     }

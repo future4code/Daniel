@@ -10,5 +10,9 @@ describe("DayCard", () => {
         const taskItem = component.find(TaskItem)
 
         expect(taskItem).toHaveLength(1)
-    })
+    });
+    test("handle undefined props", () => {
+
+       expect(() => shallow(<DayCard day="Segunda"/>)).not.toThrow();
+    });
 })
