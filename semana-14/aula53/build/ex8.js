@@ -1,10 +1,10 @@
-function fatorial(number: number): number {
+function fatorial(number) {
     let result = number === 0 ? 1 : number;
     while (number > 1) {
-        number--
+        number--;
         result = result * number;
     }
     return result;
 }
-
-console.log(fatorial(3))
+console.log(fatorial(3));
+//# sourceMappingURL=ex8.js.map

@@ -11,7 +11,8 @@
     "ex3": "tsc && node build/ex3.js --target es6",
     "ex6": "tsc && node build/ex6.js --target es6",
     "ex7": "tsc && node build/ex7.js --target es6",
-    "ex8": "tsc && node build/ex8.js --target es6"
+    "ex8": "tsc && node build/ex8.js --target es6",
+    "ex9": "tsc && node build/ex9.js --target es6"
   },
   "author": "",
   "license": "ISC",
