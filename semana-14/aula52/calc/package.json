@@ -1,0 +1,16 @@
+{
+  "name": "calc-cli",
+  "version": "0.0.1",
+  "description": "A simple calc using cli.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "keywords": [
+    "calc",
+    "cli"
+  ],
+  "author": "Daniel Almeida",
+  "license": "ISC"
+}
