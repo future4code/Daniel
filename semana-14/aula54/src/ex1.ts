@@ -1,13 +1,13 @@
 import { readFileSync } from "fs";
 
 const fs = require('fs');
-const pathDir = "/home/dnn/Projetos/Daniel/semana-14/aula54/textos/";
+const pathDir = __dirname + "/../textos/";
 
 const readOneFileAsync = (file: string, pathDir: string) => {
     return new Promise((resolve, reject) => {
         fs.readFile(`${pathDir}${file}`, 'utf8', (err: Error, data: Buffer[]) => {
             if (err) {
-                console.log("Não foi possível encontrar os arquivos");
+                console.log("Não foi possível encontrar o arquivo.");
                 reject(err);
                 return;
             }
@@ -20,7 +20,7 @@ const readAllFiles = (path: string) => {
     return new Promise((resolve, reject) => {
         fs.readdir(pathDir, 'utf8', function (err: Error, files: string[]) {
             if (err) {
-                console.log("Não foi possível encontrar os arquivos");
+                console.log("Não foi possível encontrar os arquivos na pasta.");
                 reject(err);
                 return;
             }

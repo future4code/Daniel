@@ -1,12 +1,12 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const fs = require('fs');
-const pathDir = "/home/dnn/Projetos/Daniel/semana-14/aula54/textos/";
+const pathDir = __dirname + "/../textos/";
 const readOneFileAsync = (file, pathDir) => {
     return new Promise((resolve, reject) => {
         fs.readFile(`${pathDir}${file}`, 'utf8', (err, data) => {
             if (err) {
-                console.log("Não foi possível encontrar os arquivos");
+                console.log("Não foi possível encontrar o arquivo.");
                 reject(err);
                 return;
             }
@@ -18,7 +18,7 @@ const readAllFiles = (path) => {
     return new Promise((resolve, reject) => {
         fs.readdir(pathDir, 'utf8', function (err, files) {
             if (err) {
-                console.log("Não foi possível encontrar os arquivos");
+                console.log("Não foi possível encontrar os arquivos na pasta.");
                 reject(err);
                 return;
             }
