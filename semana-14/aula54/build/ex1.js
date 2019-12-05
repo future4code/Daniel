@@ -1,39 +1,45 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const fs = require('fs');
-const pathDir = __dirname + "/../textos/";
-const readOneFileAsync = (file, pathDir) => {
-    return new Promise((resolve, reject) => {
-        fs.readFile(`${pathDir}${file}`, 'utf8', (err, data) => {
-            if (err) {
-                console.log("Não foi possível encontrar o arquivo.");
-                reject(err);
-                return;
-            }
-            resolve(data.toString());
-        });
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-const readAllFiles = (path) => {
+const fs = require('fs');
+const pathDir = ("./textos/");
+const readAllFilenames = (path) => {
     return new Promise((resolve, reject) => {
-        fs.readdir(pathDir, 'utf8', function (err, files) {
+        fs.readdir(path, 'utf8', function (err, files) {
             if (err) {
                 console.log("Não foi possível encontrar os arquivos na pasta.");
                 reject(err);
-                return;
             }
-            resolve(files);
+            else {
+                resolve(files);
+            }
         });
     });
 };
-const allFiles = readAllFiles(pathDir);
-allFiles.then((resolve) => {
-    const text = resolve.map(file => readOneFileAsync(file, pathDir));
-    const allTexts = Promise.all(text);
-    allTexts.then((values) => {
-        console.log(values.join(''));
+const readFile = (path, file) => {
+    return new Promise((resolve, reject) => {
+        fs.readFile(`${pathDir}${file}`, 'utf8', (err, data) => {
+            if (err) {
+                console.error("Não foi possível encontrar o arquivo.");
+                reject(err);
+            }
+            else {
+                resolve(data.toString());
+            }
+        });
     });
-}, (reject) => {
-    console.log(reject);
+};
+const concatAllTextFromFiles = (path) => __awaiter(this, void 0, void 0, function* () {
+    const allFiles = yield readAllFilenames(path);
+    const allPromises = allFiles.map(file => readFile(path, file));
+    const allText = yield Promise.all(allPromises);
+    console.log(allText.join(''));
 });
+concatAllTextFromFiles(pathDir);
 //# sourceMappingURL=ex1.js.map
