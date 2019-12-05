@@ -29,9 +29,9 @@ const readFile = (path: string, file: string) => {
 }
 
 const concatAllTextFromFiles = async (path: string) => {
-    const allFiles = await readAllFilenames(path);
-    const allPromises = allFiles.map(file => readFile(path, file));
-    const allText = await Promise.all(allPromises);
+    const allFiles:string[] = await readAllFilenames(path);
+    const allPromises:Promise<string>[] = allFiles.map(file => readFile(path, file));
+    const allText:string[] = await Promise.all(allPromises);
     console.log(allText.join(''))
 }
 
