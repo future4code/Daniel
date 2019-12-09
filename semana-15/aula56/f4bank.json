@@ -1,0 +1,16 @@
+[
+  {
+    "balance": 1,
+    "transactions": [],
+    "name": "dan",
+    "cpf": "12",
+    "age": 20
+  },
+  {
+    "balance": 0,
+    "transactions": [],
+    "name": "a",
+    "cpf": "1",
+    "age": 20
+  }
+]
