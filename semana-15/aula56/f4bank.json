@@ -7,10 +7,39 @@
     "age": 20
   },
   {
-    "balance": 0,
-    "transactions": [],
+    "balance": 60,
+    "transactions": [
+      {
+        "cpf": "1",
+        "value": 5,
+        "description": "teste"
+      },
+      {
+        "cpf": "1",
+        "value": 5,
+        "description": "teste"
+      },
+      {
+        "cpf": "1",
+        "value": 50
+      }
+    ],
     "name": "a",
     "cpf": "1",
     "age": 20
+  },
+  {
+    "balance": 0,
+    "transactions": [],
+    "name": "teste",
+    "cpf": "3",
+    "age": 20
+  },
+  {
+    "balance": 0,
+    "transactions": [],
+    "name": "Raffa Morreira",
+    "cpf": "7777",
+    "age": 32
   }
 ]
