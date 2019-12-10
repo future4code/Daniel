@@ -10,7 +10,7 @@ export class Cashier extends Employee {
     }
 
     public calculateBill(receipt: Dish[]): number {
-        const mappedPrices: number[] = receipt.map((dish: Dish) => { return dish.getPrice(); });
+        const mappedPrices: number[] = receipt.map((dish: Dish): number => { return dish.getPrice(); });
         const bill: number = mappedPrices.reduce((a, b): number => {
             return a + b;
         });
