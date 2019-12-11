@@ -14,6 +14,6 @@ export class ResidentialClient extends Residence implements Client{
     }
 
     public calculateBill():number{
-        return this.consumedEnergy * 0,75;
+        return this.consumedEnergy * 0.75;
     }
 }

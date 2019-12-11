@@ -14,6 +14,6 @@ export class CommercialClient extends Trade implements Client{
     }
 
     public calculateBill():number{
-        return this.consumedEnergy * 0,53;
+        return this.consumedEnergy * 0.53;
     }
 }
