@@ -24,6 +24,5 @@ export class PostJSONFileManager extends JSONFileManager {
         }
         allPosts.push(objectToSave);
         this.writeObjetcToFile(allPosts);
-
     }
 }
