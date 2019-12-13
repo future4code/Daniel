@@ -1,0 +1,47 @@
+[
+    {
+        "startDate": "01/01/2019",
+        "finishDate": "02/06/2019",
+        "teacherList": [
+            {
+                "name": "AstroDev",
+                "birthDate": "30/09/1992",
+                "email": "dan@live.com",
+                "specialty": [
+                    "HTML",
+                    "CSS",
+                    "JS"
+                ]
+            },
+            {
+                "name": "Soter",
+                "birthDate": "01/10/2019",
+                "email": "student@live.com",
+                "specialty": [
+                    "HTML",
+                    "CSS",
+                    "JS",
+                    "React",
+                    "Orientação a Objetos.",
+                    "Readux",
+                    "Back"
+                ]
+            }
+        ],
+        "studentList": [
+            {
+                "name": "Daniel",
+                "birthDate": "30/09/1992",
+                "email": "dan@live.com",
+                "mission": "Newton"
+            },
+            {
+                "name": "AstroStudent",
+                "birthDate": "01/10/2019",
+                "email": "student@live.com",
+                "mission": "Newton"
+            }
+        ],
+        "name": "Newton"
+    }
+]
