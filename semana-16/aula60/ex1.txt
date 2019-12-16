@@ -1,6 +1,6 @@
 SELECT nome,salario FROM funcionarios f WHERE salario > 2000 and genero = "F";
 
-SELECT nome,data_contratacao FROM funcionarios f WHERE year(data_contratacao) >= 2004;
+SELECT nome,data_contratacao FROM funcionarios f WHERE local_de_trabalho= "salao" AND year(data_contratacao) >= 2004;
 
 SELECT nome,data_nascimento FROM funcionarios f WHERE nome LIKE "%ei%";
 
