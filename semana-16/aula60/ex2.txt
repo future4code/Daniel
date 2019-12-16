@@ -1,0 +1,21 @@
+USE daniel;
+
+CREATE TABLE correntistas(
+	id int(11) PRIMARY KEY,
+	primeiro_nome varchar(50),
+	ultimo_nome varchar(50),
+	email varchar(50),
+	genero varchar(50),
+	conta_corrente double NOT NULL,
+	pais varchar(50),
+	aniversario date
+);
+
+INSERT INTO correntistas (id,primeiro_nome,ultimo_nome,email,genero,conta_corrente,pais,aniversario) 
+VALUES (1,"Rick","Sanchez","picklerick@c137.com","M",1000000,"USA","1949-01-30"),
+(2,"Morty","Smith","evilmorty@c132.com","M",-1000000,"USA","2005-02-15"),
+(3,"Walter","White","eisenberg@bluesky.com","M",100000000,"USA","1969-03-04"),
+(4,"Skyler","White","felina@abq.com","F",100000000,"USA","1980-05-06"),
+(5,"Leona","Heidern","ikariteam@kof.com","F",0,"Brazil","1993-07-08");
+
+select * from correntistas c;
