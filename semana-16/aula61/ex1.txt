@@ -1,0 +1,17 @@
+
+-- Os 5 funcionários com maior salário.
+select nome,salario from funcionarios f order by salario desc limit 5;
+
+-- A média salarial para cada local de trabalho
+select local_de_trabalho, truncate(avg(salario),2) as media_salarial 
+from funcionarios f 
+group by local_de_trabalho;
+
+-- A quantidade de funcionários de cada gênero por local de trabalho.
+select local_de_trabalho, genero, count(*) as quantidade 
+from funcionarios f 
+group by local_de_trabalho, genero 
+order by local_de_trabalho, genero,quantidade;
+
+-- Os 10 funcionários mais antigos (contratados há mais tempo). 
+select * from funcionarios f order by data_contratacao asc limit 10;
