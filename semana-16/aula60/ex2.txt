@@ -1,3 +1,11 @@
+select CONCAT_WS(" ",primeiro_nome,ultimo_nome),email from correntistas c where conta_corrente < 0
+
+select CONCAT_WS(" ",primeiro_nome,ultimo_nome),genero from correntistas c where pais="Peru" or year(aniversario) < 1990
+
+select ultimo_nome from correntistas c where primeiro_nome like "a%"
+
+select CONCAT_WS(" ",primeiro_nome,ultimo_nome),aniversario from correntistas c where year(aniversario) > 2000 and conta_corrente > 1000
+
 USE daniel;
 
 CREATE TABLE correntistas(
