@@ -1,0 +1,50 @@
+create table autores(
+	id int,
+	primeiro_nome varchar(255),
+	ultimo_nome varchar(255),
+	nacionalidade varchar(255),
+	primary key (id)
+);
+
+create table editora(
+	id int,
+	nome varchar(255),
+	cidade varchar(255),
+	data_fundacao date,
+	primary key (id)
+);
+
+create table usuarios(
+	id int,
+	primeiro_nome varchar(255),
+	ultimo_nome varchar(255),
+	nacionalidade varchar(255),
+	data_nascimento date,
+	primary key (id)
+);
+
+create table livros(
+	id int auto_increment,
+	titulo varchar(255),
+	autor_id int,
+	editora_id int,
+	ano date,
+	primary key (id),
+	foreign key (autor_id) references autores(id),
+	foreign key (editora_id) references editora(id)
+);
+
+
+ALTER TABLE autores MODIFY COLUMN id INT auto_increment;
+
+ALTER TABLE editora MODIFY COLUMN id INT auto_increment;
+
+ALTER TABLE usuarios MODIFY COLUMN id INT auto_increment;
+
+create table usuario_livros(
+	usuario_id int,
+	livro_id int,
+	primary key (usuario_id,livro_id),
+	foreign key (usuario_id) references usuarios(id),
+	foreign key (livro_id) references livros(id)
+);
