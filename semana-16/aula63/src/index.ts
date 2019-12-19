@@ -15,7 +15,7 @@ const connection = knex({
   }
 });
 
-app.post('/createuser', async (req: Request, res: Response) => {
+app.post('/createUser', async (req: Request, res: Response) => {
   const newUser = { ...req.body };
   try {
     const query = connection('users').insert(newUser);
@@ -26,6 +26,18 @@ app.post('/createuser', async (req: Request, res: Response) => {
   }
   res.status(200).end();
 });
+
+app.put('/editNickname/:id', async (req: Request, res: Response) => {
+  const newNickname = req.body.nickname;
+  try {
+    const query = connection('users').where('id', '=', req.params.id).update({nickname: newNickname});
+    const result = await query;
+  } catch (err) {
+    console.log(err);
+    res.status(500).end();
+  }
+  res.status(200).end();
+})
 
 // Trecho do código responsável por inicializar todas as APIs
 const server = app.listen(process.env.PORT || 3000, () => {
