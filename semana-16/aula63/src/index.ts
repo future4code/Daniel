@@ -4,13 +4,13 @@ import knex from 'knex';
 
 const app = express();
 app.use(express.json()); // Linha mágica (middleware)
-
+// 0b741a51df3eb52305629b5c97960c31
 const connection = knex({
   client: 'mysql',
   connection: {
     host: 'ec2-18-229-236-15.sa-east-1.compute.amazonaws.com',
     user: 'daniel',
-    password: '0b741a51df3eb52305629b5c97960c31',
+    password: process.env.SENHA_BANCO,
     database: 'daniel'
   }
 });
@@ -22,33 +22,62 @@ app.post('/createUser', async (req: Request, res: Response) => {
     const result = await query;
   } catch (err) {
     console.log(err);
-    res.status(500).end();
+    res.sendStatus(500).end();
   }
-  res.status(200).end();
+  res.sendStatus(200).end();
 });
 
 app.put('/editNickname/:id', async (req: Request, res: Response) => {
   const newNickname = req.body.nickname;
   try {
-    const query = connection('users').where('id', '=', req.params.id).update({nickname: newNickname});
+    const query = connection('users').where('id', '=', req.params.id).update({ nickname: newNickname });
     const result = await query;
   } catch (err) {
     console.log(err);
-    res.status(500).end();
+    res.sendStatus(500).end();
   }
-  res.status(200).end();
+  res.sendStatus(200).end();
 });
 
-app.delete('/deleteUser/:id', async (req: Request, res: Response)=>{
-  try{
-    const query = connection('users').where('id','=',req.params.id).del();
+app.delete('/deleteUser/:id', async (req: Request, res: Response) => {
+  try {
+    const query = connection('users').where('id', '=', req.params.id).del();
     const result = await query;
-  }catch(err){
+  } catch (err) {
     console.log(err);
-    res.status(500).end();
+    res.sendStatus(500).end();
   }
-  res.status(200).end();
+  res.sendStatus(200).end();
 });
+
+app.get('/user/', async (req: Request, res: Response) => {
+  const name = req.query.name;
+  const id = req.query.id;
+  if (id || name) {
+    if (id) {
+      try {
+        const query = connection('users').select().where('id', '=', id);
+        const result = await query;
+        res.send(result[0]);
+      } catch (err) {
+        console.log(err);
+        res.sendStatus(500).end();
+      }
+    }
+    else{
+      try {
+        const query = connection('users').select().where('name', '=', name);
+        const result = await query;
+        console.log(result);
+        res.send(result[0]);
+      } catch (err) {
+        console.log(err);
+        res.sendStatus(500).end();
+      }
+    }
+  }
+  res.sendStatus(400).end();
+})
 
 // Trecho do código responsável por inicializar todas as APIs
 const server = app.listen(process.env.PORT || 3000, () => {
