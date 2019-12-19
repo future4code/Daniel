@@ -37,7 +37,18 @@ app.put('/editNickname/:id', async (req: Request, res: Response) => {
     res.status(500).end();
   }
   res.status(200).end();
-})
+});
+
+app.delete('/deleteUser/:id', async (req: Request, res: Response)=>{
+  try{
+    const query = connection('users').where('id','=',req.params.id).del();
+    const result = await query;
+  }catch(err){
+    console.log(err);
+    res.status(500).end();
+  }
+  res.status(200).end();
+});
 
 // Trecho do código responsável por inicializar todas as APIs
 const server = app.listen(process.env.PORT || 3000, () => {
