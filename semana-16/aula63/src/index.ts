@@ -31,7 +31,7 @@ app.put('/editNickname/:id', async (req: Request, res: Response) => {
   const newNickname = req.body.nickname;
   try {
     const query = connection('users').where('id', '=', req.params.id).update({ nickname: newNickname });
-    const result = await query;
+    await query;
   } catch (err) {
     console.log(err);
     res.sendStatus(500).end();
@@ -42,9 +42,8 @@ app.put('/editNickname/:id', async (req: Request, res: Response) => {
 app.delete('/deleteUser/:id', async (req: Request, res: Response) => {
   try {
     const query = connection('users').where('id', '=', req.params.id).del();
-    const result = await query;
+    await query;
   } catch (err) {
-    console.log(err);
     res.sendStatus(500).end();
   }
   res.sendStatus(200).end();
@@ -68,7 +67,6 @@ app.get('/user/', async (req: Request, res: Response) => {
       try {
         const query = connection('users').select().where('name', '=', name);
         const result = await query;
-        console.log(result);
         res.send(result[0]);
       } catch (err) {
         console.log(err);
@@ -82,7 +80,6 @@ app.get('/user/', async (req: Request, res: Response) => {
 app.get('/allUsers/', async (req: Request, res: Response) => {
   const order = req.query.order ? `order by name` : ``;
   const age = req.query.age ? `where year(CURDATE()) - year(birthdate) = ${req.query.age}` : ``;
-  console.log(req.query);
   try {
     const query = connection.raw(`SELECT * FROM users ${age} ${order}`);
     const result = await query;
@@ -98,8 +95,7 @@ app.post('/createTask', async (req: Request, res: Response) => {
   const newTask = { ...req.body };
   try {
     const query = connection('tasks').insert(newTask);
-    const result = await query;
-    console.log(result);
+    await query;
   } catch (err) {
     console.log(err);
     res.sendStatus(500).end();
@@ -111,8 +107,7 @@ app.put('/editTask/:id', async (req: Request, res: Response) => {
   const newDate = req.body.deadline;
   try {
     const query = connection('tasks').where('id', '=', req.params.id).update({ description: newDesc, deadline: newDate });
-    const result = await query;
-    console.log(result);
+    await query;
   } catch (err) {
     console.log(err);
     res.sendStatus(500).end();
@@ -124,8 +119,7 @@ app.post('/addAssignee', async (req: Request, res: Response) => {
   const task_assignee = req.body.task_assignee;
   try {
     const query = connection('tasks_assignees').insert({ task_id, task_assignee });
-    const result = await query;
-    console.log(result);
+    await query;
   } catch (err) {
     console.log(err);
     res.sendStatus(500).end();
@@ -137,8 +131,7 @@ app.delete('/removeAssignee', async (req: Request, res: Response) => {
   const task_assignee = req.body.task_assignee;
   try {
     const query = connection('tasks_assignees').where('task_id', '=', task_id).andWhere('task_assignee', '=', task_assignee).del();
-    const result = await query;
-    console.log(result);
+    await query;
   } catch (err) {
     console.log(err);
     res.sendStatus(500).end();
@@ -226,7 +219,6 @@ app.get('/allTasks/', async (req: Request, res: Response) => {
       orderQuery = ``;
       break;
   }
-  console.log(date);
   try {
     const tasks = connection.raw(`
     SELECT t.id, t.description, t.deadline, u.id as owner_id, u.name as owner_name, u.nickname as owner_nickname, null as assignees 
