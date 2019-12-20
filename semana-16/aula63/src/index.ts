@@ -211,6 +211,53 @@ app.get('/allTasksByAssignee/:id', async (req: Request, res: Response) => {
   }
 });
 
+app.get('/allTasks/', async (req: Request, res: Response) => {
+  const date = req.query.date ? `WHERE t.deadline=${req.query.date}` : ``;
+  const order = req.query.order;
+  let orderQuery;
+  switch(order){
+    case "name":
+      orderQuery = `order by name`;
+      break;
+    case "date":
+      orderQuery = `order by deadline desc`;
+      break;
+    default:
+      orderQuery = ``;
+      break;
+  }
+  console.log(date);
+  try {
+    const tasks = connection.raw(`
+    SELECT t.id, t.description, t.deadline, u.id as owner_id, u.name as owner_name, u.nickname as owner_nickname, null as assignees 
+    FROM tasks t
+    JOIN users u ON u.id = t.task_owner
+    ${date}
+    ${orderQuery}`);
+    const tasksResult = await tasks;
+
+    const assignees = connection.raw(`
+    SELECT t.id as task_id,ta.task_assignee as assignee_id,u.name as assignee_name
+    FROM tasks t
+    JOIN users task_owner ON task_owner.id = t.task_owner
+    JOIN tasks_assignees ta ON ta.task_id = t.id
+    JOIN users u ON u.id = ta.task_assignee
+    ${date}
+    ${orderQuery}`);
+    const assigneeResult = await assignees;
+
+    const allAssignees = [...assigneeResult[0]];
+    const allTasks = [...tasksResult[0]].map(task => {
+      const assigneeList = allAssignees.filter(assignee => assignee.task_id == task.id);
+      return { ...task, assignees: assigneeList }
+    });
+
+    res.send(allTasks);
+  } catch (err) {
+    console.log(err);
+    res.sendStatus(500).end();
+  }
+});
 // Trecho do código responsável por inicializar todas as APIs
 const server = app.listen(process.env.PORT || 3000, () => {
   if (server) {
