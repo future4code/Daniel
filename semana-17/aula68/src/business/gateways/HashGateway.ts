@@ -1,3 +1,4 @@
-export interface HashGateway{
-    generateHash(word: string): Promise<string>;
+export interface HashGateway {
+    generate(word: string): Promise<string>;
+    compare(userHash: string, dbHash: string): boolean;
 }

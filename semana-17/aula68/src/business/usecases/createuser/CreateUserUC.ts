@@ -4,11 +4,11 @@ import { HashGateway } from '../../gateways/HashGateway';
 import { User } from '../../entities/User';
 
 export class CreateUserUC {
-    constructor(private database: UserDataGateway, private hashGenerator: HashGateway) { }
+    constructor(private database: UserDataGateway, private hash: HashGateway) { }
 
     async execute(input: CreateUserInput): Promise<boolean> {
         const id = generateRandomId();
-        const password = await this.hashGenerator.generateHash(input.password);
+        const password = await this.hash.generate(input.password);
         const user = new User(id, input.email, password);
         try {
             await this.database.insertUser(user);
