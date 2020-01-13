@@ -11,17 +11,11 @@ export class AuthUserUC {
     ) { }
 
     async execute(email: string, password: string): Promise<string> {
-        let user: User;
-        let token: string;
-        try {
-            user = await this.database.getUser(email, password);
-            if (!this.hash.compare(password, user.getPassword())) {
-                return "";
-            }
-        } catch (err) {
-            console.log(err)
+        const user = await this.database.getUser(email);
+        if (!this.hash.compare(password, user.getPassword())) {
+            return "";
         }
-        token = this.jwt.sign(user.getId(), "", { expiresIn: "1h" });
+        const token = this.jwt.sign(user.getId(), "teste", "1h");
         return token;
     }
 }

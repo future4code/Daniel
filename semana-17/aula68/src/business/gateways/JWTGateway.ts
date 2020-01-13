@@ -1,7 +1,3 @@
 export interface JWTGateway {
-    sign(id: string,
-        secretKey: string,
-        config: {
-            expiresIn: string
-        }): string;
+    sign(id: string,secretKey: string,expiresIn: string): string;
 }

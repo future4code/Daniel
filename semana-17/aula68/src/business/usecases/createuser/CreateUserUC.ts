@@ -6,17 +6,11 @@ import { User } from '../../entities/User';
 export class CreateUserUC {
     constructor(private database: UserDataGateway, private hash: HashGateway) { }
 
-    async execute(input: CreateUserInput): Promise<boolean> {
+    async execute(input: CreateUserInput): Promise<void> {
         const id = generateRandomId();
         const password = await this.hash.generate(input.password);
         const user = new User(id, input.email, password);
-        try {
-            await this.database.insertUser(user);
-        } catch (err) {
-            console.log(err);
-            return false;
-        }
-        return true
+        await this.database.insertUser(user);
     }
 }
 
