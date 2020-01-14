@@ -1,13 +1,14 @@
 import { generateRandomId } from '../../utils/generateRandomId';
-import { UserDataGateway } from '../../gateways/UserDataGateway';
+import { UserGateway } from '../../gateways/UserGateway';
 import { HashGateway } from '../../gateways/HashGateway';
 import { User } from '../../entities/User';
+import { IdGeneratorGateway } from '../../gateways/IdGeneratorGateway';
 
 export class CreateUserUC {
-    constructor(private database: UserDataGateway, private hash: HashGateway) { }
+    constructor(private database: UserGateway, private hash: HashGateway, private idGenerator:IdGeneratorGateway) { }
 
     async execute(input: CreateUserInput): Promise<void> {
-        const id = generateRandomId();
+        const id = this.idGenerator.generate();
         const password = await this.hash.generate(input.password);
         const user = new User(id, input.email, password);
         await this.database.insertUser(user);

@@ -1,4 +1,4 @@
 export interface HashGateway {
     generate(word: string): Promise<string>;
-    compare(userHash: string, dbHash: string): boolean;
+    compare(userHash: string, dbHash: string): Promise<boolean>;
 }

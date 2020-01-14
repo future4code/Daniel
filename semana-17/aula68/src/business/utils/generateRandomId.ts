@@ -1,5 +1,8 @@
-import {v4} from 'uuid'
+import { v4 } from 'uuid'
+import { IdGeneratorGateway } from '../gateways/IdGeneratorGateway';
 
-export function generateRandomId() {
-  return v4()
+export class generateRandomId implements IdGeneratorGateway {
+  generate() {
+    return v4()
+  }
 }

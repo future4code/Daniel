@@ -1,21 +1,21 @@
-import { UserDataGateway } from '../../gateways/UserDataGateway';
-import { JWTGateway } from '../../gateways/JWTGateway';
+import { UserGateway } from '../../gateways/UserGateway';
+import { AuthGateway } from '../../gateways/AuthGateway';
 import { HashGateway } from '../../gateways/HashGateway';
-import { User } from '../../entities/User';
 
 export class AuthUserUC {
     constructor(
-        private database: UserDataGateway,
-        private jwt: JWTGateway,
+        private database: UserGateway,
+        private auth: AuthGateway,
         private hash: HashGateway
     ) { }
 
     async execute(email: string, password: string): Promise<string> {
-        const user = await this.database.getUser(email);
-        if (!this.hash.compare(password, user.getPassword())) {
-            return "";
+        const user = await this.database.getUserByEmail(email);
+        const isPasswordValid = await this.hash.compare(password, user.getPassword());
+        if (!isPasswordValid) {
+            throw new Error("Email ou senha inválidos!")
         }
-        const token = this.jwt.sign(user.getId(), "teste", "1h");
+        const token = this.auth.sign(user.getId());
         return token;
     }
 }

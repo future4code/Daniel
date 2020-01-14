@@ -1,6 +1,6 @@
 import { User } from "../entities/User";
 
-export interface UserDataGateway {
+export interface UserGateway {
     insertUser(user: User): Promise<void>;
-    getUser(email: string): Promise<User>;
+    getUserByEmail(email: string): Promise<User>;
 }

@@ -1,10 +1,16 @@
-import { JWTGateway } from '../business/gateways/JWTGateway';
+import { AuthGateway } from '../business/gateways/AuthGateway';
 import * as jwt from 'jsonwebtoken'
 
-export class JWTService implements JWTGateway {
-    sign(id: string, secretKey: string, expiresIn: string): string {
-        return jwt.sign(id, secretKey, {
-            expiresIn: expiresIn
+export class JWTService implements AuthGateway {
+    private getSecretKey(): string {
+        if (!process.env.SECRET_KEY) {
+            throw new Error("Não existe chave JWT")
+        }
+        return process.env.SECRET_KEY
+    }
+    sign(id: string): string {
+        return jwt.sign({ id }, this.getSecretKey(), {
+            expiresIn: "1h"
         })
     }
 

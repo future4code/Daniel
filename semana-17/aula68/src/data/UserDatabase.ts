@@ -1,8 +1,8 @@
 import knex from 'knex'
-import { UserDataGateway } from '../business/gateways/UserDataGateway';
+import { UserGateway } from '../business/gateways/UserGateway';
 import { User } from '../business/entities/User';
 
-export class UserDatabase implements UserDataGateway {
+export class UserDatabase implements UserGateway {
     private connection: knex;
 
     constructor() {
@@ -18,21 +18,27 @@ export class UserDatabase implements UserDataGateway {
     }
 
     async insertUser(user: User) {
+        try{
         await this.connection('food_users').insert(
             {
                 id: user.getId(),
                 email: user.getEmail(),
                 userPassword: user.getPassword()
             }
-        )
-        return;
+        );
+        }catch(err){
+            if(err.errno === 1062){
+                throw new Error("Email já está cadastrado!");
+            }
+            throw new Error("Não foi possível criar o usuário.");
+        }
     }
 
-    async getUser(email: string): Promise<User> {
+    async getUserByEmail(email: string): Promise<User> {
         const result = await this.connection.raw(`
-        SELECT * FROM food_users WHERE email = ${email};
+        SELECT * FROM food_users WHERE email = "${email}";
         `);
-        console.log("\n\n", result);
-        throw new Error("Method not implemented.");
+        const user = result[0][0];
+        return new User(user.id, user.email, user.userPassword);
     }
 }
