@@ -5,7 +5,10 @@ import { User } from '../../entities/User';
 import { IdGeneratorGateway } from '../../gateways/IdGeneratorGateway';
 
 export class CreateUserUC {
-    constructor(private database: UserGateway, private hash: HashGateway, private idGenerator:IdGeneratorGateway) { }
+    constructor(
+        private database: UserGateway,
+        private hash: HashGateway,
+        private idGenerator: IdGeneratorGateway) { }
 
     async execute(input: CreateUserInput): Promise<void> {
         const id = this.idGenerator.generate();

@@ -18,16 +18,16 @@ export class UserDatabase implements UserGateway {
     }
 
     async insertUser(user: User) {
-        try{
-        await this.connection('food_users').insert(
-            {
-                id: user.getId(),
-                email: user.getEmail(),
-                userPassword: user.getPassword()
-            }
-        );
-        }catch(err){
-            if(err.errno === 1062){
+        try {
+            await this.connection('food_users').insert(
+                {
+                    id: user.getId(),
+                    email: user.getEmail(),
+                    userPassword: user.getPassword()
+                }
+            );
+        } catch (err) {
+            if (err.errno === 1062) {
                 throw new Error("Email já está cadastrado!");
             }
             throw new Error("Não foi possível criar o usuário.");
@@ -40,5 +40,18 @@ export class UserDatabase implements UserGateway {
         `);
         const user = result[0][0];
         return new User(user.id, user.email, user.userPassword);
+    }
+
+    async getUserById(id: string): Promise<User> {
+        const result = await this.connection.raw(`
+        SELECT * FROM food_users WHERE id = "${id}";
+        `);
+        const user = result[0][0];
+        return new User(user.id, user.email, user.userPassword);
+    }
+    async updatePassword(id: string, newPassword: string): Promise<void> {
+        await this.connection('food_users')
+            .where({ id })
+            .update({ userPassword: newPassword });
     }
 }
