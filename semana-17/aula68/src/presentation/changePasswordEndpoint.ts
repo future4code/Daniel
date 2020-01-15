@@ -1,10 +1,10 @@
 import { Request, Response } from 'express'
 import { UserDatabase } from '../data/UserDatabase';
 import { JWTService } from '../service/JWTService';
-import { ChangePasswordInput, ChangePasswordUC } from '../business/usecases/changePassword/changePasswordUC';
+import { ChangePasswordInput, ChangePasswordUC } from '../business/usecases/changePassword/ChangePasswordUC';
 import { HashService } from '../service/HashService';
 
-export async function ChangePasswordEndpoint(req: Request, res: Response) {
+export async function changePasswordEndpoint(req: Request, res: Response) {
 
     const token = <string>req.headers.auth;
     if (!token) {
