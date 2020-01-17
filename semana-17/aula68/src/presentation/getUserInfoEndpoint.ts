@@ -19,7 +19,6 @@ export async function getUserInfoEndpoint(req: Request, res: Response) {
             email: result.email
         });
     } catch (e) {
-        console.log(e)
         res.status(400).send(e.message);
     }
 }

@@ -18,7 +18,6 @@ export async function signUpEndpoint(req: Request, res: Response) {
         await useCase.execute(userInput)
         res.send({ message: 'Usuário criado com sucesso' });
     } catch (e) {
-        console.log(e)
         res.status(400).send(e.message);
     }
 }

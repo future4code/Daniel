@@ -23,7 +23,6 @@ export async function changePasswordEndpoint(req: Request, res: Response) {
             message: "Senha alterada com sucesso"
         });
     } catch (e) {
-        console.log(e)
         res.status(400).send(e.message);
     }
 }

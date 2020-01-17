@@ -18,7 +18,6 @@ export async function getUserFeedEndpoint(req: Request, res: Response) {
             feed: result
         });
     } catch (e) {
-        console.log(e)
         res.status(400).send(e.message);
     }
 }
