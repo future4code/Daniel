@@ -13,6 +13,7 @@ export class CreateRecipeUC {
 
     async execute(recipeInput: CreateRecipeInput) {
         const tokenData = this.auth.verify(recipeInput.token);
+
         const newRecipe = new Recipe(
             this.idGenerator.generate(),
             recipeInput.title,

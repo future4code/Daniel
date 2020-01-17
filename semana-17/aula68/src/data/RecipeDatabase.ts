@@ -29,7 +29,6 @@ export class RecipeDatabase implements RecipeGateway {
                 }
             );
         } catch (err) {
-            console.log(err);
             throw new Error("Não foi possível a receita.");
         }
     }

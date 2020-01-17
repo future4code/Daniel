@@ -1,8 +1,10 @@
 import knex from 'knex'
 import { UserGateway } from '../business/gateways/UserGateway';
 import { User } from '../business/entities/User';
+import { FeedItem } from '../business/usecases/getuserfeed/GetUserFeedUC';
 
 export class UserDatabase implements UserGateway {
+
     private connection: knex;
 
     constructor() {
@@ -54,4 +56,38 @@ export class UserDatabase implements UserGateway {
             .where({ id })
             .update({ userPassword: newPassword });
     }
+    async followUser(id: string, followId: string): Promise<void> {
+        await this.connection('food_user_relations').insert({
+            follower_id: id,
+            user_id: followId
+        });
+    }
+    async getUserFeed(id: string): Promise<FeedItem[]> {
+        const result = await this.connection.raw(`
+        SELECT fu.email,fr.* FROM food_user_relations fur
+        JOIN food_recipes fr ON fr.owner_id = user_id
+        JOIN food_users fu ON fu.id = fr.owner_id
+        WHERE follower_id = "${id}";
+        `);
+        const feed: FeedItem[] = result[0].map((item: FeedItemResult) => {
+            return {
+                ownerId: item.owner_id,
+                ownerEmail: item.email,
+                recipeId: item.id,
+                title: item.title,
+                description: item.description,
+                createdDate: new Date(item.creation_date)
+            }
+        })
+        return feed;
+    }
+
+}
+interface FeedItemResult {
+    email: string,
+    id: string,
+    title: string,
+    description: string,
+    creation_date: Date,
+    owner_id: string
 }

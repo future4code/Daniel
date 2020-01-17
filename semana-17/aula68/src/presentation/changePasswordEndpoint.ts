@@ -7,11 +7,7 @@ import { HashService } from '../service/HashService';
 export async function changePasswordEndpoint(req: Request, res: Response) {
 
     const token = <string>req.headers.auth;
-    if (!token) {
-        res.status(400).send();
-        return;
-    }
-    if (!req.body.currentPassword || !req.body.newPassword) {
+    if (!token || !req.body.currentPassword || !req.body.newPassword) {
         res.status(400).send();
         return;
     }

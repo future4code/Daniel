@@ -7,11 +7,7 @@ import { generateRandomId } from '../business/utils/generateRandomId';
 export async function createRecipe(req: Request, res: Response) {
 
     const token = <string>req.headers.auth;
-    if (!token) {
-        res.status(400).send();
-        return;
-    }
-    if (!req.body.title || !req.body.description) {
+    if (!token || !req.body.title || !req.body.description) {
         res.status(400).send();
         return;
     }
