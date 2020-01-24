@@ -8,11 +8,10 @@ export class ToogleRelationsUser {
     ) { }
 
     async execute(input: ToggleUserRelationInput): Promise<void> {
-        const tokenData = this.auth.verify(input.token);
-        const user = await this.database.fetchUserByEmail(tokenData.email);
+        const user = await this.database.fetchUserByEmail(input.email);
         const relationInput = {
             userId: user.getId(),
-            followedId: input.id
+            followedId: input.followedId
         };
 
         const isUserAlreadyFriend = await this.database.getUserRelation(relationInput);
@@ -27,6 +26,6 @@ export class ToogleRelationsUser {
 }
 
 export interface ToggleUserRelationInput {
-    token: string,
-    id: string,
+    email: string,
+    followedId: string,
 }
