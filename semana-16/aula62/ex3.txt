@@ -1,0 +1,77 @@
+-- Todos os livros de um autor específico a sua escolha, mostrando pelo menos o nome do autor e o nome do livro
+select l.id, l.titulo, l.ano, a.id, concat_ws(' ',a.primeiro_nome,a.ultimo_nome) as autor, a.nacionalidade 
+from livros l
+join autores a on a.id = l.autor_id
+where a.id = 5;
+
+-- Todos os livros cujo primeiro nome do autor começa com A, mostrando o nome completo do autor e do livro
+select concat_ws(' ',a.primeiro_nome,a.ultimo_nome) as autor, l.titulo
+from livros l
+join autores a on a.id = l.autor_id
+where a.primeiro_nome like "a%";
+
+-- Quantos livros cada autor possui na biblioteca, mostrando pelo menos o nome do autor e o número de livros
+select concat_ws(' ',a.primeiro_nome,a.ultimo_nome) as autor,count(l.id) as quantidade_livros
+from autores a
+left join livros l on l.autor_id = a.id
+group by a.id
+order by quantidade_livros desc;
+
+-- O livro mais alugado de todos, mostrando pelo menos o nome do livro
+select l.titulo,count(livro_id) as quantidade
+from usuario_livros ul
+join livros l on l.id = ul.livro_id
+group by livro_id
+order by quantidade desc
+limit 1;
+
+-- Quantos livros cada usuário alugou, mostrando pelo menos o nome do usuário e o número de livros
+select concat_ws(' ',u.primeiro_nome,u.ultimo_nome) as usuario,count(ul.livro_id) as quantidade
+from usuarios u
+left join usuario_livros ul on ul.usuario_id = u.id
+group by u.id
+order by quantidade desc;
+
+-- Todos os livros de editoras fundadas antes de 2019 (não coloquei editoras com data menor que 2018 :( ), 
+-- mostrando pelo menos o nome do livro, o nome da editora e a data de fundação
+select l.titulo,e.nome as editora,e.data_fundacao 
+from editora e
+join livros l on l.editora_id = e.id 
+where year(data_fundacao) < 2019;
+
+-- O usuário mais velho que alugou um livro específico a sua escolha
+select concat_ws(' ',u.primeiro_nome,u.ultimo_nome) as usuario,u.data_nascimento,l.titulo
+from usuario_livros ul
+join usuarios u on u.id = ul.usuario_id
+join livros l on l.id = ul.livro_id
+where l.id = 2
+order by u.data_nascimento asc;
+
+-- Qual foi o país que alugou mais livros na biblioteca (olhar pra nacionalidade dos usuários)
+select u.nacionalidade, count(*) as quantidade
+from usuario_livros ul
+join usuarios u on u.id = ul.usuario_id
+group by u.nacionalidade
+order by quantidade desc
+limit 1;
+
+-- As duas editoras que possuem mais livros alugados por pessoas com mais de 20 anos
+-- Populei a tabela de usuários usando o mockaroo e não me atentei a data, então não tenho usuário com 20 anos
+select e.nome, count(*) as quantidade
+from usuario_livros ul 
+join usuarios u on u.id = ul.usuario_id
+join livros l on l.id = ul.livro_id
+join editora e on e.id = l.editora_id
+where datediff(curdate(),data_nascimento)/365 > 0.5
+group by e.id
+order by quantidade desc
+limit 2;
+
+-- Livros alugados que foram lançados antes da data de nascimento do usuário que o alugou
+select l.id, l.titulo
+from usuario_livros ul 
+join usuarios u on u.id = ul.usuario_id
+join livros l on l.id = ul.livro_id
+where u.data_nascimento > l.ano
+group by l.id;
+
