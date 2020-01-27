@@ -1,0 +1,15 @@
+describe correntistas;
+
+-- Adicionar estado_civil
+alter table correntistas add estado_civil varchar(25) not null default 'Solteiro(a)';
+
+-- Atualizar os maiores de 30 para casado(a)
+update correntistas set estado_civil = "Casado(a)" where (DATEDIFF(CURDATE(),aniversario)/365) > 30;
+
+-- Adicione uma nova coluna chamada "numero_da_sorte", não nula, com valor padrão de 0
+alter table correntistas add numero_da_sorte int not null default 0;
+
+-- Atualize todas as entradas do banco atribuindo um número aleatório entre 1-1000 
+-- para a coluna "numero_da_sorte" de cada um dos correntistas, **atenção: este número deve ser inteiro, sem casas decimais.**
+update correntistas set numero_da_sorte = FLOOR(RAND()*(1000-1+1)+1);
+

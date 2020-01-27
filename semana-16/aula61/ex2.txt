@@ -1,0 +1,50 @@
+DESCRIBE correntistas;
+-- Os 100 primeiros correntistas brasileiros com mais do que 3000 reais na conta corrente.
+select * from correntistas c where pais = "Brazil" and conta_corrente > 3000 limit 100;
+
+-- A quantidade de mulheres com mais do que 32 anos.
+select genero,count(*) from correntistas c 
+where genero="F" 
+and (DATEDIFF(CURDATE(),aniversario)/365) > 32 
+group by genero ;
+
+-- A soma do valor de todas as contas correntes do Peru cujo dono tenha mais do que 25 anos
+select pais, truncate(sum(conta_corrente),2) as total_conta_corrente
+from correntistas c
+where pais = "Peru" and (DATEDIFF(CURDATE(),aniversario)/365) > 25 
+group by pais;
+
+-- A quantidade de Homens e Mulheres por país.
+select pais,genero,count(*) as quantidade 
+from correntistas c 
+group by pais,genero;
+
+-- A data de aniversário que mais se repete e a quantidade de vezes que aparece.
+select aniversario,count(*) as quantidade 
+from correntistas c 
+group by aniversario 
+order by quantidade desc,aniversario desc 
+limit 1;
+
+-- A média de idade (o número de anos entre hoje e a data dd nascimento) de cada país.
+select pais,avg(YEAR(CURDATE()) - YEAR(aniversario)) as media_idade from correntistas c group by pais;
+
+-- Os aniversariantes do mês atual.
+select primeiro_nome,aniversario 
+from correntistas c 
+where month(aniversario) = month(curdate());
+
+-- A média do valor da conta corrente por país. Importante: o nome dos países deve ser exibido em caixa baixa (letras minúsculas).
+select lower(pais) as pais, truncate(avg(conta_corrente),2) as media_conta_corrente 
+from correntistas c 
+group by pais;
+
+-- Os 3 nomes que mais se repetem e quantas vezes cada um apareceu.
+select primeiro_nome,count(*) as quantidade 
+from correntistas c 
+group by primeiro_nome 
+order by quantidade desc 
+limit 3;
+
+
+

@@ -1,0 +1,30 @@
+select * from crime_scene_report 
+where description is not null and date = "20180115" and city = "SQL City";
+
+select i.* from person p
+join interview i on p.id = i.person_id
+where address_street_name = "Franklin Ave" and name like "Annabel%"
+
+select i.*,p.* from person p
+join interview i on p.id = i.person_id
+where address_street_name = "Northwestern Dr"
+order by address_number desc
+limit 1
+
+select * from get_fit_now_check_in gf
+join get_fit_now_member gfn on gfn.id = gf.membership_id
+join person p on p.id = gfn.person_id
+join drivers_license dl on dl.id = p.license_id
+where check_in_date = "20180109" 
+and membership_id like "48Z%";
+
+
+---------------
+Desafio final do site:
+
+select * from person p
+join drivers_license dl on dl.id = p.license_id
+join facebook_event_checkin fec on fec.person_id = p.id
+where dl.height between 65 and 67 and dl.gender = "female"
+and dl.hair_color = "red" and dl.car_make like "Tesla"
+and event_name = "SQL Symphony Concert"
