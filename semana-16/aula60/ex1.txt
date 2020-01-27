@@ -1,0 +1,28 @@
+SELECT nome,salario FROM funcionarios f WHERE salario > 2000 and genero = "F";
+
+SELECT nome,data_contratacao FROM funcionarios f WHERE local_de_trabalho= "salao" AND year(data_contratacao) >= 2004;
+
+SELECT nome,data_nascimento FROM funcionarios f WHERE nome LIKE "%ei%";
+
+SELECT nome,salario, data_nascimento FROM funcionarios f WHERE salario > 1300 and (YEAR(CURDATE())-YEAR(data_nascimento)) > 21;
+
+
+USE daniel;
+
+CREATE TABLE funcionarios(
+	id int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	nome varchar(100) NOT NULL,
+	salario double NOT NULL,
+	local_de_trabalho varchar(100) NOT NULL,
+	data_de_contratacao date NOT NULL DEFAULT '2019-01-01',
+	genero varchar(1) NOT NULL,
+	data_de_nascimento date NOT NULL DEFAULT '2019-01-01'
+)
+
+ALTER TABLE funcionarios RENAME COLUMN data_de_contratacao TO data_contratacao;
+
+ALTER TABLE funcionarios RENAME COLUMN data_de_nascimento TO data_nascimento;
+
+INSERT INTO funcionarios (nome,salario,local_de_trabalho,genero) VALUES ("AstroDev",50000,"Future4","m");
+
+SELECT * FROM funcionarios f;
