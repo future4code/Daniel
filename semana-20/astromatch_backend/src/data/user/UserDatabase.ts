@@ -45,7 +45,7 @@ export class UserDatabase extends BaseDatabase implements UserGateway {
 
     async registerUser(user: User): Promise<void> {
         try {
-            await this.connection('astromatch_users').insert(this.mapper.entityToModel(user));
+            await this.connection(`${BaseDatabase.DB_PREFIX_NAME}_users`).insert(this.mapper.entityToModel(user));
         }
         catch (e) {
             if (e.errno === 1062) {

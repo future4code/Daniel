@@ -1,13 +1,14 @@
 import knex from "knex";
 
 export abstract class BaseDatabase {
+    protected static DB_PREFIX_NAME = "astromatch"
     protected connection = knex({
         client: "mysql",
         connection: {
-            host: "ec2-18-229-236-15.sa-east-1.compute.amazonaws.com",
-            user: "daniel",
-            password: "0b741a51df3eb52305629b5c97960c31",
-            database: "daniel"
+            host: process.env.DB_HOST_NAME,
+            user: process.env.DB_USER_NAME,
+            password: process.env.DB_USER_PASSWORD,
+            database: process.env.DB_PRODUCTION
         }
     });
 }
