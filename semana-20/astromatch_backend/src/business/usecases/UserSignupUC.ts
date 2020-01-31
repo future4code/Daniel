@@ -25,7 +25,7 @@ export class UserSignupUC {
     }
 
     private validateUserInput(input: UserSignupInput) {
-        if (!input.email || !input.password || !input.name || !input.photoUrl) {
+        if (!input.email || !input.password || !input.name || !input.photoUrl || !input.birthdate) {
             throw new Error("Campos inválidos!");
         }
     }

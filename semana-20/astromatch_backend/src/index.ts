@@ -1,12 +1,24 @@
-import { AddressInfo } from 'net'
-import app from './presentation'
+import { Request } from './presentation/base/Request';
+import { userSignupEndpoint } from './presentation/endpoints/userSignupEndpoint';
+import { Response } from './presentation/base/Response';
+import { userAuthEndpoint } from './presentation/endpoints/userAuthEndpoint';
 
-// Trecho do código responsável por inicializar todas as APIs
-const server = app.listen(process.env.PORT || 3000, () => {
-  if(server){
-    const address = server.address() as AddressInfo;
-    console.log(`Server is running in http://localhost:${address.port}`);
-  } else {
-    console.error(`Failure upon starting server.`);
-  }
-});
+exports.handler = async (req: Request): Promise<Response> => {
+  let response;
+
+  switch (req.path) {
+    case "/signup":
+      response = userSignupEndpoint(req);
+      break;
+    case "/login":
+      response = userAuthEndpoint(req);
+      break;
+    default:
+      return {
+        statusCode: 400,
+        body: { message: 'Não existe esse endpoint!' },
+      }
+  };
+
+  return response;
+};
