@@ -1,6 +1,6 @@
-import { CryptoGateway } from '../gateway/CryptoGateway';
-import { UserDataSource } from '../datasources/UserDataSource';
-import { User } from '../entities/User';
+import { CryptoGateway } from '../../gateway/CryptoGateway';
+import { UserDataSource } from '../../datasources/UserDataSource';
+import { User } from '../../entities/User';
 
 export class ChangePasswordUC {
     constructor(
@@ -20,7 +20,6 @@ export class ChangePasswordUC {
     }
 
     async execute(input: ChangePasswordUCInput) {
-        // const tokenData = this.auth.verify(userInput.token);
         const user = await this.datasource.fetchUserByEmail(input.email);
         this.validatePassword(input,user);
         const newPassword = await this.crypto.hash(input.newPassword);

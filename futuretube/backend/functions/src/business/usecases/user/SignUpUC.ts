@@ -1,8 +1,8 @@
-import { UserDataSource } from "../datasources/UserDataSource";
-import { User } from "../entities/User";
-import { IdGateway } from "../gateway/IdGateway";
-import { CryptoGateway } from "../gateway/CryptoGateway";
-import { AuthGateway } from "../gateway/AuthGateway";
+import { UserDataSource } from "../../datasources/UserDataSource";
+import { User } from "../../entities/User";
+import { IdGateway } from "../../gateway/IdGateway";
+import { CryptoGateway } from "../../gateway/CryptoGateway";
+import { AuthGateway } from "../../gateway/AuthGateway";
 
 
 export class SignUpUC {

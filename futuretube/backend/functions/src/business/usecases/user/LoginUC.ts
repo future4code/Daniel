@@ -1,6 +1,6 @@
-import { UserDataSource } from '../datasources/UserDataSource';
-import { CryptoGateway } from '../gateway/CryptoGateway';
-import { AuthGateway } from '../gateway/AuthGateway';
+import { UserDataSource } from '../../datasources/UserDataSource';
+import { CryptoGateway } from '../../gateway/CryptoGateway';
+import { AuthGateway } from '../../gateway/AuthGateway';
 
 export class LoginUC {
     constructor(

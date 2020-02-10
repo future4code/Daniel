@@ -1,11 +1,12 @@
-import { ChangePasswordUCInput, ChangePasswordUC } from "../business/usecases/ChangePasswordUC";
-import { JwtAuthService } from '../service/auth/JwtAuthService';
-import { BcryptService } from '../service/crytography/BcryptService';
-import { UserFirestoreDatabase } from '../data/UserFirestoreDatabase';
+import { ChangePasswordUCInput, ChangePasswordUC } from "../../business/usecases/user/ChangePasswordUC";
+import { JwtAuthService } from '../../service/auth/JwtAuthService';
+import { BcryptService } from '../../service/crytography/BcryptService';
+import { UserFirestoreDatabase } from '../../data/UserFirestoreDatabase';
+import { Response, Request } from "express";
 
-export async function changePasswordEndpoint(req: any, res: any) {
+export async function changePasswordEndpoint(req: Request, res: Response) {
     if (!req.headers.auth || !req.body.currentPassword || !req.body.newPassword) {
-        res.status(400).send();
+        res.status(400).send("Requisição inválida!");
         return;
     }
     try {

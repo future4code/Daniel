@@ -1,12 +1,13 @@
-import { LoginUCInput, LoginUC } from "../business/usecases/LoginUC";
-import { UserFirestoreDatabase } from '../data/UserFirestoreDatabase';
-import { BcryptService } from '../service/crytography/BcryptService';
-import { JwtAuthService } from '../service/auth/JwtAuthService';
+import { LoginUCInput, LoginUC } from "../../business/usecases/user/LoginUC";
+import { UserFirestoreDatabase } from '../../data/UserFirestoreDatabase';
+import { BcryptService } from '../../service/crytography/BcryptService';
+import { JwtAuthService } from '../../service/auth/JwtAuthService';
+import { Response, Request } from "express";
 
 
-export async function loginEndpoint(req: any, res: any) {
+export async function loginEndpoint(req: Request, res: Response) {
     if (!req.body.email || !req.body.password) {
-        res.status(400).send();
+        res.status(400).send("Requisição inválida!");
         return;
     }
 
