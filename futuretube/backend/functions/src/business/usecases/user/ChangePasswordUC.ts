@@ -8,7 +8,7 @@ export class ChangePasswordUC {
         private datasource: UserDataSource
     ) { }
 
-    async validatePassword(input: ChangePasswordUCInput, user: User): Promise<void> {
+    private async validatePassword(input: ChangePasswordUCInput, user: User): Promise<void> {
         const isCurrentPasswordValid = await this.crypto.compare(input.currentPassword, user.getPassword());
         if (!isCurrentPasswordValid) {
             throw new Error("A senha atual e a informada não confere!");
@@ -19,7 +19,7 @@ export class ChangePasswordUC {
         }
     }
 
-    async execute(input: ChangePasswordUCInput) {
+    public async execute(input: ChangePasswordUCInput) {
         const user = await this.datasource.fetchUserByEmail(input.email);
         this.validatePassword(input,user);
         const newPassword = await this.crypto.hash(input.newPassword);

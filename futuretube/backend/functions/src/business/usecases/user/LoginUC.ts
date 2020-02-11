@@ -9,7 +9,7 @@ export class LoginUC {
         private auth: AuthGateway
     ) { }
 
-    async execute(input: LoginUCInput): Promise<string> {
+    public async execute(input: LoginUCInput): Promise<string> {
         const user = await this.datasource.fetchUserByEmail(input.email);
         const isPasswordValid = await this.crypto.compare(input.password, user.getPassword());
 

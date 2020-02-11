@@ -18,7 +18,7 @@ export class SignUpUC {
             throw new Error("Campos inválidos!");
         }
     }
-    async execute(input: SignUpUCInput): Promise<string> {
+    public async execute(input: SignUpUCInput): Promise<string> {
         this.validateUserInput(input);
         const uid = this.uidInterface.generate();
         const password = await this.crypto.hash(input.password);

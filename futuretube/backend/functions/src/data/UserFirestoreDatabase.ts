@@ -14,7 +14,7 @@ export class UserFirestoreDatabase implements UserDataSource {
         return user.empty;
     }
     
-    async createUser(user: User): Promise<void> {
+    public async createUser(user: User): Promise<void> {
         const isValidEmail = await this.verifyUserEmail(user.getEmail());
         if (isValidEmail) {
             await admin.firestore().collection(UserFirestoreDatabase.USERS_COLLECTION).doc(user.getId()).set({
@@ -30,7 +30,7 @@ export class UserFirestoreDatabase implements UserDataSource {
             throw Error("Já existe usuário com esse email!")
         }
     }
-    async fetchUserByEmail(email: string): Promise<User> {
+    public async fetchUserByEmail(email: string): Promise<User> {
         const query = await admin.firestore()
             .collection(UserFirestoreDatabase.USERS_COLLECTION)
             .where('email', '==', email)
@@ -42,7 +42,7 @@ export class UserFirestoreDatabase implements UserDataSource {
             user.photoUrl, 
             user.birthdate);
     }
-    async updateUserPassword(id: string, newPassword: string): Promise<void> {
+    public async updateUserPassword(id: string, newPassword: string): Promise<void> {
         const userRef = admin.firestore().collection(UserFirestoreDatabase.USERS_COLLECTION).doc(id);
         await userRef.update({password: newPassword});
     }

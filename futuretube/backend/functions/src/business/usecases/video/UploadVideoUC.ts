@@ -18,7 +18,7 @@ export class UploadVideoUC{
             throw new Error("Tamanho da descrição não está dentro da permitida!");
         }
     }
-    async execute(input: UploadUCInput): Promise<void>{
+    public async execute(input: UploadUCInput): Promise<void>{
         this.verifyIfFileExists(input.url);
         this.verifyVideoInfo(input);
         const uid = this.uidInterface.generate();
