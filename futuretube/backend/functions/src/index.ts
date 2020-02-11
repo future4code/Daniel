@@ -8,6 +8,7 @@ import { changePasswordEndpoint } from './presentation/user/changePasswordEndpoi
 import { uploadVideoEndpoint } from './presentation/video/uploadVideoEndpoint';
 import { getUserVideosEndpoint } from './presentation/video/getUserVideosEndpoint';
 import { editUserVideoEndpoint } from './presentation/video/editUserVideoEndpoint';
+import { deleteUserVideoEnpoint } from './presentation/video/deleteUserVideoEndpoint';
 // // Start writing Firebase Functions
 // // https://firebase.google.com/docs/functions/typescript
 //
@@ -26,4 +27,5 @@ app.post("/changePassword", changePasswordEndpoint);
 app.post("/uploadVideo", uploadVideoEndpoint);
 app.get("/getUserVideos", getUserVideosEndpoint);
 app.post("/editVideoInfo", editUserVideoEndpoint);
+app.delete("/deleteVideo", deleteUserVideoEnpoint);
 export const endpoint = functions.https.onRequest(app);

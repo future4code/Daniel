@@ -3,7 +3,6 @@ import { Video } from '../business/entities/Video';
 import admin = require('firebase-admin');
 
 export class VideoFirestoreDatabase implements VideoDataSource {
-
     private static VIDEO_COLLETION = 'videos';
 
     public async createVideo(video: Video): Promise<void> {
@@ -35,6 +34,9 @@ export class VideoFirestoreDatabase implements VideoDataSource {
         else {
             throw new Error("Não foi possível encontrar o video!");
         }
+    }
+    public async deleteVideo(videoId: string): Promise<void> {
+        await admin.firestore().collection(VideoFirestoreDatabase.VIDEO_COLLETION).doc(videoId).delete();
     }
     public async updatedVideoDescription(videoId: string, description: string): Promise<void> {
         const videoRef = admin.firestore().collection(VideoFirestoreDatabase.VIDEO_COLLETION).doc(videoId);
