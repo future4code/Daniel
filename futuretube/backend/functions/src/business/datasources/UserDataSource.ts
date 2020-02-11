@@ -1,7 +1,8 @@
 import { User } from "../entities/User";
 
-export interface UserDataSource{
+export interface UserDataSource {
+    getUserById(id: string): Promise<User>;
     updateUserPassword(id: string, newPassword: string): Promise<void>;
-    fetchUserByEmail(email: string): Promise<User>;
+    getUserByEmail(email: string): Promise<User>;
     createUser(user: User): Promise<void>;
 }

@@ -16,7 +16,7 @@ export async function editUserVideoEndpoint(req: Request, res: Response) {
             videoId: req.body.videoId,
             title: req.body.title,
             description: req.body.description
-        }
+        };
         const usecase = new ChangeVideoInfoUC(new VideoFirestoreDatabase());
         await usecase.execute(input);
         res.send({

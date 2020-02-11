@@ -9,6 +9,8 @@ import { uploadVideoEndpoint } from './presentation/video/uploadVideoEndpoint';
 import { getUserVideosEndpoint } from './presentation/video/getUserVideosEndpoint';
 import { editUserVideoEndpoint } from './presentation/video/editUserVideoEndpoint';
 import { deleteUserVideoEnpoint } from './presentation/video/deleteUserVideoEndpoint';
+import { getAllVideosEndpoint } from './presentation/video/getAllVideosEndpoint';
+import { getVideoInfoEndpoint } from './presentation/video/getVideoInfoEndpoint';
 // // Start writing Firebase Functions
 // // https://firebase.google.com/docs/functions/typescript
 //
@@ -28,4 +30,7 @@ app.post("/uploadVideo", uploadVideoEndpoint);
 app.get("/getUserVideos", getUserVideosEndpoint);
 app.post("/editVideoInfo", editUserVideoEndpoint);
 app.delete("/deleteVideo", deleteUserVideoEnpoint);
+app.get("/getAllVideos", getAllVideosEndpoint);
+app.get("/getVideoInfo", getVideoInfoEndpoint);
+
 export const endpoint = functions.https.onRequest(app);

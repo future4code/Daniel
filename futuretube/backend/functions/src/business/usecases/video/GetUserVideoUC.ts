@@ -7,7 +7,7 @@ export class GetUserVideosUC {
     ) { }
 
     public async execute(input: GetUserVideosUCInput): Promise<Video[]> {
-        const videos = await this.datasource.fetchUserVideos(input.id);
+        const videos = await this.datasource.getUserVideos(input.id);
         return videos
     }
 }

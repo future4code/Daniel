@@ -10,7 +10,7 @@ export class LoginUC {
     ) { }
 
     public async execute(input: LoginUCInput): Promise<string> {
-        const user = await this.datasource.fetchUserByEmail(input.email);
+        const user = await this.datasource.getUserByEmail(input.email);
         const isPasswordValid = await this.crypto.compare(input.password, user.getPassword());
 
         if (!isPasswordValid) {

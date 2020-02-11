@@ -14,14 +14,33 @@ export class VideoFirestoreDatabase implements VideoDataSource {
             url: video.getUrl()
         });
     }
-    public async fetchUserVideos(id: string): Promise<Video[]> {
+    public async getAllVideos(limit: number, offset: number): Promise<Video[]> {
+        const query = await admin.firestore()
+        .collection(VideoFirestoreDatabase.VIDEO_COLLETION)
+        .limit(limit)
+        .offset(offset)
+        .get();
+        return query.docs.map(video => {
+            const videoData = video.data();
+            return new Video(videoData.id, 
+                videoData.title, 
+                videoData.description, 
+                videoData.ownerid, 
+                videoData.url);
+        });
+    }
+    public async getUserVideos(id: string): Promise<Video[]> {
         const query = await admin.firestore()
             .collection(VideoFirestoreDatabase.VIDEO_COLLETION)
             .where('ownerid', '==', id)
             .get();
         const videos = query.docs.map(video => {
             const videoData = video.data();
-            return new Video(videoData.id, videoData.title, videoData.description, videoData.ownerid, videoData.url);
+            return new Video(videoData.id, 
+                videoData.title, 
+                videoData.description, 
+                videoData.ownerid, 
+                videoData.url);
         });
         return videos;
     }
@@ -29,21 +48,32 @@ export class VideoFirestoreDatabase implements VideoDataSource {
         const videoRef = await admin.firestore().collection(VideoFirestoreDatabase.VIDEO_COLLETION).doc(videoId).get();
         const videoDoc = videoRef.data();
         if (videoDoc) {
-            return new Video(videoDoc.id, videoDoc.title, videoDoc.description, videoDoc.ownerid, videoDoc.url);
+            return new Video(videoDoc.id, 
+                videoDoc.title, 
+                videoDoc.description, 
+                videoDoc.ownerid, 
+                videoDoc.url);
         }
         else {
             throw new Error("Não foi possível encontrar o video!");
         }
     }
     public async deleteVideo(videoId: string): Promise<void> {
-        await admin.firestore().collection(VideoFirestoreDatabase.VIDEO_COLLETION).doc(videoId).delete();
+        await admin.firestore()
+        .collection(VideoFirestoreDatabase.VIDEO_COLLETION)
+        .doc(videoId)
+        .delete();
     }
     public async updatedVideoDescription(videoId: string, description: string): Promise<void> {
-        const videoRef = admin.firestore().collection(VideoFirestoreDatabase.VIDEO_COLLETION).doc(videoId);
+        const videoRef = admin.firestore()
+        .collection(VideoFirestoreDatabase.VIDEO_COLLETION)
+        .doc(videoId);
         await videoRef.update({ description });
     }
     public async updateVideoTitle(videoId: string, title: string): Promise<void> {
-        const videoRef = admin.firestore().collection(VideoFirestoreDatabase.VIDEO_COLLETION).doc(videoId);
+        const videoRef = admin.firestore()
+        .collection(VideoFirestoreDatabase.VIDEO_COLLETION)
+        .doc(videoId);
         await videoRef.update({ title });
     }
 

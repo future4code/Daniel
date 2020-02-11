@@ -3,7 +3,6 @@ import * as admin from 'firebase-admin';
 import { User } from '../business/entities/User';
 
 export class UserFirestoreDatabase implements UserDataSource {
-
     private static USERS_COLLECTION = 'users';
 
     private async verifyUserEmail(email: string): Promise<Boolean> {
@@ -30,10 +29,22 @@ export class UserFirestoreDatabase implements UserDataSource {
             throw Error("Já existe usuário com esse email!")
         }
     }
-    public async fetchUserByEmail(email: string): Promise<User> {
+    public async getUserByEmail(email: string): Promise<User> {
         const query = await admin.firestore()
             .collection(UserFirestoreDatabase.USERS_COLLECTION)
             .where('email', '==', email)
+            .get();
+        const user = query.docs[0].data();
+        return new User(user.id, user.name, 
+            user.email, 
+            user.password, 
+            user.photoUrl, 
+            user.birthdate);
+    }
+    public async getUserById(id: string): Promise<User> {
+        const query = await admin.firestore()
+            .collection(UserFirestoreDatabase.USERS_COLLECTION)
+            .where('id', '==', id)
             .get();
         const user = query.docs[0].data();
         return new User(user.id, user.name, 

@@ -15,7 +15,7 @@ export async function changePasswordEndpoint(req: Request, res: Response) {
             email: tokenData.email,
             currentPassword: req.body.currentPassword,
             newPassword: req.body.newPassword
-        }
+        };
         const useCase = new ChangePasswordUC(new BcryptService(), new UserFirestoreDatabase());
         await useCase.execute(input);
         res.send({

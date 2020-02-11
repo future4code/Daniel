@@ -20,7 +20,7 @@ export class ChangePasswordUC {
     }
 
     public async execute(input: ChangePasswordUCInput) {
-        const user = await this.datasource.fetchUserByEmail(input.email);
+        const user = await this.datasource.getUserByEmail(input.email);
         this.validatePassword(input,user);
         const newPassword = await this.crypto.hash(input.newPassword);
         await this.datasource.updateUserPassword(user.getId(), newPassword);

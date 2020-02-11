@@ -13,7 +13,7 @@ export async function deleteUserVideoEnpoint(req: Request, res: Response){
         const input: DeleteVideoUCInput = {
             userId: tokenData.id,
             videoId: req.body.videoId,
-        }
+        };
         const usecase = new DeleteVideoUC(new VideoFirestoreDatabase());
         await usecase.execute(input);
         res.send({

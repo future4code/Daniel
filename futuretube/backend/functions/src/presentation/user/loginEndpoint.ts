@@ -15,7 +15,7 @@ export async function loginEndpoint(req: Request, res: Response) {
         const userInput: LoginUCInput = {
             email: req.body.email,
             password: req.body.password
-        }
+        };
 
         const usecase = new LoginUC(new UserFirestoreDatabase(), new BcryptService(), new JwtAuthService());
         const token = await usecase.execute(userInput);

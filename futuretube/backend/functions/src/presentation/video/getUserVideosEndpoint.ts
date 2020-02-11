@@ -15,7 +15,7 @@ export async function getUserVideosEndpoint(req: Request, res: Response) {
         const queryId = req.query.id;
         const input: GetUserVideosUCInput = {
             id: queryId || tokenData.id
-        }
+        };
         const usecase = new GetUserVideosUC(new VideoFirestoreDatabase());
         const videos = await usecase.execute(input);
         const result = videos.map((video: Video) =>{
@@ -23,8 +23,8 @@ export async function getUserVideosEndpoint(req: Request, res: Response) {
                 id: video.getId(),
                 url: video.getUrl(),
                 title: video.getTitle()
-            }
-        })
+            };
+        });
         res.send(result);
     } catch (e) {
         console.log(e);
