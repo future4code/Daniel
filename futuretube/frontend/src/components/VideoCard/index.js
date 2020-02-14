@@ -20,9 +20,12 @@ export default function VideoCard(props) {
     const { title } = props;
     const classes = useStyles();
     const gradientBg = { background: gradient(Math.random().toString()), };
+    const onClickHandler = ()=>{
+        props.clickCallback(props.id);
+    }
     return (
         <Card className={classes.card}>
-            <CardActionArea>
+            <CardActionArea onClick={onClickHandler}>
                 <div className={classes.cardBg} style={gradientBg} />
                 <CardContent>
                     <Typography noWrap gutterBottom variant="h5" component="h2">

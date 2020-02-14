@@ -11,6 +11,9 @@ import Container from '@material-ui/core/Container';
 import { useState } from 'react'
 import { loginAction } from '../../actions/index';
 import { connect } from 'react-redux';
+import { LinearProgress } from '@material-ui/core';
+import { push } from 'connected-react-router';
+import { routes } from '../Router';
 
 const useStyles = makeStyles(theme => ({
     paper: {
@@ -47,8 +50,14 @@ export function LoginPage(props) {
         const { value } = event.target;
         setForm({ ...form, [name]: value });
     }
+    const onClickHandler = () =>{
+        props.goToSignup();
+    }
+    const { trying, error, errorMessage } = props.loginProgress;
     return (
+
         <Container component="main" maxWidth="xs">
+            {trying ? <LinearProgress color="primary" /> : ""}
             <div className={classes.paper}>
                 <Avatar className={classes.logo}>
                     <PlayCircleOutlineIcon />
@@ -61,6 +70,8 @@ export function LoginPage(props) {
                 </Typography>
                 <form className={classes.form} onSubmit={handleSubmit}>
                     <TextField
+                        error={error}
+                        helperText={errorMessage}
                         variant="outlined"
                         margin="normal"
                         required
@@ -73,6 +84,8 @@ export function LoginPage(props) {
                         value={form["email"]}
                     />
                     <TextField
+                        error={error}
+                        helperText={errorMessage}
                         variant="outlined"
                         margin="normal"
                         required
@@ -94,19 +107,25 @@ export function LoginPage(props) {
                         Login
                     </Button>
                     <Grid container justify="center">
-                        <Link href="#" variant="body2">
+                        <Button onClick={onClickHandler}>
                             {"Não tem uma conta? Clique aqui para cadastrar!"}
-                        </Link>
+                        </Button>
                     </Grid>
                 </form>
             </div>
         </Container>
     );
 }
+function mapStateToProps(state) {
+    return {
+        loginProgress: state.loginProgress
+    }
+}
 function mapDispatchToProps(dispatch) {
     return {
         doLogin: (email, password) => dispatch(loginAction(email, password)),
+        goToSignup: () => dispatch(push(routes.signup)),
     };
 }
 
-export default connect(null, mapDispatchToProps)(LoginPage);
+export default connect(mapStateToProps, mapDispatchToProps)(LoginPage);

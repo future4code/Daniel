@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
@@ -7,7 +7,6 @@ import PlayCircleOutlineIcon from '@material-ui/icons/PlayCircleOutline';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import { useState } from 'react'
 import { connect } from 'react-redux';
 import { Grid } from '@material-ui/core';
 import PhotoCamera from '@material-ui/icons/PhotoCamera';
@@ -16,7 +15,10 @@ import {
     KeyboardDatePicker,
 } from '@material-ui/pickers';
 import DateFnsUtils from "@date-io/date-fns";
-
+import { CircularProgress } from '@material-ui/core';
+import * as firebase from "firebase/app";
+import { signupAction } from '../../actions';
+import uuidv4 from 'uuid/v4';
 
 const useStyles = makeStyles(theme => ({
     paper: {
@@ -42,6 +44,17 @@ const useStyles = makeStyles(theme => ({
     input: {
         display: 'none',
     },
+    progressbar: {
+        position: 'absolute',
+        color: theme.palette.primary.main
+    },
+    progressbarSuccess: {
+        position: 'absolute',
+        color: theme.palette.success.main
+    },
+    uploadIcon: {
+        position: "relative",
+    },
     submit: {
         background: `linear-gradient(45deg, ${theme.palette.primary.main} 30%, ${theme.palette.primary.secondaryGradient} 90%)`,
         fontWeight: "bold",
@@ -50,12 +63,22 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export function SignupPage(props) {
+    const inputRef = useRef(null);
     const classes = useStyles();
 
-    const [form, setForm] = useState({})
+    const [form, setForm] = useState({ birthdate: new Date() })
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
+        const url = await uploadFile();
+        const requestForm = {
+            name: form.name,
+            email: form.email,
+            password: form.password,
+            birthdate: form.birthdate.toISOString().split('T')[0],
+            photoUrl: url
+        }
+        props.doSignup(requestForm);
     }
 
     const handleInputChange = name => event => {
@@ -66,8 +89,40 @@ export function SignupPage(props) {
             const { value } = event.target;
             setForm({ ...form, [name]: value });
         }
-
     }
+    const uploadFile = async () => {
+        try {
+            const storageRef = firebase.storage().ref();
+            const newFileRef = storageRef.child(`userPhotos/${uuidv4()}`);
+            const metadata = {
+                customMetadata: {
+                    'teste': "BOX"
+                }
+            };
+            const uploadResult = newFileRef.put(inputRef.current.files[0], metadata);
+            return new Promise((resolve, reject) => {
+                uploadResult.on('state_changed', function (snapshot) {
+                    var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                    console.log(progress)
+                    setstate(progress);
+                }, function (error) {
+                    console.log(error)
+                    reject(error);
+                }, function () {
+                    uploadResult.snapshot.ref.getDownloadURL().then(function (downloadURL) {
+                        resolve(downloadURL);
+                    });
+                });
+            });
+
+        } catch (e) {
+            console.log(e);
+        }
+    }
+    const [state, setstate] = useState(0);
+    const progressbarDisplay = state > 0 ? 'inherit' : 'none';
+    const progressbarClass = state >= 100 ? classes.progressbarSuccess : classes.progressbar;
+
     return (
         <Container component="main" maxWidth="xs">
             <div className={classes.paper}>
@@ -115,13 +170,13 @@ export function SignupPage(props) {
                         value={form["password"]}
                     />
                     <Grid container justify="center" alignItems="center">
-                    <Grid item xs>
+                        <Grid item xs>
                             <MuiPickersUtilsProvider utils={DateFnsUtils}>
                                 <KeyboardDatePicker
                                     margin="normal"
                                     name="birthdate"
                                     id="date-picker-dialog"
-                                    format="dd/MM/yyyy"
+                                    format="dd-MM-yyyy"
                                     label="Data de nascimento"
                                     value={form["birthdate"]}
                                     onChange={handleInputChange("birthdate")}
@@ -130,9 +185,17 @@ export function SignupPage(props) {
                             </MuiPickersUtilsProvider>
                         </Grid>
                         <Grid item xs className={classes.uploadGrid}>
-                            <input accept="image/*" className={classes.input} id="icon-button-file" type="file" />
+                            <input accept="image/*" className={classes.input} id="icon-button-file" type="file" ref={inputRef} />
                             <label htmlFor="icon-button-file" >
-                                <IconButton color="secondary" aria-label="upload picture" component="span">
+                                <CircularProgress
+                                    disableShrink
+                                    variant="determinate"
+                                    size={50}
+                                    value={state}
+                                    className={progressbarClass}
+                                    style={{ display: progressbarDisplay }}
+                                />
+                                <IconButton color="secondary" aria-label="upload picture" component="span" className={classes.fileButton}>
                                     <PhotoCamera style={{ fontSize: 30 }} />
                                 </IconButton>
                                 <Typography variant="caption" gutterBottom>
@@ -162,6 +225,7 @@ export function SignupPage(props) {
 }
 function mapDispatchToProps(dispatch) {
     return {
+        doSignup: (request) => dispatch(signupAction(request))
     }
 }
 
