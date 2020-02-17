@@ -1,16 +1,19 @@
-function firstRecurrChar(string){
-    const lowerString = string.toLowerCase();
-    for(i=0;i < lowerString.length;i++){
-      const index = lowerString.indexOf(lowerString[i],i + 1 );
-      if(index > 0){
-        return string[i];
-      }
-  
+function firstRecurrChar(string) {
+  const lowerString = string.toLowerCase();
+  let checkArr = [];
+
+  for (i = 0; i < lowerString.length; i++) {
+    if (checkArr.indexOf(lowerString[i]) !== -1) {
+      return lowerString[i];
     }
-    return null;
+    else {
+      checkArr.push(lowerString[i]);
+    }
   }
-  
-  console.log(firstRecurrChar("VISCONDES"));
-  console.log(firstRecurrChar("BCABA"));
-  console.log(firstRecurrChar("ABC"));
-  console.log(firstRecurrChar("Amanda"));
+  return null;
+}
+
+console.log(firstRecurrChar("avivar"));
+console.log(firstRecurrChar("BCABA"));
+console.log(firstRecurrChar("ABC"));
+console.log(firstRecurrChar("Amanda"));
